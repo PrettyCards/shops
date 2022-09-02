@@ -42,6 +42,7 @@
     cursor: pointer;
     background: none;
     border: none;
+    display: block;
 }
 
 .PrettyCards_ShopMenu_Option:active {
