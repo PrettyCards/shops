@@ -10,6 +10,15 @@ class Shop {
         this.InitShopBase();
     }
 
+    AddMenuOption(text, action = function() {}) {
+        var option = document.createElement("DIV");
+        option.className = "PrettyCards_ShopMenu_Option";
+        option.innerHTML = text;
+        option.onclick = action;
+        this.menuContainer.appendChild(option);
+        return option;
+    }
+
     InitShopBase() {
         this.container = document.createElement("DIV");
         this.container.className = "PrettyCards_ShopContainer";

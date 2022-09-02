@@ -12,5 +12,9 @@ var art_setting = addSetting({
 
 if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
     var shop = new Shop();
+    shop.AddMenuOption("Buy");
+    shop.AddMenuOption("Check");
+    shop.AddMenuOption("Talk");
+    shop.AddMenuOption("Exit");
     document.getElementsByClassName("mainContent")[0].prepend(shop.container);
 }
