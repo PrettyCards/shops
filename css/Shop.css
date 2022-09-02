@@ -43,6 +43,7 @@
     background: none;
     border: none;
     display: block;
+    padding: 0px;
 }
 
 .PrettyCards_ShopMenu_Option:active {
