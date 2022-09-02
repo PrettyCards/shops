@@ -20,4 +20,20 @@
 
 .PrettyCards_ShopRight {
     width: 400px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.PrettyCards_ShopMenuContainer {
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    border-top: 3px solid white;
+}
+
+.PrettyCards_ShopkeeperContainer {
+    height: 100%;
 }
