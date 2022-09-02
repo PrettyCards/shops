@@ -11,7 +11,7 @@ class Shop {
     }
 
     AddMenuOption(text, action = function() {}) {
-        var option = document.createElement("DIV");
+        var option = document.createElement("BUTTON");
         option.className = "PrettyCards_ShopMenu_Option";
         option.innerHTML = text;
         option.onclick = action;

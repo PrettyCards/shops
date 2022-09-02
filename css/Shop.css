@@ -40,6 +40,8 @@
     font-size: 2em;
     margin: 10px;
     cursor: pointer;
+    background: none;
+    border: none;
 }
 
 .PrettyCards_ShopMenu_Option:active {
