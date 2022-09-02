@@ -6,10 +6,18 @@
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: flex-start;
-    height: 900px;
+    height: 700px;
 }
 
 .PrettyCards_ShopLeft,.PrettyCards_ShopRight {
-    width: 50%;
     height: 100%;
+}
+
+.PrettyCards_ShopLeft {
+    width: 500px;
+    border-right: 3px solid white;
+}
+
+.PrettyCards_ShopRight {
+    width: 400px;
 }
