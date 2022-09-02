@@ -42,6 +42,14 @@
     cursor: pointer;
 }
 
+.PrettyCards_ShopMenu_Option:active {
+    color: rgb(255, 204, 0);
+}
+
+.PrettyCards_ShopMenu_Option:hover {
+    color: rgb(255, 238, 0);
+}
+
 .PrettyCards_ShopkeeperContainer {
     height: 100%;
 }
