@@ -15,7 +15,7 @@ module.exports = {
   plugins: [
     new WebpackUserscript({
       headers: {
-        name: 'PrettyCards Audio',
+        name: 'PrettyCards Shops',
         match: 'https://*.undercards.net/*',
         exclude: 'https://*.undercards.net/*/*',
         //updateURL: `https://unpkg.com/${package.name}/dist/${package.name}.meta.js`,
