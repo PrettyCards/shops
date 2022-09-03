@@ -17,5 +17,5 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
     shop.AddMenuOption("Talk", "pc-shops-gerson-dial-talk");
     shop.AddMenuOption("Exit", "pc-shops-gerson-dial-exit");
     document.getElementsByClassName("mainContent")[0].prepend(shop.container);
-    shop.SetDialogue("[instant]Hi![w:500] I'm [style:red]Gerson[style:]![speed:500] [instant:off]Nice to meet you! ^^");
+    shop.SetDialogue("[instant]Hi![w:500] I'm [style:red]Gerson[style:]![speed:500] [instant:off]Nice to meet you![speed:33] Now I will have an insanely long monologue for testing purposes!");
 }

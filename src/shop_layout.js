@@ -67,8 +67,7 @@ class Shop {
         if (this.lastDialogue) {
             this.lastDialogue.Remove();
         }
-        this.lastDialogue = new TypedText(text);
-        this.dialogueContainer.appendChild(this.lastDialogue.container);
+        this.lastDialogue = new TypedText(text, this.dialogueContainer);
     }
 
 }

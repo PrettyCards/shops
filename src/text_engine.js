@@ -2,32 +2,48 @@
 
 class TypedText {
 
-    constructor(text) {
+    constructor(text, parent) {
         this.speed = 33; // The miliseconds between displaying letters.
         this.nextWait = this.speed;
         this.container = document.createElement("DIV");
-        this.StartNewSpan("");
+        parent.appendChild(this.container);
         this.text = text;
-        this.currentPage = 0;
+        this.currentPage = -1;
         this.currentLetter = 0;
         this.instant = false;
         if (typeof(text) == "string") {
             this.text = [text];
         }
         this.InitTextCommands();
-        this.Progress();
-        this.TimeLoop();
+        this.NextPage();
     }
 
     ResetTextArea() {
-
+        this.container.innerHTML = "";
+        this.StartNewSpan("");
+        this.currentLetter = 0;
     }
 
-    SetHeight() {
+    SetHeight(sizeParent = false) {
         while (!this.IsPageDone()) {
             this.Progress();
         }
-        // Get the height here
+        var sizeElem = sizeParent ? this.container.parentElement : this.container;
+        var height = sizeElem.getBoundingClientRect().height;
+        sizeElem.style.height = height + "px";
+        this.ResetTextArea();
+    }
+
+    NextPage() {
+        this.ResetTextArea();
+        this.currentPage++;console.log(this.currentPage);
+        if (this.currentPage >= this.text.length) {
+            this.Remove();
+            return;
+        }
+        this.SetHeight();
+        this.Progress();
+        this.TimeLoop();
     }
 
     InitTextCommands() {
@@ -122,6 +138,7 @@ class TypedText {
     }
 
     TimeLoop() {
+        console.log("TIME LOOP!");
         if (!this.IsPageDone()) {
             this.lastTimeout = setTimeout(function() {
                 this.nextWait = this.speed;
