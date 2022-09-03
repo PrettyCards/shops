@@ -17,4 +17,5 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
     shop.AddMenuOption("Talk");
     shop.AddMenuOption("Exit");
     document.getElementsByClassName("mainContent")[0].prepend(shop.container);
+    shop.SetDialogue("Hi![w:500] I'm [style:red]Gerson[style:]![speed:500] Nice to meet you! ^^ ");
 }

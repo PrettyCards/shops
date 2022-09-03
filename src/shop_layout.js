@@ -1,3 +1,4 @@
+import { TypedText } from "./text_engine";
 import { plugin } from "./underscript_checker";
 
 plugin.events.on("PrettyCards:onPageLoad", function() {
@@ -47,6 +48,14 @@ class Shop {
         this.menuContainer.className = "PrettyCards_ShopMenuContainer";
         this.right.appendChild(this.menuContainer);
         return this.container;
+    }
+
+    SetDialogue(text) {
+        if (this.lastDialogue) {
+            this.lastDialogue.Remove();
+        }
+        this.lastDialogue = new TypedText(text);
+        this.dialogueContainer.appendChild(this.lastDialogue.container);
     }
 
 }
