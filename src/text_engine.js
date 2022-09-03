@@ -10,11 +10,24 @@ class TypedText {
         this.text = text;
         this.currentPage = 0;
         this.currentLetter = 0;
+        this.instant = false;
         if (typeof(text) == "string") {
             this.text = [text];
         }
         this.InitTextCommands();
+        this.Progress();
         this.TimeLoop();
+    }
+
+    ResetTextArea() {
+
+    }
+
+    SetHeight() {
+        while (!this.IsPageDone()) {
+            this.Progress();
+        }
+        // Get the height here
     }
 
     InitTextCommands() {
@@ -29,7 +42,18 @@ class TypedText {
                 return false;
             },
             w: (ms) => {
-                this.nextWait += ms;
+                this.nextWait = Number(ms) || 0;
+                return false;
+            },
+            instant: (arg) => {
+                this.instant = arg === "" || arg === "on" || arg === "true";
+                /*
+                if (this.instant) {
+                    clearTimeout(this.lastTimeout);
+                } else {
+                    this.TimeLoop();
+                }
+                */
                 return false;
             }
         }
@@ -48,6 +72,9 @@ class TypedText {
     }
 
     Progress() {
+        if (this.IsPageDone()) {
+            return;
+        }
         var currStr = this.text[this.currentPage];
         var isSkipped = this.currentLetter > 0 && currStr.charAt(this.currentLetter-1) === "\\";
         var nextChar = currStr.charAt(this.currentLetter);
@@ -65,10 +92,9 @@ class TypedText {
                 throw "Error in command parsing for string: " + currStr;
             }
             var commandStr = currStr.substring(this.currentLetter, commandEnd + 1);
-            console.log(commandStr);
             var argSepPos = commandStr.indexOf(":");
             var cmdName;
-            var cmdArg;
+            var cmdArg = "";
             if (argSepPos < 0) {
                 cmdName = commandStr.substring(1, commandStr.length-1);
             } else {
@@ -86,15 +112,23 @@ class TypedText {
                 this.Progress();
             }
         }
-        console.log("LETTER: " + this.currentLetter);
+        if (this.instant && !this.IsPageDone()) {
+            this.Progress();
+        }
+    }
+
+    IsPageDone() {
+        return this.currentLetter >= this.text[this.currentPage].length;
     }
 
     TimeLoop() {
-        this.lastTimeout = setTimeout(function() {
-            this.nextWait = this.speed;
-            this.Progress();
-            this.TimeLoop();
-        }.bind(this), this.nextWait);
+        if (!this.IsPageDone()) {
+            this.lastTimeout = setTimeout(function() {
+                this.nextWait = this.speed;
+                this.Progress();
+                this.TimeLoop();
+            }.bind(this), this.nextWait);
+        }
     }
 
 }

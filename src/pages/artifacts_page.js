@@ -12,10 +12,10 @@ var art_setting = addSetting({
 
 if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
     var shop = new Shop();
-    shop.AddMenuOption("Buy");
-    shop.AddMenuOption("Check");
-    shop.AddMenuOption("Talk");
-    shop.AddMenuOption("Exit");
+    shop.AddMenuOption("Buy", "pc-shops-gerson-dial-buy");
+    shop.AddMenuOption("Check", "pc-shops-gerson-dial-check");
+    shop.AddMenuOption("Talk", "pc-shops-gerson-dial-talk");
+    shop.AddMenuOption("Exit", "pc-shops-gerson-dial-exit");
     document.getElementsByClassName("mainContent")[0].prepend(shop.container);
-    shop.SetDialogue("Hi![w:500] I'm [style:red]Gerson[style:]![speed:500] Nice to meet you! ^^ ");
+    shop.SetDialogue("[instant]Hi![w:500] I'm [style:red]Gerson[style:]![speed:500] [instant:off]Nice to meet you! ^^");
 }

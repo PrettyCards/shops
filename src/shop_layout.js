@@ -8,14 +8,27 @@ plugin.events.on("PrettyCards:onPageLoad", function() {
 class Shop {
 
     constructor() {
+        this.pages = [];
         this.InitShopBase();
     }
 
-    AddMenuOption(text, action = function() {}) {
+    AddMenuOption(text, dialogueEntry, action = function() {}) {
+        const page = document.createElement("DIV");
+        page.className = "PrettyCards_Hidden";
+        this.buyContainer.appendChild(page);
+        this.pages.push(page);
+
         var option = document.createElement("BUTTON");
         option.className = "PrettyCards_ShopMenu_Option";
         option.innerHTML = text;
-        option.onclick = action;
+        option.onclick = function() {
+            this.pages.forEach((p) => {
+                p.classList.add("PrettyCards_Hidden");
+            })
+            page.classList.remove("PrettyCards_Hidden");
+            this.SetDialogue(window.$.i18n(dialogueEntry));
+            action();
+        }.bind(this);
         this.menuContainer.appendChild(option);
         return option;
     }
