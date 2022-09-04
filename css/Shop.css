@@ -68,7 +68,7 @@
     padding: 10px;
     transition: all 0.5s;
     user-select: none;
-    flex: 0 0;
+    flex: 0 0 auto;
 }
 
 .PrettyCards_ShopDialogueContainer:empty {
