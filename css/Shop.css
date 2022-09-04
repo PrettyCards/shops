@@ -117,7 +117,7 @@
     color: rgb(255, 149, 0);
 }
 
-.PrettyCards_ShopTalkOption:disabled {
+.PrettyCards_ShopTalkOption[disabled] {
     color: #555555!important;
 }
 
