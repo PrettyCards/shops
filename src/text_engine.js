@@ -32,6 +32,7 @@ class TypedText {
         }
         var sizeElem = sizeParent ? this.container.parentElement : this.container;
         var copy = sizeElem.cloneNode(true);
+        copy.style.height = "";
         copy.style.width = sizeElem.getBoundingClientRect().width + "px";
         copy.style.transition = "none";
         document.body.appendChild(copy);
