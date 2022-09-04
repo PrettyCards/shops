@@ -5,11 +5,19 @@ class FlexListScreen {
     
     constructor(data, parent) {
         this.data = data;
+        this.outerContainer = document.createElement("DIV");
+        this.outerContainer.className = "PrettyCards_ShopFlexList_Outer";
         this.container = document.createElement("DIV");
         this.container.className = "PrettyCards_ShopFlexList";
+        this.outerContainer.appendChild(this.container)
         if (parent) {
-            parent.appendChild(this.container);
+            parent.appendChild(this.outerContainer);
         }
+    }
+
+    // This is also a universal setting function. Once called, it's hard to revert it safely!
+    DisplayFewItemsInMiddle() {
+        this.outerContainer.className += " PrettyCards_ShopFlexList_OuterTrue";
     }
 
     // This is the only universal part.

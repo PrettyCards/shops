@@ -23,6 +23,17 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
         document.getElementsByClassName("mainContent")[0].prepend(shop.container);
 
         var shopScreen = new ArtifactsScreen(window.prettycards.artifactDisplay.artifacts, shop.GetPageElement(0));
+        plugin.events.on("PrettyCards:artBuySuccess", function(data) {
+            shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-bought"));
+            // shopScreen.Render(); // I'm gonna show I'm better than Onu!
+            var artEle = shopScreen.container.querySelector(`.PrettyCards_ShopArtifactDisplay[artid="${data.idArtifact}"]`);
+            if (artEle) {
+                artEle.remove();
+            }
+        });
+        plugin.events.on("PrettyCards:artBuyError", function() {
+            shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-buyerror"));
+        })
         shopScreen.Render();
 
         var checkScreen = new ArtifactsScreen(window.prettycards.artifactDisplay.artifacts, shop.GetPageElement(1), true);

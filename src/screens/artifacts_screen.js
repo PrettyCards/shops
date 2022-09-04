@@ -22,6 +22,7 @@ class ArtifactsScreen extends FlexListScreen {
 
     RenderEntry(entry) {
         var ele = document.createElement("DIV");
+        ele.setAttribute("artid", entry.id);
         ele.className = "PrettyCards_ShopArtifactDisplay " + entry.rarity;
         ele.onclick = function() {
             console.log(entry, this, this.viewFunc);
