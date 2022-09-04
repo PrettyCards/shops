@@ -117,9 +117,8 @@
 }
 
 .PrettyCards_ShopArtifactDisplay {
-    margin: 5px;
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     display: flex;
     align-content: center;
     align-items: center;
@@ -147,6 +146,10 @@
 
 .PrettyCards_ShopArtifactDisplay.LEGENDARY {
     background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/LEGENDARY.png");
+}
+
+.PrettyCards_ShopArtifactDisplay.TOKEN {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/TOKEN.png");
 }
 
 .PrettyCards_ShopArtifactDisplay.DETERMINATION {
