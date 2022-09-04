@@ -60,6 +60,7 @@
 
 .PrettyCards_ShopBuyContainer {
     height: 100%;
+    overflow-y: auto;
 }
 
 .PrettyCards_ShopDialogueContainer {
