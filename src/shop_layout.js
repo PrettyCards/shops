@@ -2,7 +2,7 @@ import { TypedText } from "./text_engine";
 import { plugin } from "./underscript_checker";
 
 plugin.events.on("PrettyCards:onPageLoad", function() {
-    window.prettycards.utility.loadCSSFromGH("Shop", "shops");
+    window.prettycards.utility.loadCSSFromGH("Shop", "shops").then(plugin.events.emit("PrettyCardsShops:CSSReady"));
 })
 
 class Shop {
@@ -48,6 +48,7 @@ class Shop {
         this.dialogueContainer = document.createElement("DIV");
         this.dialogueContainer.className = "PrettyCards_ShopDialogueContainer";
         this.dialogueContainer.onclick = function() {
+            //console.log("AREA PRESSED!", this.lastDialogue);
             if (this.lastDialogue) {
                 if (this.lastDialogue.IsPageDone()) {
                     this.lastDialogue.NextPage();
@@ -55,7 +56,7 @@ class Shop {
                     this.lastDialogue.UserSkip();
                 }
             }
-        }
+        }.bind(this);
         this.left.appendChild(this.dialogueContainer);
 
         this.right = document.createElement("DIV");
@@ -77,6 +78,7 @@ class Shop {
             this.lastDialogue.Remove();
         }
         this.lastDialogue = new TypedText(text, this.dialogueContainer);
+        //console.log("NEW TEXT", this.lastDialogue, this);
     }
 
 }

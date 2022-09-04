@@ -1,6 +1,6 @@
 
 import { Shop } from "../shop_layout";
-import { us_loaded, addSetting } from "../underscript_checker";
+import { us_loaded, addSetting, plugin } from "../underscript_checker";
 
 var art_setting = addSetting({
     'key': 'artifacts_shops_toggle',
@@ -11,11 +11,16 @@ var art_setting = addSetting({
 });
 
 if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
-    var shop = new Shop();
-    shop.AddMenuOption("Buy", "pc-shops-gerson-dial-buy");
-    shop.AddMenuOption("Check", "pc-shops-gerson-dial-check");
-    shop.AddMenuOption("Talk", "pc-shops-gerson-dial-talk");
-    shop.AddMenuOption("Exit", "pc-shops-gerson-dial-exit");
-    document.getElementsByClassName("mainContent")[0].prepend(shop.container);
-    shop.SetDialogue("[instant]Hi![w:500] I'm [style:red]Gerson[style:]![speed:500] [instant:off][style:cyan]\rNice to meet you![speed:33] \nNow I will have an insanely long monologue for testing purposes!");
+    plugin.events.on("PrettyCardsShops:CSSReady", function() {
+        var shop = new Shop();
+        shop.AddMenuOption("Buy", "pc-shops-gerson-dial-buy");
+        shop.AddMenuOption("Check", "pc-shops-gerson-dial-check");
+        shop.AddMenuOption("Talk", "pc-shops-gerson-dial-talk");
+        shop.AddMenuOption("Exit", "pc-shops-gerson-dial-exit");
+        document.getElementsByClassName("mainContent")[0].prepend(shop.container);
+        setTimeout(function() {
+            shop.SetDialogue("[instant]Hi![w:500] I'm [style:red]Gerson[style:]![speed:500] [instant:off][style:cyan]\rNice to meet you![speed:33] \nNow I will have an insanely long monologue for testing purposes!");
+        }, 1000);
+        
+    })
 }

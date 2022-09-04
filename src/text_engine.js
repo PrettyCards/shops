@@ -26,13 +26,17 @@ class TypedText {
         this.currentLetter = 0;
     }
 
-    SetHeight(sizeParent = false) {
+    SetHeight(sizeParent = true) {
         while (!this.IsPageDone()) {
             this.Progress();
         }
         var sizeElem = sizeParent ? this.container.parentElement : this.container;
-        var height = sizeElem.getBoundingClientRect().height;
-        //sizeElem.style.height = height + "px";
+        var copy = sizeElem.cloneNode(true);
+        copy.style.width = sizeElem.getBoundingClientRect().width + "px";
+        copy.style.transition = "none";
+        document.body.appendChild(copy);
+        var height = copy.getBoundingClientRect().height;
+        sizeElem.style.height = height + "px";
         this.ResetTextArea();
     }
 
@@ -171,7 +175,6 @@ class TypedText {
     }
 
     TimeLoop() {
-        console.log("TIME LOOP!");
         if (!this.IsPageDone()) {
             this.lastTimeout = setTimeout(function() {
                 this.nextWait = this.speed;
