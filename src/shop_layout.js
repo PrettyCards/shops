@@ -1,18 +1,27 @@
 import { TypedText } from "./text_engine";
 import { plugin } from "./underscript_checker";
 
+var translate;
+
 plugin.events.on("PrettyCards:onPageLoad", function() {
     window.prettycards.utility.loadCSSFromGH("Shop", "shops").then(plugin.events.emit("PrettyCardsShops:CSSReady"));
+    translate = window.prettycards.translationManager.getStringOrList.bind(window.prettycards.translationManager);
 })
 
 class Shop {
 
-    constructor() {
+    constructor(id) {
+        this.id = id;
         this.pages = [];
         this.InitShopBase();
+        setTimeout(function() {
+            if (!this.lastDialogue) {
+                this.SetDialogue(translate(`pc-shops-${this.id}-dial-intro`));
+            }
+        }.bind(this), 500);
     }
 
-    AddMenuOption(text, dialogueEntry, action = function() {}) {
+    AddMenuOption(transKey, action = function() {}) {
         const page = document.createElement("DIV");
         page.className = "PrettyCards_Hidden";
         this.buyContainer.appendChild(page);
@@ -20,17 +29,21 @@ class Shop {
 
         var option = document.createElement("BUTTON");
         option.className = "PrettyCards_ShopMenu_Option";
-        option.innerHTML = text;
+        option.innerHTML = window.$.i18n(`pc-shops-option-${transKey}`);
         option.onclick = function() {
             this.pages.forEach((p) => {
                 p.classList.add("PrettyCards_Hidden");
             })
             page.classList.remove("PrettyCards_Hidden");
-            this.SetDialogue(window.$.i18n(dialogueEntry));
+            this.SetDialogue(translate(`pc-shops-${this.id}-dial-${transKey}`));
             action();
         }.bind(this);
         this.menuContainer.appendChild(option);
         return option;
+    }
+
+    GetPageElement(nr) {
+        return this.pages[nr];
     }
 
     InitShopBase() {

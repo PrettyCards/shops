@@ -3,7 +3,8 @@
 class TypedText {
 
     constructor(text, parent) {
-        this.speed = 33; // The miliseconds between displaying letters.
+        this.defaultSpeed = 33;
+        this.speed = this.defaultSpeed; // The miliseconds between displaying letters.
         this.nextWait = this.speed;
         this.container = document.createElement("DIV");
         parent.appendChild(this.container);
@@ -38,13 +39,14 @@ class TypedText {
         document.body.appendChild(copy);
         var height = copy.getBoundingClientRect().height;
         sizeElem.style.height = height + "px";
+        copy.remove();
         this.ResetTextArea();
     }
 
     NextPage() {
         this.userInstant = false;
         this.ResetTextArea();
-        this.currentPage++;console.log(this.currentPage);
+        this.currentPage++;
         if (this.currentPage >= this.text.length) {
             this.Remove();
             return;
@@ -62,7 +64,11 @@ class TypedText {
                 return true;
             },
             speed: (ms) => {
-                this.speed = Number(ms);
+                if (ms === "default" || ms === "reset") {
+                    this.speed = this.defaultSpeed;
+                } else {
+                    this.speed = Number(ms);
+                }
                 return false;
             },
             w: (ms) => {
@@ -93,6 +99,7 @@ class TypedText {
     UserSkip() {
         if (!this.noskip) {
             this.userInstant = true;
+            this.Progress();
             return true;
         }
         return false;

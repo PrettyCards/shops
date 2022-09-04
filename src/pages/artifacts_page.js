@@ -1,5 +1,6 @@
 
 import { Shop } from "../shop_layout";
+import { StandardTalkScreen } from "../standard_talk_screen";
 import { us_loaded, addSetting, plugin } from "../underscript_checker";
 
 var art_setting = addSetting({
@@ -11,16 +12,26 @@ var art_setting = addSetting({
 });
 
 if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
-    plugin.events.on("PrettyCardsShops:CSSReady", function() {
-        var shop = new Shop();
-        shop.AddMenuOption("Buy", "pc-shops-gerson-dial-buy");
-        shop.AddMenuOption("Check", "pc-shops-gerson-dial-check");
-        shop.AddMenuOption("Talk", "pc-shops-gerson-dial-talk");
-        shop.AddMenuOption("Exit", "pc-shops-gerson-dial-exit");
+    underscript.utils.compoundEvent("PrettyCardsShops:CSSReady", "PrettyCards:TranslationExtReady", function () {
+    //plugin.events.on("PrettyCardsShops:CSSReady PrettyCards:TranslationExtReady", function() {
+        var shop = new Shop("gerson");
+        shop.AddMenuOption("buy");
+        shop.AddMenuOption("check");
+        shop.AddMenuOption("talk");
+        shop.AddMenuOption("exit");
         document.getElementsByClassName("mainContent")[0].prepend(shop.container);
+
+        var talkScreen = new StandardTalkScreen(shop);
+        talkScreen.AddTalkOption("pc-shops-gerson-talk-title-aboutyou", "pc-shops-gerson-talk-aboutyou");
+
+        var talkBase = shop.GetPageElement(2);
+        talkBase.appendChild(talkScreen.container);
+        talkScreen.Render();
+        /*
         setTimeout(function() {
             shop.SetDialogue("[instant]Hi![w:500] I'm [style:red]Gerson[style:]![speed:500] [instant:off][style:cyan]\rNice to meet you![speed:33] \nNow I will have an insanely long monologue for testing purposes!");
-        }, 1000);
+        }, 500);
+        */
         
     })
 }
