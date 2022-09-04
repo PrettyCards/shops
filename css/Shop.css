@@ -105,3 +105,27 @@
 .PrettyCards_ShopTalkOption:active {
     color: rgb(255, 149, 0);
 }
+
+.PrettyCards_ShopFlexList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.PrettyCards_ShopArtifactDisplay {
+    margin: 5px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.PrettyCards_ShopArtifactDisplay img {
+    width: 64px;
+    height: 64px;
+}
