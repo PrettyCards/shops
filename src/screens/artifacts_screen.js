@@ -5,7 +5,8 @@ class ArtifactsScreen extends FlexListScreen {
     constructor(data, parent, displayBought = false) {
         super(data, parent);
         this.displayBought = displayBought;
-        this.rarityOrder = ["COMMON", "RARE", "EPIC", "LEGENDARY", "TOKEN", "DETERMINATION", "MYTHICAL"]; // Just to be sure, I added a few more.
+        this.rarityOrder = ["BASE", "COMMON", "RARE", "EPIC", "LEGENDARY", "TOKEN", "DETERMINATION", "MYTHICAL"]; // Just to be sure, I added a few more.
+        this.viewFunc = window.prettycards.FancyDisplay.ViewArtifactInfo.bind(window.prettycards.FancyDisplay);
     }
 
     OrderLogic(a, b) {
@@ -13,12 +14,19 @@ class ArtifactsScreen extends FlexListScreen {
     }
 
     IsHidden(entry) {
-        return (!this.displayBought) && entry.owned;
+        if (this.displayBought) {
+            return false;
+        }
+        return entry.collection || entry.owned || entry.unavailable;
     }
 
     RenderEntry(entry) {
         var ele = document.createElement("DIV");
         ele.className = "PrettyCards_ShopArtifactDisplay " + entry.rarity;
+        ele.onclick = function() {
+            console.log(entry, this, this.viewFunc);
+            this.viewFunc(entry.id);
+        }.bind(this);
         var img = document.createElement("IMG");
         img.src = window.prettycards.utility.getArtifactImageLink(entry.image);
         ele.appendChild(img);

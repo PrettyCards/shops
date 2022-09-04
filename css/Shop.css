@@ -126,6 +126,11 @@
     justify-content: space-around;
 }
 
+.PrettyCards_ShopArtifactDisplay:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
 .PrettyCards_ShopArtifactDisplay img {
     width: 64px;
     height: 64px;
