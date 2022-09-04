@@ -124,11 +124,41 @@
     align-content: center;
     align-items: center;
     justify-content: space-around;
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/TEMPLATE.png");
+    background-size: cover;
+    cursor: pointer;
 }
 
-.PrettyCards_ShopArtifactDisplay:hover {
+.PrettyCards_ShopArtifactDisplay.BASE {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/BASE.png");
+}
+
+.PrettyCards_ShopArtifactDisplay.COMMON {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/COMMON.png");
+}
+
+.PrettyCards_ShopArtifactDisplay.RARE {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/RARE.png");
+}
+
+.PrettyCards_ShopArtifactDisplay.EPIC {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/EPIC.png");
+}
+
+.PrettyCards_ShopArtifactDisplay.LEGENDARY {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/LEGENDARY.png");
+}
+
+.PrettyCards_ShopArtifactDisplay.DETERMINATION {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/DETERMINATION.png");
+}
+
+.PrettyCards_ShopArtifactDisplay.MYTHICAL {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/MYTHICAL.png");
+}
+
+.PrettyCards_ShopArtifactDisplay:hover img {
     opacity: 0.8;
-    cursor: pointer;
 }
 
 .PrettyCards_ShopArtifactDisplay img {
