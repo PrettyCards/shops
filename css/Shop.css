@@ -74,3 +74,14 @@
     padding: 0px;
     height: 0px!important;
 }
+
+.PrettyCards_UTTextParagraph {
+    padding-left: 1.1em;
+    position: relative;
+}
+
+.PrettyCards_UTTextParagraph::before {
+    content: "* ";
+    position: absolute;
+    left: -0.06em;
+}

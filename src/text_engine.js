@@ -20,7 +20,7 @@ class TypedText {
 
     ResetTextArea() {
         this.container.innerHTML = "";
-        this.StartNewSpan("");
+        this.StartNewParagraph(true);
         this.currentLetter = 0;
     }
 
@@ -30,7 +30,7 @@ class TypedText {
         }
         var sizeElem = sizeParent ? this.container.parentElement : this.container;
         var height = sizeElem.getBoundingClientRect().height;
-        sizeElem.style.height = height + "px";
+        //sizeElem.style.height = height + "px";
         this.ResetTextArea();
     }
 
@@ -80,10 +80,19 @@ class TypedText {
         this.container.remove();
     }
 
+    StartNewParagraph(reset = false) {
+        this.currentParagraph = document.createElement("DIV"); // Bootstrap and other stuff mess with paragraphs, so I had to change this.
+        this.currentParagraph.className = "PrettyCards_UTTextParagraph";
+        this.container.appendChild(this.currentParagraph);
+        this.StartNewSpan((this.currentSpan && !reset) ? this.currentSpan.className : "");
+        //this.StartNewSpan("");
+        return this.currentParagraph;
+    }
+
     StartNewSpan(className) {
         this.currentSpan = document.createElement("SPAN");
         this.currentSpan.className = className;
-        this.container.appendChild(this.currentSpan);
+        this.currentParagraph.appendChild(this.currentSpan);
         return this.currentSpan;
     }
 
@@ -98,7 +107,13 @@ class TypedText {
         // "\\" indicates the skipping of a character (unless skipped), but it should not be displayed, therefore nothing should happen in that case.
         if (nextChar !== "[" || isSkipped) {
             if (nextChar !== "\\" || isSkipped) {
-                this.currentSpan.innerHTML += nextChar;
+                if (nextChar === "\n") {
+                    this.StartNewParagraph();
+                } else if (nextChar === "\r") {
+                    this.currentSpan.innerHTML += "<br>";
+                } else {
+                    this.currentSpan.innerHTML += nextChar;
+                }
             }
             this.currentLetter++;
         } else {
