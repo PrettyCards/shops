@@ -11,6 +11,8 @@ class TypedText {
         this.currentPage = -1;
         this.currentLetter = 0;
         this.instant = false;
+        this.userInstant = false;
+        this.noskip = false;
         if (typeof(text) == "string") {
             this.text = [text];
         }
@@ -35,6 +37,7 @@ class TypedText {
     }
 
     NextPage() {
+        this.userInstant = false;
         this.ResetTextArea();
         this.currentPage++;console.log(this.currentPage);
         if (this.currentPage >= this.text.length) {
@@ -71,8 +74,23 @@ class TypedText {
                 }
                 */
                 return false;
+            },
+            noskip: (arg) => {
+                this.noskip = arg === "" || arg === "on" || arg === "true";
+                if (this.noskip) {
+                    this.userInstant = false;
+                }
+                return true;
             }
         }
+    }
+
+    UserSkip() {
+        if (!this.noskip) {
+            this.userInstant = true;
+            return true;
+        }
+        return false;
     }
 
     Remove() {
@@ -143,7 +161,7 @@ class TypedText {
                 this.Progress();
             }
         }
-        if (this.instant && !this.IsPageDone()) {
+        if ( (this.instant || this.userInstant) && !this.IsPageDone()) {
             this.Progress();
         }
     }

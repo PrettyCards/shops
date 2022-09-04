@@ -67,6 +67,7 @@
     font-size: 1.5em;
     padding: 10px;
     transition: all 0.5s;
+    user-select: none;
 }
 
 .PrettyCards_ShopDialogueContainer:empty {

@@ -47,6 +47,15 @@ class Shop {
 
         this.dialogueContainer = document.createElement("DIV");
         this.dialogueContainer.className = "PrettyCards_ShopDialogueContainer";
+        this.dialogueContainer.onclick = function() {
+            if (this.lastDialogue) {
+                if (this.lastDialogue.IsPageDone()) {
+                    this.lastDialogue.NextPage();
+                } else {
+                    this.lastDialogue.UserSkip();
+                }
+            }
+        }
         this.left.appendChild(this.dialogueContainer);
 
         this.right = document.createElement("DIV");
