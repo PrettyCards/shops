@@ -54,6 +54,10 @@
     color: rgb(255, 149, 0);
 }
 
+.PrettyCards_ShopMenu_Option:disabled {
+    color: #555555!important;
+}
+
 .PrettyCards_ShopkeeperContainer {
     height: 100%;
 }
@@ -111,6 +115,10 @@
 
 .PrettyCards_ShopTalkOption:active {
     color: rgb(255, 149, 0);
+}
+
+.PrettyCards_ShopTalkOption:disabled {
+    color: #555555!important;
 }
 
 .PrettyCards_ShopFlexList {

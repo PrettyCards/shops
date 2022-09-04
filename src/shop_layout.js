@@ -46,6 +46,22 @@ class Shop {
         return this.pages[nr];
     }
 
+    LockButtons() {
+        var children = this.menuContainer.children;
+        for (var i=0; i < children.length; i++) {
+            var child = children[i];
+            child.setAttribute("disabled", true);
+        }
+    }
+
+    UnlockButtons() {
+        var children = this.menuContainer.children;
+        for (var i=0; i < children.length; i++) {
+            var child = children[i];
+            child.removeAttribute("disabled");
+        }
+    }
+
     InitShopBase() {
         this.container = document.createElement("DIV");
         this.container.className = "PrettyCards_ShopContainer";

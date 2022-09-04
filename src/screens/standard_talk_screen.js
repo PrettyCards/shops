@@ -28,15 +28,40 @@ class StandardTalkScreen {
             ele.className = "PrettyCards_ShopTalkOption";
             ele.innerHTML = window.$.i18n(option.titleKey);
             ele.onclick = function() {
+                if (this.hasAttribute("disabled")) {
+                    return;
+                }
                 self.OnOptionPressed(option);
             };
             this.container.appendChild(ele);
         });
     }
 
+    LockButtons() {
+        var children = this.container.children;
+        for (var i=0; i < children.length; i++) {
+            var child = children[i];
+            child.setAttribute("disabled", true);
+        }
+    }
+
+    UnlockButtons() {
+        var children = this.container.children;
+        for (var i=0; i < children.length; i++) {
+            var child = children[i];
+            child.removeAttribute("disabled");
+        }
+    }
+
     OnOptionPressed(option) {
         this.shop.SetDialogue(window.prettycards.translationManager.getStringOrList(option.dialogueKey));
+        var dialogue = this.shop.lastDialogue;
+        this.shop.LockButtons();
+        this.LockButtons();
+
+        var unlockedNewDialogue = false;
         if (option.unlocks && option.unlocks !== "") {
+            unlockedNewDialogue = true;
             for (var i=0; i < this.talkOptions.length; i++) {
                 var o = this.talkOptions[i];
                 if (o.titleKey === this.unlocks) {
@@ -45,6 +70,14 @@ class StandardTalkScreen {
                 }
             }
         }
+
+        dialogue.onremove = function() {
+            this.shop.UnlockButtons();
+            this.UnlockButtons();
+            if (unlockedNewDialogue) {
+                this.Render();
+            }
+        }.bind(this);
     }
 
 }

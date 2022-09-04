@@ -14,6 +14,7 @@ class TypedText {
         this.instant = false;
         this.userInstant = false;
         this.noskip = false;
+        this.onremove = function() {};
         if (typeof(text) == "string") {
             this.text = [text];
         }
@@ -108,6 +109,7 @@ class TypedText {
     Remove() {
         clearTimeout(this.lastTimeout);
         this.container.remove();
+        this.onremove();
     }
 
     StartNewParagraph(reset = false) {
