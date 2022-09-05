@@ -1,3 +1,4 @@
+import Konva from "konva";
 import { TypedText } from "./text_engine";
 import { plugin } from "./underscript_checker";
 
@@ -17,6 +18,17 @@ class Shop {
         this.InitShopBase();
         this.bgm = new Audio();
         this.bgm.loop = true;
+
+        this.stage = new Konva.Stage({
+            container: this.shopkeeperContainer,   // id of container <div>
+            width: 600,
+            height: 650
+        });
+
+        this.bgLayer = new Konva.Layer();
+        this.mainLayer = new Konva.Layer();
+        this.stage.add(this.bgLayer);
+        this.stage.add(this.mainLayer);
 
         this.SetUpEvents();
         setTimeout(function() {
