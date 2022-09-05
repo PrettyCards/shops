@@ -15,6 +15,8 @@ class Shop {
         this.id = id;
         this.pages = [];
         this.InitShopBase();
+        this.bgm = new Audio();
+        this.bgm.loop = true;
         setTimeout(function() {
             if (!this.lastDialogue) {
                 this.SetDialogue(translate(`pc-shops-${this.id}-dial-intro`));
@@ -23,7 +25,9 @@ class Shop {
     }
 
     SetupBackgroundAndMusic() {
-        document.body.style.backgroundImage = `url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/shopkeeper_backgrounds/${this.id}.png")`
+        document.body.style.backgroundImage = `url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/shopkeeper_backgrounds/${this.id}.png")`;
+        this.bgm.src = `https://raw.githubusercontent.com/PrettyCards/shops/main/audio/bgm/${this.id}.png`;
+        this.bgm.play();
     }
 
     RemoveEverythingElse(transpMainContent = true) {
