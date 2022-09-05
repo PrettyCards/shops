@@ -17,6 +17,8 @@ class Shop {
         this.InitShopBase();
         this.bgm = new Audio();
         this.bgm.loop = true;
+
+        this.SetUpEvents();
         setTimeout(function() {
             if (!this.lastDialogue) {
                 this.SetDialogue(translate(`pc-shops-${this.id}-dial-intro`));
@@ -24,9 +26,19 @@ class Shop {
         }.bind(this), 500);
     }
 
+    SetUpEvents() {
+        plugin.events.on("PrettyCards:pauseBGM", function() {
+            this.bgm.pause();
+        }.bind(this));
+
+        plugin.events.on("PrettyCards:resumeBGM", function() {
+            this.bgm.play();
+        }.bind(this));
+    }
+
     SetupBackgroundAndMusic() {
         document.body.style.backgroundImage = `url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/shopkeeper_backgrounds/${this.id}.png")`;
-        this.bgm.src = `https://raw.githubusercontent.com/PrettyCards/shops/main/audio/bgm/${this.id}.png`;
+        this.bgm.src = `https://raw.githubusercontent.com/PrettyCards/shops/main/audio/bgm/${this.id}.ogg`;
         this.bgm.play();
     }
 

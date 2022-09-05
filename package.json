@@ -15,8 +15,8 @@
         "dist/*.js"
     ],
     "keywords": [
-		"prettycards_shops",
-		"prettycards",
+        "prettycards_shops",
+        "prettycards",
         "underscript",
         "plugin"
     ],
@@ -26,5 +26,8 @@
         "webpack": "^4.41.6",
         "webpack-cli": "^3.3.11",
         "webpack-userscript": "^2.5.1"
+    },
+    "dependencies": {
+        "konva": "^8.3.12"
     }
 }
