@@ -21,6 +21,10 @@ class Shop {
         }.bind(this), 500);
     }
 
+    SetupBackgroundAndMusic() {
+        document.body.style.backgroundImage = `url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/shopkeeper_backgrounds/${this.id}.png")`
+    }
+
     RemoveEverythingElse(transpMainContent = true) {
         window.prettycards.utility.hideUglyPage();
         if (transpMainContent) {

@@ -8,6 +8,10 @@ class StandardTalkScreen {
         this.shop = shop;
     }
 
+    AddTalkFast(id, locked = false, unlocks = "") {
+        this.AddTalkOption(`pc-shops-${this.shop.id}-talk-title-${id}`, `pc-shops-${this.shop.id}-talk-${id}`, locked, unlocks);
+    }
+
     AddTalkOption(titleKey, dialogueKey, locked = false, unlocks = "") {
         this.talkOptions.push({
             titleKey : titleKey,

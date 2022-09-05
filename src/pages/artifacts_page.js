@@ -17,6 +17,7 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
     //plugin.events.on("PrettyCardsShops:CSSReady PrettyCards:TranslationExtReady", function() {
         var shop = new Shop("gerson");
         shop.RemoveEverythingElse();
+        shop.SetupBackgroundAndMusic();
         shop.AddMenuOption("buy");
         shop.AddMenuOption("check");
         shop.AddMenuOption("talk");
@@ -47,7 +48,8 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
         checkScreen.Render();
 
         var talkScreen = new StandardTalkScreen(shop);
-        talkScreen.AddTalkOption("pc-shops-gerson-talk-title-aboutyou", "pc-shops-gerson-talk-aboutyou");
+        talkScreen.AddTalkFast("aboutyou");
+        talkScreen.AddTalkFast("emblem");
 
         var talkBase = shop.GetPageElement(2);
         talkBase.appendChild(talkScreen.container);
