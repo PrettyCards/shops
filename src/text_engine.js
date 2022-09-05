@@ -1,4 +1,11 @@
+import { plugin } from "./underscript_checker";
+import { voiceDictionary } from "./voice_dictionary";
 
+var defaultVoice;
+
+plugin.events.on("PrettyCards:onPageLoad", function() {
+    defaultVoice = voiceDictionary.AddVoice("default", "default");
+})
 
 class TypedText {
 
@@ -14,6 +21,10 @@ class TypedText {
         this.instant = false;
         this.userInstant = false;
         this.noskip = false;
+        this.defaultVoice = defaultVoice;
+        this.voice = this.defaultVoice;
+        this.audio = new Audio();
+        this.novoice = false;
         this.onremove = function() {};
         if (typeof(text) == "string") {
             this.text = [text];
@@ -48,6 +59,7 @@ class TypedText {
         this.userInstant = false;
         this.ResetTextArea();
         this.currentPage++;
+        this.voice = this.defaultVoice;
         if (this.currentPage >= this.text.length) {
             this.Remove();
             return;
@@ -145,6 +157,16 @@ class TypedText {
                     this.currentSpan.innerHTML += "<br>";
                 } else {
                     this.currentSpan.innerHTML += nextChar;
+                    if ((!this.instant) && (!this.userInstant) && (!this.novoice) && (!(nextChar === " "))) {
+                        this.audio = new Audio("https://raw.githubusercontent.com/PrettyCards/shops/main/audio/voices/default.ogg");//this.voice.GetRandomSource());
+                        this.audio.play();
+                        //this.audio.controls = false;
+                        //this.audio.onended = function() {
+                        //    this.remove();
+                        //}
+                        //document.body.appendChild(this.audio);
+                        //console.log("AUDIO PLAYING!", this.audio)
+                    }
                 }
             }
             this.currentLetter++;

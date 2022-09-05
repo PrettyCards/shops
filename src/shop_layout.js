@@ -1,6 +1,7 @@
 import { TypedText } from "./text_engine";
 import { plugin } from "./underscript_checker";
 
+
 var translate;
 
 plugin.events.on("PrettyCards:onPageLoad", function() {
