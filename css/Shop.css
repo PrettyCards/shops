@@ -103,13 +103,16 @@
 }
 
 .PrettyCards_SimpleTalkScreen {
-    padding-bottom: 0.5em;
+    padding-bottom: 10px;
 }
 
 .PrettyCards_ShopTalkOption {
     font-size: 2em;
-    padding-top: 0.5em;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     user-select: none;
+    cursor: pointer;
 }
 
 .PrettyCards_ShopTalkOption::before {
