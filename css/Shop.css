@@ -63,6 +63,7 @@
 
 .PrettyCards_ShopkeeperContainer {
     height: 100%;
+    overflow: hidden;
 }
 
 .PrettyCards_ShopkeeperContainer > div {
