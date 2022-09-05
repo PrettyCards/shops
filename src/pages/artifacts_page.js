@@ -15,11 +15,16 @@ var art_setting = addSetting({
 if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
     underscript.utils.compoundEvent("PrettyCardsShops:CSSReady", "PrettyCards:TranslationExtReady", "PrettyCards:onArtifacts", function () {
     //plugin.events.on("PrettyCardsShops:CSSReady PrettyCards:TranslationExtReady", function() {
+        window.prettycards.utility.hideUglyPage();
         var shop = new Shop("gerson");
         shop.AddMenuOption("buy");
         shop.AddMenuOption("check");
         shop.AddMenuOption("talk");
-        shop.AddMenuOption("exit");
+        shop.AddMenuOption("exit", function() {
+            shop.lastDialogue.onremove = function() {
+                window.location.href = '/';
+            }
+        });
         document.getElementsByClassName("mainContent")[0].prepend(shop.container);
 
         var shopScreen = new ArtifactsScreen(window.prettycards.artifactDisplay.artifacts, shop.GetPageElement(0));
