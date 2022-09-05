@@ -21,6 +21,13 @@ class Shop {
         }.bind(this), 500);
     }
 
+    RemoveEverythingElse(transpMainContent = true) {
+        window.prettycards.utility.hideUglyPage();
+        if (transpMainContent) {
+            document.getElementsByClassName("mainContent")[0].style.background = "none";
+        }
+    }
+
     AddMenuOption(transKey, action = function() {}) {
         const page = document.createElement("DIV");
         page.className = "PrettyCards_Hidden";
