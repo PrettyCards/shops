@@ -5,6 +5,7 @@ class StandardTalkScreen {
     constructor(shop) {
         this.talkOptions = [];
         this.container = document.createElement("DIV");
+        this.container.className = "PrettyCards_SimpleTalkScreen";
         this.shop = shop;
     }
 
