@@ -158,7 +158,7 @@ class TypedText {
                 } else {
                     this.currentSpan.innerHTML += nextChar;
                     if ((!this.instant) && (!this.userInstant) && (!this.novoice) && (!(nextChar === " "))) {
-                        this.audio = new Audio("https://raw.githubusercontent.com/PrettyCards/shops/main/audio/voices/default.ogg");//this.voice.GetRandomSource());
+                        this.audio = new Audio(this.voice.GetRandomSource());
                         this.audio.play();
                         //this.audio.controls = false;
                         //this.audio.onended = function() {

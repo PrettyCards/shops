@@ -15,7 +15,7 @@ class Voice {
 
     GetRandomSource() {
         //console.log(this.sources);
-        return window.prettycards.utility.getRandomFromArray[this.sources];
+        return window.prettycards.utility.getRandomFromArray(this.sources);
     }
 
     Preload() {

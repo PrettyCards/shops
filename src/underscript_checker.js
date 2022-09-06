@@ -2,6 +2,7 @@
 var us_loaded = false;
 var plugin;
 var settings = {};
+var page_specific_settings = {};
 
 function addSetting(data) {
     if (data.note && typeof(data.note) != "function") {
@@ -10,6 +11,9 @@ function addSetting(data) {
     //data.category = categories[data.category || "misc"];
     var setting = plugin.settings().add(data);
     settings[data.key] = setting;
+    if (data.category === "Page Specific") {
+        page_specific_settings[data.key] = setting;
+    }
     return setting;
 }
 
@@ -21,19 +25,28 @@ if (underscript) {
 if (us_loaded) {
 
     addSetting({
+        'key': 'animated_shopkeepers',
+        'name': 'Animated Shopkeepers', // Name in settings page
+        'type': 'boolean',
+        'note': 'When on, shopkeepers will be animated in real time. If off, shopkeepers will only be represented by a still image.',
+        'refresh': true, // true to add note "Will require you to refresh the page"
+        'default': true, // default value
+    });
+
+    addSetting({
         'key': 'all_shops_toggle',
         'name': 'Toggle All', // Name in settings page
         'type': 'boolean',
         'note': 'When changed, all other settings will be set to the value of this.',
         'refresh': true, // true to add note "Will require you to refresh the page"
         'default': true, // default value
+        'category' : "Page Specific",
         'onChange' : function(newVal, oldVal) {
-            console.log("Changing all Boolean Settings to", newVal);
-            for (var key in settings) {
+            for (var key in page_specific_settings) {
                 console.log(key);
-                var setting = settings[key];
+                var setting = page_specific_settings[key];
                 if (key != "all_shops_toggle" && typeof(setting.value()) == "boolean") {
-                    settings[key].set(newVal);
+                    page_specific_settings[key].set(newVal);
                 }
             }
         }

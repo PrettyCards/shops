@@ -3,6 +3,7 @@ import { Shop } from "../shop_layout";
 import { StandardTalkScreen } from "../screens/standard_talk_screen";
 import { us_loaded, addSetting, plugin } from "../underscript_checker";
 import { ArtifactsScreen } from "../screens/artifacts_screen";
+import { ShopkeeperAnimBase } from "../shopkeeper_anims/shopkeep_anim_base";
 
 var art_setting = addSetting({
     'key': 'artifacts_shops_toggle',
@@ -10,6 +11,7 @@ var art_setting = addSetting({
     'type': 'boolean',
     'refresh': true, // true to add note "Will require you to refresh the page"
     'default': true, // default value
+    'category': "Page Specific",
 });
 
 if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
@@ -18,6 +20,7 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
         var shop = new Shop("gerson");
         shop.RemoveEverythingElse();
         shop.SetupBackgroundAndMusic();
+        shop.SetShopkeeperAnim(ShopkeeperAnimBase);
         shop.AddMenuOption("buy");
         shop.AddMenuOption("check");
         shop.AddMenuOption("talk");
