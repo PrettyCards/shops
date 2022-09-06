@@ -1,6 +1,6 @@
 
 import { TypedText } from "./text_engine";
-import { plugin } from "./underscript_checker";
+import { plugin, settings } from "./underscript_checker";
 
 
 var translate;
@@ -32,19 +32,26 @@ class Shop {
     }
 
     SetUpEvents() {
-        plugin.events.on("PrettyCards:pauseBGM", function() {
-            this.bgm.pause();
-        }.bind(this));
-
-        plugin.events.on("PrettyCards:resumeBGM", function() {
-            this.bgm.play();
-        }.bind(this));
+        
     }
 
     SetupBackgroundAndMusic() {
-        document.body.style.backgroundImage = `url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/shopkeeper_backgrounds/${this.id}.png")`;
-        this.bgm.src = `https://raw.githubusercontent.com/PrettyCards/shops/main/audio/bgm/${this.id}.ogg`;
-        this.bgm.play();
+        if (settings.change_background.value()) {
+            document.body.style.backgroundImage = `url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/shopkeeper_backgrounds/${this.id}.png")`;
+        }
+
+        if (settings.background_music.value()) {
+            this.bgm.src = `https://raw.githubusercontent.com/PrettyCards/shops/main/audio/bgm/${this.id}.ogg`;
+            this.bgm.play();
+
+            plugin.events.on("PrettyCards:pauseBGM", function() {
+                this.bgm.pause();
+            }.bind(this));
+
+            plugin.events.on("PrettyCards:resumeBGM", function() {
+                this.bgm.play();
+            }.bind(this));
+        }
     }
 
     RemoveEverythingElse(transpMainContent = true) {
@@ -135,7 +142,10 @@ class Shop {
         return this.container;
     }
 
-    SetDialogue(text) {
+    SetDialogue(text, important = false) {
+        if (settings.mute_dialogue.value() && !important) {
+            return;
+        }
         if (this.lastDialogue) {
             this.lastDialogue.Remove();
         }

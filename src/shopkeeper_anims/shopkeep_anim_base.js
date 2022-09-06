@@ -6,15 +6,19 @@ class ShopkeeperAnimBase {
 
     constructor(shop) {
         this.shop = shop;
+
         if (!settings.animated_shopkeepers.value()) {
             var div = document.createElement("DIV");
             div.style.width = "100%;"
+            div.style.position = "relative";
             var img = document.createElement("IMG");
             img.style.width = "100%";
             img.src = `https://raw.githubusercontent.com/PrettyCards/shops/main/img/shopkeeper_fallbacks/${this.shop.id}.png`;
             div.appendChild(img);
             this.shop.shopkeeperContainer.appendChild(div);
+            return;
         }
+        // Anything below this point shouyld ONLY be for animated shopkeepers!
         this.stage = new Konva.Stage({
             container: this.shop.shopkeeperContainer,   // id of container <div>
             width: 600,

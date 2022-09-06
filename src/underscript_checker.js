@@ -34,6 +34,33 @@ if (us_loaded) {
     });
 
     addSetting({
+        'key': 'background_music',
+        'name': 'Background Music', // Name in settings page
+        'type': 'boolean',
+        'note': 'When on, shopkeepers will play their theme song while on the page. Will pause for audio previews.',
+        'refresh': true, // true to add note "Will require you to refresh the page"
+        'default': true, // default value
+    });
+
+    addSetting({
+        'key': 'change_background',
+        'name': 'Shopkeeper Background', // Name in settings page
+        'type': 'boolean',
+        'note': 'When on, shopkeepers will replace the page\'s background with their own background.',
+        'refresh': true, // true to add note "Will require you to refresh the page"
+        'default': true, // default value
+    });
+
+    addSetting({
+        'key': 'mute_dialogue',
+        'name': 'Mute Dialogue', // Name in settings page
+        'type': 'boolean',
+        'note': 'When on, shopkeepers will not talk unless you press a Talk option.',
+        'refresh': true, // true to add note "Will require you to refresh the page"
+        'default': false, // default value
+    });
+
+    addSetting({
         'key': 'all_shops_toggle',
         'name': 'Toggle All', // Name in settings page
         'type': 'boolean',

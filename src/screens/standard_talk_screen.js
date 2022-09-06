@@ -59,7 +59,7 @@ class StandardTalkScreen {
     }
 
     OnOptionPressed(option) {
-        this.shop.SetDialogue(window.prettycards.translationManager.getStringOrList(option.dialogueKey));
+        this.shop.SetDialogue(window.prettycards.translationManager.getStringOrList(option.dialogueKey), true);
         var dialogue = this.shop.lastDialogue;
         this.shop.LockButtons();
         this.LockButtons();
