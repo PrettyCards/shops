@@ -29,6 +29,29 @@ class Shop {
 
     SetShopkeeperAnim(c) {
         this.shopkeeperAnim = new c(this);
+        if (this.shopkeeperAnim.stage) {
+            var urls = this.shopkeeperAnim.GetImagesToPreload();
+            if (urls.length <= 0) {
+                this.shopkeeperAnim.InitAnimations();
+                return;
+            }
+            var sprites_left = urls.length;
+            var return_array = [];
+            for (var i=0; i < sprites_left; i++) {
+                const url = urls[i];
+                const index = i;
+                window.prettycards.utility.preloadImage(url).then((img) => {
+                    sprites_left--;
+                    return_array[index] = img;
+                    if (sprites_left <= 0) {
+                        this.shopkeeperAnim.PopulateLoadedImages(return_array);
+                        this.shopkeeperAnim.InitAnimations();
+                    }
+                }).catch(() => {
+                    console.error("Image Unable To Load: " + url);
+                })
+            }
+        }
     }
 
     SetUpEvents() {

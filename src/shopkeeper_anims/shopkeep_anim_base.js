@@ -45,6 +45,10 @@ class ShopkeeperAnimBase {
         return [];
     }
 
+    PopulateLoadedImages(array) {
+        this.loadedImages = array;
+    }
+
     // DO NOT OVERRIDE!
     ChangeExpression(name) {
         if (!this.stage) {

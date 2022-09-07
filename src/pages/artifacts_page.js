@@ -4,6 +4,7 @@ import { StandardTalkScreen } from "../screens/standard_talk_screen";
 import { us_loaded, addSetting, plugin } from "../underscript_checker";
 import { ArtifactsScreen } from "../screens/artifacts_screen";
 import { ShopkeeperAnimBase } from "../shopkeeper_anims/shopkeep_anim_base";
+import { GersonAnimation } from "../shopkeeper_anims/gerson_anim";
 
 var art_setting = addSetting({
     'key': 'artifacts_shops_toggle',
@@ -20,7 +21,7 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
         var shop = new Shop("gerson");
         shop.RemoveEverythingElse();
         shop.SetupBackgroundAndMusic();
-        shop.SetShopkeeperAnim(ShopkeeperAnimBase);
+        shop.SetShopkeeperAnim(GersonAnimation);
         shop.AddMenuOption("buy");
         shop.AddMenuOption("check");
         shop.AddMenuOption("talk");
