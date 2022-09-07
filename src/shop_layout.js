@@ -42,6 +42,7 @@ class Shop {
 
         if (settings.background_music.value()) {
             this.bgm.src = `https://raw.githubusercontent.com/PrettyCards/shops/main/audio/bgm/${this.id}.ogg`;
+            //this.bgm.preload = true;
             this.bgm.play();
 
             plugin.events.on("PrettyCards:pauseBGM", function() {

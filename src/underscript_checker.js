@@ -81,6 +81,7 @@ if (us_loaded) {
 
     plugin.events.on("PrettyCards:onPageLoad", function() {
         window.prettycards.utility.addCSSSourceData("shops", {
+            version: GM_info.script.version,
 			eventName: "PrettyCardsShops:CommitCSSLoad",
 			apiLink: "https://api.github.com/repos/PrettyCards/shops/commits",
 			urlLinkFunc: (data, name) => `https://cdn.jsdelivr.net/gh/PrettyCards/shops@${data}/css/${name}.css`
@@ -91,6 +92,6 @@ if (us_loaded) {
     
 }
 
-console.log(settings);
+//console.log(settings);
 
 export {us_loaded, settings, plugin, addSetting}

@@ -18,6 +18,7 @@ class ShopkeeperAnimBase {
             this.shop.shopkeeperContainer.appendChild(div);
             return;
         }
+
         // Anything below this point shouyld ONLY be for animated shopkeepers!
         this.stage = new Konva.Stage({
             container: this.shop.shopkeeperContainer,   // id of container <div>
@@ -30,11 +31,35 @@ class ShopkeeperAnimBase {
         this.stage.add(this.bgLayer);
         this.stage.add(this.mainLayer);
 
+        this.InitAnimations();
+        /*
         var anim = new Konva.Animation(function(frame) {
 
         })
         // Maybe each expression can be a separate animation?
         anim
+        */
+    }
+
+    GetImagesToPreload() {
+        return [];
+    }
+
+    // DO NOT OVERRIDE!
+    ChangeExpression(name) {
+        if (!this.stage) {
+            return;
+        }
+        this.OnChangeExpression(name);
+    }
+
+    InitAnimations() {
+
+    }
+
+    // Override this instead!
+    OnChangeExpression(name) {
+
     }
 
     OnMouthOpenLetter() {
