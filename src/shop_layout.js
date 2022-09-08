@@ -27,6 +27,7 @@ class Shop {
         }.bind(this), 500);
     }
 
+    /*
     SetShopkeeperAnim(c) {
         this.shopkeeperAnim = new c(this);
         if (this.shopkeeperAnim.stage) {
@@ -47,10 +48,23 @@ class Shop {
                         this.shopkeeperAnim.PopulateLoadedImages(return_array);
                         this.shopkeeperAnim.InitAnimations();
                     }
-                }).catch(() => {
-                    console.error("Image Unable To Load: " + url);
+                }).catch((err) => {
+                    console.error("Image Unable To Load: " + url, err);
                 })
             }
+        }
+    }
+    */
+
+    SetShopkeeperAnim(c) {
+        this.shopkeeperAnim = new c(this);
+        if (this.shopkeeperAnim.stage) {
+            window.prettycards.utility.preloadImage(this.shopkeeperAnim.spritesheetAddress).then((img) => {
+                this.shopkeeperAnim.spritesheet = img;
+                this.shopkeeperAnim.InitAnimations();
+            }).catch((err) => {
+                console.error("Image Unable To Load: " + url, err);
+            })
         }
     }
 

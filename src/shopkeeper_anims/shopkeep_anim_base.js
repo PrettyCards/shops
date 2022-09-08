@@ -6,6 +6,8 @@ class ShopkeeperAnimBase {
 
     constructor(shop) {
         this.shop = shop;
+        this.spritesheetAddress = "INSERT_URL_HERE";
+        this.spritesheet = null;
 
         if (!settings.animated_shopkeepers.value()) {
             var div = document.createElement("DIV");
@@ -31,7 +33,7 @@ class ShopkeeperAnimBase {
         this.stage.add(this.bgLayer);
         this.stage.add(this.mainLayer);
 
-        this.InitAnimations();
+        this.PixelateCanvases();
         /*
         var anim = new Konva.Animation(function(frame) {
 
@@ -41,12 +43,12 @@ class ShopkeeperAnimBase {
         */
     }
 
-    GetImagesToPreload() {
-        return [];
-    }
-
-    PopulateLoadedImages(array) {
-        this.loadedImages = array;
+    PixelateCanvases() {
+        var list = this.shop.shopkeeperContainer.querySelectorAll("canvas");
+        console.log(list);
+        for (var i=0; i < list.length; i++) {
+            list[i].style.imageRendering = "pixelated";
+        }
     }
 
     // DO NOT OVERRIDE!
