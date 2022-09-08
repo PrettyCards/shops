@@ -51,6 +51,17 @@ class ShopkeeperAnimBase {
         }
     }
 
+    GetImageFromCanvas(x, y, width, height) {
+        return new Konva.Image({
+            x: 0,
+            y: 0,
+            image: this.spritesheet,
+            width: width,
+            height: height,
+            crop: {x: x, y: y, width: width, height: height}
+        });
+    }
+
     // DO NOT OVERRIDE!
     ChangeExpression(name) {
         if (!this.stage) {
