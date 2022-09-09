@@ -105,6 +105,18 @@ class TypedText {
                     this.userInstant = false;
                 }
                 return true;
+            },
+            novoice: (arg) => {
+                this.novoice = true;
+                return true;
+            },
+            voice: (arg) => {
+                this.novoice = false;
+                if (arg == "") {
+                    return true;
+                }
+                // Insert Voice changing part here
+                return true;
             }
         }
     }
