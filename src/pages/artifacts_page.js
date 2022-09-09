@@ -30,7 +30,7 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
                 window.location.href = '/';
             }
         });
-        document.getElementsByClassName("mainContent")[0].prepend(shop.container);
+        document.getElementsByClassName("mainContent")[0].appendChild(shop.container);
 
         var shopScreen = new ArtifactsScreen(window.prettycards.artifactDisplay.artifacts, shop.GetPageElement(0));
         shopScreen.DisplayFewItemsInMiddle();

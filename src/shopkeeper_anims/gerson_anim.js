@@ -34,8 +34,8 @@ class GersonAnimation extends ShopkeeperAnimBase {
         this.head.position({x: this.neck.x() - 59, y: this.neck.y() - 31*5 + 1});
         this.mainLayer.add(this.head);
 
-        this.eyes = this.GetImageFromCanvas(381, 200, 125, 59);
-        this.eyes.position({x: this.head.x() , y: this.head.y() + 75});
+        this.eyes = this.GetImageFromCanvas(381, 199, 125, 60);
+        this.eyes.position({x: this.head.x() , y: this.head.y() + 74});
         this.mainLayer.add(this.eyes);
     }
 

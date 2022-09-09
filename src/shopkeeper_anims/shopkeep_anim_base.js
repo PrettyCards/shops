@@ -58,7 +58,9 @@ class ShopkeeperAnimBase {
             image: this.spritesheet,
             width: width,
             height: height,
-            crop: {x: x, y: y, width: width, height: height}
+            crop: {x: x, y: y, width: width, height: height},
+            shadowForStrokeEnabled: false,
+            shadowEnabled: false
         });
     }
 
