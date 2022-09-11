@@ -134,6 +134,10 @@
     color: rgb(255, 149, 0);
 }
 
+.PrettyCards_ShopDialogueNew {
+    color: rgb(255, 191, 0);
+}
+
 .PrettyCards_ShopFlexList {
     display: flex;
     flex-direction: row;

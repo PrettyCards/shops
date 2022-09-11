@@ -185,7 +185,7 @@ class Shop {
             return;
         }
         if (this.lastDialogue) {
-            this.lastDialogue.Remove();
+            this.lastDialogue.Remove("SWITCH_MENU");
         }
         this.lastDialogue = new TypedText(text, this.dialogueContainer, this.shopkeeperAnim);
         //console.log("NEW TEXT", this.lastDialogue, this);

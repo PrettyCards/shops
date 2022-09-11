@@ -18,7 +18,7 @@ var art_setting = addSetting({
 if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
     underscript.utils.compoundEvent("PrettyCardsShops:CSSReady", "PrettyCards:TranslationExtReady", "PrettyCards:onArtifacts", function () {
     //plugin.events.on("PrettyCardsShops:CSSReady PrettyCards:TranslationExtReady", function() {
-        plugin.events.emit.singleton("PrettyCards:customCards");
+        //plugin.events.emit.singleton("PrettyCards:customCards");
         var shop = new Shop("gerson");
         shop.RemoveEverythingElse();
         shop.SetupBackgroundAndMusic();
@@ -27,8 +27,10 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
         shop.AddMenuOption("check");
         shop.AddMenuOption("talk");
         shop.AddMenuOption("exit", function() {
-            shop.lastDialogue.onremove = function() {
-                window.location.href = '/';
+            shop.lastDialogue.onremove = function(source) {
+                if (source == "END_OF_TEXT") {
+                    window.location.href = '/';
+                }
             }
         });
         document.getElementsByClassName("mainContent")[0].appendChild(shop.container);
@@ -67,8 +69,9 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
         
 
         var talkScreen = new StandardTalkScreen(shop);
-        talkScreen.AddTalkFast("aboutyou");
+        talkScreen.AddTalkFast("aboutyou", false, "unlocktest");
         talkScreen.AddTalkFast("emblem");
+        talkScreen.AddTalkFast("unlocktest", true);
 
         var talkBase = shop.GetPageElement(2);
         talkBase.appendChild(talkScreen.container);

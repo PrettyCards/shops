@@ -59,13 +59,14 @@ class TypedText {
     }
 
     NextPage() {
+        this.animDispatcher.ChangeExpression("default");
         this.instant = false;
         this.userInstant = false;
         this.ResetTextArea();
         this.currentPage++;
         this.voice = this.defaultVoice;
         if (this.currentPage >= this.text.length) {
-            this.Remove();
+            this.Remove("END_OF_TEXT");
             return;
         }
         this._AnimMouthOpen();
@@ -141,11 +142,11 @@ class TypedText {
         return false;
     }
 
-    Remove() {
+    Remove(source = "AUTO") {
         this.removed = true;
         clearTimeout(this.lastTimeout);
         this.container.remove();
-        this.onremove();
+        this.onremove(source);
     }
 
     StartNewParagraph(reset = false) {

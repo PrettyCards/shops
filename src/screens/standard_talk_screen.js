@@ -9,17 +9,27 @@ class StandardTalkScreen {
         this.shop = shop;
     }
 
-    AddTalkFast(id, locked = false, unlocks = "") {
+    AddTalkFast(id, locked = false, unlocks = []) {
+        if (typeof(unlocks) == "string") {
+            unlocks = [unlocks];
+        }
+        unlocks = unlocks.map((u) => `pc-shops-${this.shop.id}-talk-title-${u}`);
         this.AddTalkOption(`pc-shops-${this.shop.id}-talk-title-${id}`, `pc-shops-${this.shop.id}-talk-${id}`, locked, unlocks);
     }
 
-    AddTalkOption(titleKey, dialogueKey, locked = false, unlocks = "") {
-        this.talkOptions.push({
+    AddTalkOption(titleKey, dialogueKey, locked = false, unlocks = []) {
+        if (typeof(unlocks) == "string") {
+            unlocks = [unlocks];
+        }
+        var option = {
             titleKey : titleKey,
             dialogueKey : dialogueKey,
             locked: locked,
-            unlocks: ""
-        })
+            unlocks: unlocks,
+            classes : []
+        }
+        this.talkOptions.push(option);
+        return option;
     }
 
     Render() {
@@ -30,7 +40,7 @@ class StandardTalkScreen {
                 return;
             }
             var ele = document.createElement("DIV");
-            ele.className = "PrettyCards_ShopTalkOption";
+            ele.className = "PrettyCards_ShopTalkOption " + option.classes.join(" ");
             ele.innerHTML = window.$.i18n(option.titleKey);
             ele.onclick = function() {
                 if (this.hasAttribute("disabled")) {
@@ -64,14 +74,20 @@ class StandardTalkScreen {
         this.shop.LockButtons();
         this.LockButtons();
 
-        var unlockedNewDialogue = false;
-        if (option.unlocks && option.unlocks !== "") {
-            unlockedNewDialogue = true;
+        var refreshPage = false;
+        var index = option.classes.indexOf("PrettyCards_ShopDialogueNew");
+        if (index > -1) {
+            refreshPage = true;
+            option.classes.splice(index, 1);
+        }
+
+        if (option.unlocks && option.unlocks.length > 0) {
+            refreshPage = true;
             for (var i=0; i < this.talkOptions.length; i++) {
                 var o = this.talkOptions[i];
-                if (o.titleKey === this.unlocks) {
+                if (option.unlocks.includes(o.titleKey)) {
+                    o.classes.push("PrettyCards_ShopDialogueNew");
                     o.locked = false;
-                    break;
                 }
             }
         }
@@ -79,7 +95,7 @@ class StandardTalkScreen {
         dialogue.onremove = function() {
             this.shop.UnlockButtons();
             this.UnlockButtons();
-            if (unlockedNewDialogue) {
+            if (refreshPage) {
                 this.Render();
             }
         }.bind(this);
