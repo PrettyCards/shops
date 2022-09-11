@@ -9,7 +9,8 @@ plugin.events.on("PrettyCards:onPageLoad", function() {
 
 class TypedText {
 
-    constructor(text, parent) {
+    constructor(text, parent, animDispatcher) {
+        this.removed = false;
         this.defaultSpeed = 33;
         this.speed = this.defaultSpeed; // The miliseconds between displaying letters.
         this.nextWait = this.speed;
@@ -25,6 +26,8 @@ class TypedText {
         this.voice = this.defaultVoice;
         this.audio = new Audio();
         this.novoice = false;
+        this.animDispatcher = animDispatcher;
+        this.isTalking = false;
         this.onremove = function() {};
         if (typeof(text) == "string") {
             this.text = [text];
@@ -56,6 +59,7 @@ class TypedText {
     }
 
     NextPage() {
+        this.instant = false;
         this.userInstant = false;
         this.ResetTextArea();
         this.currentPage++;
@@ -64,6 +68,7 @@ class TypedText {
             this.Remove();
             return;
         }
+        this._AnimMouthOpen();
         this.SetHeight();
         this.Progress();
         this.TimeLoop();
@@ -131,6 +136,7 @@ class TypedText {
     }
 
     Remove() {
+        this.removed = true;
         clearTimeout(this.lastTimeout);
         this.container.remove();
         this.onremove();
@@ -152,8 +158,23 @@ class TypedText {
         return this.currentSpan;
     }
 
+    _AnimMouthOpen() {
+        if (this.animDispatcher && !this.isTalking) {
+            this.isTalking = true;
+            this.animDispatcher.OnMouthOpenStart();
+        }
+    }
+
+    _AnimMouthClose() {
+        if (this.animDispatcher && this.isTalking) {
+            this.isTalking = false;
+            this.animDispatcher.OnMouthOpenFinish(); // Let's try putting this here . . . Oh, god, the code is looking unorganized already. Why must this be so complicated?!
+        }
+    }
+
     Progress() {
         if (this.IsPageDone()) {
+            this._AnimMouthClose();
             return;
         }
         var currStr = this.text[this.currentPage];
@@ -172,12 +193,9 @@ class TypedText {
                     if ((!this.instant) && (!this.userInstant) && (!this.novoice) && (!(nextChar === " "))) {
                         this.audio = new Audio(this.voice.GetRandomSource());
                         this.audio.play();
-                        //this.audio.controls = false;
-                        //this.audio.onended = function() {
-                        //    this.remove();
-                        //}
-                        //document.body.appendChild(this.audio);
-                        //console.log("AUDIO PLAYING!", this.audio)
+                        if (this.animDispatcher) {
+                            this.animDispatcher.OnMouthOpenLetter();
+                        }
                     }
                 }
             }
@@ -212,6 +230,14 @@ class TypedText {
         if ( (this.instant || this.userInstant) && !this.IsPageDone()) {
             this.Progress();
         }
+
+        /*
+        if (this.IsPageDone() && !this.removed) {
+            if (this.animDispatcher) {
+                this.animDispatcher.OnMouthOpenFinish(); // Let's try putting this here . . . Oh, god, the code is looking unorganized already. Why must this be so complicated?!
+            }
+        }
+        */
     }
 
     IsPageDone() {
@@ -225,6 +251,8 @@ class TypedText {
                 this.Progress();
                 this.TimeLoop();
             }.bind(this), this.nextWait);
+        } else {
+            this._AnimMouthClose();
         }
     }
 

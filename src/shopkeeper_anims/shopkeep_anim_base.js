@@ -8,6 +8,7 @@ class ShopkeeperAnimBase {
         this.shop = shop;
         this.spritesheetAddress = "INSERT_URL_HERE";
         this.spritesheet = null;
+        this.inited = false;
 
         if (!settings.animated_shopkeepers.value()) {
             var div = document.createElement("DIV");

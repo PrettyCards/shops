@@ -187,7 +187,7 @@ class Shop {
         if (this.lastDialogue) {
             this.lastDialogue.Remove();
         }
-        this.lastDialogue = new TypedText(text, this.dialogueContainer);
+        this.lastDialogue = new TypedText(text, this.dialogueContainer, this.shopkeeperAnim);
         //console.log("NEW TEXT", this.lastDialogue, this);
     }
 

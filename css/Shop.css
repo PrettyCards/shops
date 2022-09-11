@@ -152,8 +152,9 @@
 }
 
 .PrettyCards_ShopArtifactDisplay {
-    width: 90px;
-    height: 90px;
+    width: 20%;
+    aspect-ratio: 1;
+    /* height: 90px; */
     display: flex;
     align-content: center;
     align-items: center;
