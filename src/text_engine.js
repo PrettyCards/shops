@@ -1,4 +1,4 @@
-import { plugin } from "./underscript_checker";
+import { plugin, settings } from "./underscript_checker";
 import { voiceDictionary } from "./voice_dictionary";
 
 var defaultVoice;
@@ -26,6 +26,7 @@ class TypedText {
         this.voice = this.defaultVoice;
         this.audio = new Audio();
         this.novoice = false;
+        this.alwaysMute = settings.silent_dialogue.value();
         this.animDispatcher = animDispatcher;
         this.isTalking = false;
         this.onremove = function() {};
@@ -198,8 +199,10 @@ class TypedText {
                 } else {
                     this.currentSpan.innerHTML += nextChar;
                     if ((!this.instant) && (!this.userInstant) && (!this.novoice) && (!(nextChar === " "))) {
-                        this.audio = new Audio(this.voice.GetRandomSource());
-                        this.audio.play();
+                        if (!this.alwaysMute) {
+                            this.audio = new Audio(this.voice.GetRandomSource());
+                            this.audio.play();
+                        }
                         if (this.animDispatcher) {
                             this.animDispatcher.OnMouthOpenLetter();
                         }

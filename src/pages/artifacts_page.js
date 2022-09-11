@@ -21,6 +21,7 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
         //plugin.events.emit.singleton("PrettyCards:customCards");
         var shop = new Shop("gerson");
         shop.RemoveEverythingElse();
+        document.getElementsByClassName("mainContent")[0].appendChild(shop.container);
         shop.SetupBackgroundAndMusic();
         shop.SetShopkeeperAnim(GersonAnimation);
         shop.AddMenuOption("buy");
@@ -33,7 +34,7 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
                 }
             }
         });
-        document.getElementsByClassName("mainContent")[0].appendChild(shop.container);
+        
 
         var shopScreen = new ArtifactsScreen(window.prettycards.artifactDisplay.artifacts, shop.GetPageElement(0));
         shopScreen.DisplayFewItemsInMiddle();

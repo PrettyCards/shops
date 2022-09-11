@@ -72,25 +72,44 @@ class Shop {
         
     }
 
+    PlayMusicManual(fail) {
+        var elem = document.createElement("DIV");
+        elem.className = "glyphicon glyphicon-volume-up PrettyCards_ShopManualAudio";
+        elem.onclick = function() {
+            this.bgm.play();
+            elem.remove();
+        }.bind(this);
+        this.right.appendChild(elem);
+        window.tippy(elem, {
+            content: `${fail ? "<span class='red'>" + window.$.i18n("pc-shops-playbtn-tip-fail") + "</span><br>" : ""}${window.$.i18n("pc-shops-playbtn-tip")}`,
+            allowHTML: true,
+            arrow: true,
+            inertia: true,
+            placement: "bottom-start",
+            appendTo: window.document.body,
+            boundary: 'window',
+            getReferenceClientRect: window.document.body.getBoundingClientRect
+        });
+    }
+
     SetupBackgroundAndMusic() {
         if (settings.change_background.value()) {
             document.body.style.backgroundImage = `url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/shopkeeper_backgrounds/${this.id}.png")`;
         }
 
-        if (settings.background_music.value()) {
+        if (settings.background_music.value() != "Off") {
             this.bgm.src = `https://raw.githubusercontent.com/PrettyCards/shops/main/audio/bgm/${this.id}.ogg`;
             //this.bgm.preload = true;
-            this.bgm.play().catch((err) => {
-                console.log(err);
-                if (err.name === "NotAllowedError") {
-                    var elem = document.createElement("DIV");
-                    elem.className = "glyphicon glyphicon-volume-up PrettyCards_ShopManualAudio";
-                    elem.onclick = function() {
-                        this.bgm.play()
-                    }.bind(this);
-                    this.right.appendChild(elem);
-                }
-            });
+            if (settings.background_music.value() == "Auto") {
+                this.bgm.play().catch((err) => {
+                    console.log(err);
+                    if (err.name === "NotAllowedError") {
+                        this.PlayMusicManual(true);
+                    }
+                });
+            } else {
+                this.PlayMusicManual(false);
+            }
 
             plugin.events.on("PrettyCards:pauseBGM", function() {
                 this.bgm.pause();

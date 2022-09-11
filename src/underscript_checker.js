@@ -36,10 +36,11 @@ if (us_loaded) {
     addSetting({
         'key': 'background_music',
         'name': 'Background Music', // Name in settings page
-        'type': 'boolean',
-        'note': 'When on, shopkeepers will play their theme song while on the page. Will pause for audio previews.',
+        'type': 'select',
+        'options' : ["Auto", "Manual", "Off"],
+        'note': 'Controls when and how to play background music for shops. Manual means that an icon will appear, prompting you to turn it on. If Auto fails due to autoplay prevention policies, Manual will take effect.',
         'refresh': true, // true to add note "Will require you to refresh the page"
-        'default': true, // default value
+        'default': "Auto", // default value
     });
 
     addSetting({
@@ -49,6 +50,15 @@ if (us_loaded) {
         'note': 'When on, shopkeepers will replace the page\'s background with their own background.',
         'refresh': true, // true to add note "Will require you to refresh the page"
         'default': true, // default value
+    });
+
+    addSetting({
+        'key': 'silent_dialogue',
+        'name': 'Silent Dialogue', // Name in settings page
+        'type': 'boolean',
+        'note': 'When on, shopkeeper dialogue will not have sound. Ever.',
+        'refresh': true, // true to add note "Will require you to refresh the page"
+        'default': false, // default value
     });
 
     addSetting({
