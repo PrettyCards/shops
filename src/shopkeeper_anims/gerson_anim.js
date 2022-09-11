@@ -37,10 +37,12 @@ class GersonAnimation extends ShopkeeperAnimBase {
         this.neck.position({x: this.torso.x() - 20, y: this.torso.y() - 45});
         this.mainLayer.add(this.neck);
 
-        this.startheady = this.neck.x() - 59;
+        this.startheady = this.neck.y() - 31*5 + 1;
         this.head = this.GetImageFromCanvas(281, 0, 225, 199);
-        this.head.position({x: this.startheady, y: this.neck.y() - 31*5 + 1});
+        this.head.position({x: this.neck.x() - 59, y: this.startheady});
         this.mainLayer.add(this.head);
+
+        this.ResetAnimatedBits();
     }
 
     OnChangeExpression(name) {
@@ -103,8 +105,6 @@ class GersonAnimation extends ShopkeeperAnimBase {
     */
 
     OnMouthOpenStart() {
-        //return;
-        console.log("MouthOpenStart!", this)
         if (!this.anim) {
             this.pos = 0;
             this.y = 0;
@@ -126,6 +126,7 @@ class GersonAnimation extends ShopkeeperAnimBase {
                     if (!this.loopAnim) {
                         this.ResetAnimatedBits();
                         this.anim.stop();
+                        this.anim = null;
                         return;
                     }
                 }
@@ -138,18 +139,12 @@ class GersonAnimation extends ShopkeeperAnimBase {
     }
 
     ResetAnimatedBits() {
-        console.log("POSITIONS RESET!");
-        this.head.y(this.startheady);
+        this.head.position({x: this.head.x(), y: this.startheady});
         this.arm.position({x: this.startarmx, y: this.startarmy});
     }
 
     OnMouthOpenFinish() {
-        console.log("MouthOpenFinish!");
         this.loopAnim = false;
-        if (this.anim) {
-            this.anim.stop();
-            this.anim = null;
-        }
     }
 
     

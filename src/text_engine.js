@@ -122,8 +122,14 @@ class TypedText {
                 }
                 // Insert Voice changing part here
                 return true;
+            },
+            face: (arg) => {
+                this.animDispatcher.ChangeExpression(arg);
+                return true;
             }
         }
+
+        this.textCommands.expression = this.textCommands.face; // Alias. IDK why.
     }
 
     UserSkip() {
