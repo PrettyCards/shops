@@ -24,6 +24,7 @@
 
 .PrettyCards_ShopRight {
     width: 400px;
+    position: relative;
 }
 
 .PrettyCards_ShopMenuContainer {
@@ -249,4 +250,15 @@
 .PrettyCards_ShopArtifactDisplay img {
     width: 64px;
     height: 64px;
+}
+
+.PrettyCards_ShopManualAudio {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
 }

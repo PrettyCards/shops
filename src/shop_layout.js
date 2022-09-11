@@ -80,7 +80,14 @@ class Shop {
         if (settings.background_music.value()) {
             this.bgm.src = `https://raw.githubusercontent.com/PrettyCards/shops/main/audio/bgm/${this.id}.ogg`;
             //this.bgm.preload = true;
-            this.bgm.play();
+            this.bgm.play().catch((err) => {
+                console.log(err);
+                if (err.name === "NotAllowedError") {
+                    var elem = document.createElement("DIV");
+                    elem.className = "glyphicon glyphicon-volume-up PrettyCards_ShopManualAudio";
+                    this.right.appendChild(elem);
+                }
+            });
 
             plugin.events.on("PrettyCards:pauseBGM", function() {
                 this.bgm.pause();
