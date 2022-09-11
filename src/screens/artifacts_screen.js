@@ -25,7 +25,7 @@ class ArtifactsScreen extends FlexListScreen {
         ele.setAttribute("artid", entry.id);
         ele.className = "PrettyCards_ShopArtifactDisplay " + entry.rarity;
         ele.onclick = function() {
-            console.log(entry, this, this.viewFunc);
+            // console.log(entry, this, this.viewFunc);
             this.viewFunc(entry.id);
         }.bind(this);
         var img = document.createElement("IMG");
