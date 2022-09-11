@@ -5,7 +5,7 @@ class ArtifactsScreen extends FlexListScreen {
     constructor(data, parent, displayBought = false) {
         super(data, parent);
         this.displayBought = displayBought;
-        this.rarityOrder = ["BASE", "COMMON", "RARE", "EPIC", "LEGENDARY", "TOKEN", "DETERMINATION", "MYTHICAL"]; // Just to be sure, I added a few more.
+        this.rarityOrder = ["BASE", "COMMON", "RARE", "EPIC", "LEGENDARY", "TOKEN", "DETERMINATION", "MYTHIC"]; // Just to be sure, I added a few more.
         this.viewFunc = window.prettycards.FancyDisplay.ViewArtifactInfo.bind(window.prettycards.FancyDisplay);
     }
 

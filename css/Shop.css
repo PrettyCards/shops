@@ -200,7 +200,7 @@
     border-color: rgb(149, 0, 0);
 }
 
-@keyframes mythicalArtifact {
+@keyframes mythicArtifact {
     0% {
         border-color: red
     }
@@ -230,9 +230,9 @@
     }
 }
 
-.PrettyCards_ShopArtifactDisplay.MYTHICAL {
-    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/MYTHICAL.png");
-    animation-name: mythicalArtifact;
+.PrettyCards_ShopArtifactDisplay.MYTHIC {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/MYTHIC.png");
+    animation-name: mythicArtifact;
     animation-duration: 5s;
     animation-timing-function: linear;
     animation-iteration-count: infinite
