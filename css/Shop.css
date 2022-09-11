@@ -257,8 +257,13 @@
     top: 0px;
     left: 0px;
     width: 50px;
-    height: 50px;
+    height: 44px;
     background-color: black;
     border-right: 2px solid white;
     border-bottom: 2px solid white;
+    font-size: 3em;
+}
+
+.PrettyCards_ShopManualAudio::before {
+    padding-left: 0.1em;
 }

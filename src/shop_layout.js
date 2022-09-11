@@ -85,6 +85,9 @@ class Shop {
                 if (err.name === "NotAllowedError") {
                     var elem = document.createElement("DIV");
                     elem.className = "glyphicon glyphicon-volume-up PrettyCards_ShopManualAudio";
+                    elem.onclick = function() {
+                        this.bgm.play()
+                    }.bind(this);
                     this.right.appendChild(elem);
                 }
             });
