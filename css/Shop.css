@@ -172,7 +172,7 @@
 
 .PrettyCards_ShopArtifactDisplay.COMMON {
     background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/COMMON.png");
-    border-color: rgb(220, 220, 220);
+    border-color: rgb(85, 29, 21);
 }
 
 .PrettyCards_ShopArtifactDisplay.RARE {
@@ -187,12 +187,12 @@
 
 .PrettyCards_ShopArtifactDisplay.LEGENDARY {
     background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/LEGENDARY.png");
-    border-color:rgb(248, 232, 0)
+    border-color:rgb(212, 159, 0)
 }
 
 .PrettyCards_ShopArtifactDisplay.TOKEN {
     background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/TOKEN.png");
-    border-color: green;
+    border-color: rgb(0, 68, 0);
 }
 
 .PrettyCards_ShopArtifactDisplay.DETERMINATION {
