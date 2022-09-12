@@ -25,13 +25,14 @@ class CardSkinsScreen extends FlexListScreen {
         var ele = document.createElement("DIV");
         ele.setAttribute("skinid", entry.id);
         ele.className = "PrettyCards_ShopCardSkinDisplay";
+        ele.style.backgroundImage = `url("${window.prettycards.utility.getCardImageLink(entry.image)}")`
         ele.onclick = function() {
             // console.log(entry, this, this.viewFunc);
             this.viewFunc(entry.id);
         }.bind(this);
-        var img = document.createElement("IMG");
-        img.src = window.prettycards.utility.getCardImageLink(entry.image);
-        ele.appendChild(img);
+        // var img = document.createElement("IMG");
+        // img.src = ;
+        // ele.appendChild(img);
         return ele;
     }
 

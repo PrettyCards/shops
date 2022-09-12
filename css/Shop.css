@@ -267,3 +267,12 @@
 .PrettyCards_ShopManualAudio::before {
     padding-left: 0.1em;
 }
+
+.PrettyCards_ShopCardSkinDisplay {
+    width: 128px;
+    height: 72px;
+    border: 1px solid white;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
