@@ -31,7 +31,9 @@ class FlexListScreen {
                 return;
             }
             //console.log("RENDERING ENTRY!", entry);
-            this.container.appendChild(this.RenderEntry(entry));
+            var ele = this.RenderEntry(entry);
+            this.container.appendChild(ele);
+            this.PostRenderEntity(entry, ele);
         })
     }
 
@@ -47,7 +49,11 @@ class FlexListScreen {
         var ele = document.createElement("DIV");
         ele.innerHTML = JSON.stringify(entry);
         return ele;
-    } 
+    }
+
+    PostRenderEntity(entry, ele) {
+
+    }
 
 }
 
