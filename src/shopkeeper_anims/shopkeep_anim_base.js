@@ -12,12 +12,8 @@ class ShopkeeperAnimBase {
 
         if (!settings.animated_shopkeepers.value()) {
             var div = document.createElement("DIV");
-            div.style.width = "100%;"
-            div.style.position = "relative";
-            var img = document.createElement("IMG");
-            img.style.width = "100%";
-            img.src = `https://raw.githubusercontent.com/PrettyCards/shops/main/img/shopkeeper_fallbacks/${this.shop.id}.png`;
-            div.appendChild(img);
+            div.className = "PrettyCards_ShopkeeperFallback";
+            div.style.backgroundImage = `url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/shopkeeper_fallbacks/${this.shop.id}.png")`
             this.shop.shopkeeperContainer.appendChild(div);
             return;
         }

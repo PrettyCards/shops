@@ -30,9 +30,7 @@ class CardSkinsScreen extends FlexListScreen {
             // console.log(entry, this, this.viewFunc);
             this.viewFunc(entry.id);
         }.bind(this);
-        // var img = document.createElement("IMG");
-        // img.src = ;
-        // ele.appendChild(img);
+        var inner = document.createElement("DIV");
         return ele;
     }
 
