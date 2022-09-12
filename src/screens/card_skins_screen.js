@@ -30,7 +30,15 @@ class CardSkinsScreen extends FlexListScreen {
             // console.log(entry, this, this.viewFunc);
             this.viewFunc(entry.id);
         }.bind(this);
-        var inner = document.createElement("DIV");
+        var tooltip = document.createElement("DIV");
+        tooltip.className = "PrettyCards_CardSkinShopTooltip";
+        
+        var left = document.createElement("DIV");
+        var card = window.appendCardCardSkinShop(entry, window.frameName);
+        left.appendChild(card[0]);
+        tooltip.appendChild(left);
+
+        ele.appendChild(tooltip);
         return ele;
     }
 
