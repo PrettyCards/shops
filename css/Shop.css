@@ -291,14 +291,19 @@
 
 .PrettyCards_CardSkinShopTooltip {
     position: absolute;
-    right: 0px;
-    top: 0px;
+    left: 110%;
+    top: -5px;
     border: 3px solid white;
     background-color: black;
     opacity: 0;
     user-select: none;
     pointer-events: none;
-    transition: 0.5 opacity;
+    transition: opacity 0.5s;
+    z-index: 5;
+}
+
+.PrettyCards_ShopCardSkinDisplay:nth-child(3n) .PrettyCards_CardSkinShopTooltip {
+    right: 110%;
 }
 
 .PrettyCards_ShopCardSkinDisplay:hover .PrettyCards_CardSkinShopTooltip {
