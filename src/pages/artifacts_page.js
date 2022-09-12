@@ -31,34 +31,37 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
         var artifacts = window.prettycards.artifactDisplay.artifacts;
         var shopScreen = new ArtifactsScreen(artifacts, shop.GetPageElement(0));
 
-        var hasEveryArtifact = true;
+        var notOwnedArtifactCount = 0;
         for (var i=0; i < artifacts.length; i++) {
             if (!shopScreen.IsHidden(artifacts[i])) {
-                hasEveryArtifact = false;
+                notOwnedArtifactCount++;
             }
         }
 
-        if (hasEveryArtifact) {
-            buyBtn.onclick = function() {
+        shopScreen.DisplayFewItemsInMiddle();
+        plugin.events.on("PrettyCards:artBuySuccess", function(data) {
+            notOwnedArtifactCount--;
+            shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-bought"));
+            // shopScreen.Render(); // I'm gonna show I'm better than Onu!
+            var artEle = shopScreen.container.querySelector(`.PrettyCards_ShopArtifactDisplay[artid="${data.idArtifact}"]`);
+            if (artEle) {
+                artEle.remove();
+            }
+        });
+        plugin.events.on("PrettyCards:artBuyError", function() {
+            shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-buyerror"));
+        })
+        shopScreen.Render();
+
+        var oldOnClick = buyBtn.onclick;
+        buyBtn.onclick = function(e) {
+            console.log(notOwnedArtifactCount, oldOnClick);
+            if (notOwnedArtifactCount <= 0) {
                 shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-buyhasall"));
+            } else {
+                oldOnClick(e);
             }
-        } else {
-            shopScreen.DisplayFewItemsInMiddle();
-            plugin.events.on("PrettyCards:artBuySuccess", function(data) {
-                shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-bought"));
-                // shopScreen.Render(); // I'm gonna show I'm better than Onu!
-                var artEle = shopScreen.container.querySelector(`.PrettyCards_ShopArtifactDisplay[artid="${data.idArtifact}"]`);
-                if (artEle) {
-                    artEle.remove();
-                }
-            });
-            plugin.events.on("PrettyCards:artBuyError", function() {
-                shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-buyerror"));
-            })
-            shopScreen.Render();
         }
-
-        
 
         var checkScreen = new ArtifactsScreen(artifacts, shop.GetPageElement(1), true);
         checkScreen.DisplayFewItemsInMiddle();

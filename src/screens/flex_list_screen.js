@@ -22,6 +22,7 @@ class FlexListScreen {
 
     // This is the only universal part.
     Render() {
+        //console.log("RENDERING!", this.data);
         this.container.innerHTML = "";
         var orderedData = [ ...this.data ];
         orderedData = orderedData.sort(this.OrderLogic.bind(this));
@@ -29,6 +30,7 @@ class FlexListScreen {
             if (this.IsHidden(entry)) {
                 return;
             }
+            //console.log("RENDERING ENTRY!", entry);
             this.container.appendChild(this.RenderEntry(entry));
         })
     }

@@ -7,32 +7,30 @@ class CardSkinsScreen extends FlexListScreen {
     constructor(data, parent, isPromo = false) {
         super(data, parent);
         this.isPromo = isPromo;
-        this.rarityOrder = ["BASE", "COMMON", "RARE", "EPIC", "LEGENDARY", "TOKEN", "DETERMINATION", "MYTHIC"]; // Just to be sure, I added a few more.
         this.viewFunc = window.prettycards.FancyDisplay.ViewArtifactInfo.bind(window.prettycards.FancyDisplay);
     }
 
     OrderLogic(a, b) {
-        return this.rarityOrder.indexOf(a.rarity) - this.rarityOrder.indexOf(b.rarity);
+        return false; // Display things in the order they come up.
     }
 
     IsHidden(entry) {
-        if (this.displayBought) {
+        if (!this.isPromo) {
             return false;
         }
-        return entry.collection || entry.owned || entry.unavailable;
+        return entry.discount <= 0;
     }
 
     RenderEntry(entry) {
         var ele = document.createElement("DIV");
-        ele.setAttribute("artid", entry.id);
-        ele.className = "PrettyCards_ShopArtifactDisplay " + entry.rarity;
-        // ele.className = "PrettyCards_ShopArtifactDisplay PrettyCards_ShopArtifactStyle_" + settings.artifact_style.value() + " " + entry.rarity; // For testing phase poll only.
+        ele.setAttribute("skinid", entry.id);
+        ele.className = "PrettyCards_ShopCardSkinDisplay";
         ele.onclick = function() {
             // console.log(entry, this, this.viewFunc);
             this.viewFunc(entry.id);
         }.bind(this);
         var img = document.createElement("IMG");
-        img.src = window.prettycards.utility.getArtifactImageLink(entry.image);
+        img.src = window.prettycards.utility.getCardImageLink(entry.image);
         ele.appendChild(img);
         return ele;
     }

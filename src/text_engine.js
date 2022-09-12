@@ -167,14 +167,14 @@ class TypedText {
     }
 
     _AnimMouthOpen() {
-        if (this.animDispatcher && !this.isTalking) {
+        if (this.animDispatcher && this.animDispatcher.stage && !this.isTalking) {
             this.isTalking = true;
             this.animDispatcher.OnMouthOpenStart();
         }
     }
 
     _AnimMouthClose() {
-        if (this.animDispatcher && this.isTalking) {
+        if (this.animDispatcher && this.animDispatcher.stage && this.isTalking) {
             this.isTalking = false;
             this.animDispatcher.OnMouthOpenFinish(); // Let's try putting this here . . . Oh, god, the code is looking unorganized already. Why must this be so complicated?!
         }

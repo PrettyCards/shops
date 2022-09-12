@@ -4,6 +4,7 @@ import { StandardTalkScreen } from "../screens/standard_talk_screen";
 import { us_loaded, addSetting, plugin } from "../underscript_checker";
 import { ArtifactsScreen } from "../screens/artifacts_screen";
 import { GersonAnimation } from "../shopkeeper_anims/gerson_anim";
+import { CardSkinsScreen } from "../screens/card_skins_screen";
 
 var card_skin_shop_setting = addSetting({
     'key': 'card_skin_shop_toggle',
@@ -13,6 +14,8 @@ var card_skin_shop_setting = addSetting({
     'default': true, // default value
     'category': "Page Specific",
 });
+
+// TODO: Check the events. Replace artifact one with a card skin one.
 
 if (us_loaded && card_skin_shop_setting.value() && underscript.onPage('CardSkinsShop')) {
     underscript.utils.compoundEvent("PrettyCardsShops:CSSReady", "PrettyCards:TranslationExtReady", "PrettyCards:onArtifacts", function () {
@@ -28,8 +31,10 @@ if (us_loaded && card_skin_shop_setting.value() && underscript.onPage('CardSkins
         shop.AddMenuOption("talk");
         shop.AddDefaultExitPage();
 
-        var shopScreen = new ArtifactsScreen(window.prettycards.artifactDisplay.artifacts, shop.GetPageElement(0));
+        var shopScreen = new CardSkinsScreen(window.cardSkins, shop.GetPageElement(0));
         shopScreen.DisplayFewItemsInMiddle();
+        shopScreen.Render();
+        /*
         plugin.events.on("PrettyCards:artBuySuccess", function(data) {
             shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-bought"));
             // shopScreen.Render(); // I'm gonna show I'm better than Onu!
@@ -41,25 +46,12 @@ if (us_loaded && card_skin_shop_setting.value() && underscript.onPage('CardSkins
         plugin.events.on("PrettyCards:artBuyError", function() {
             shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-buyerror"));
         })
-        shopScreen.Render();
+        */
+        
 
-        var checkScreen = new ArtifactsScreen(window.prettycards.artifactDisplay.artifacts, shop.GetPageElement(1), true);
+        var checkScreen = new CardSkinsScreen(window.cardSkins, shop.GetPageElement(1), true);
         checkScreen.DisplayFewItemsInMiddle();
         checkScreen.Render();
-
-        window.prettycards.artifactDisplay.artifacts.forEach((artifact) => {
-            window.tippy(`[artid="${artifact.id}"]`, {
-                content: `<span class="${artifact.rarity}">${window.$.i18n("artifact-name-" + artifact.id)}</span>`,
-                allowHTML: true,
-                arrow: true,
-                inertia: true,
-                placement: "top",
-                appendTo: window.document.body,
-                boundary: 'window',
-                getReferenceClientRect: window.document.body.getBoundingClientRect
-            });
-        })
-        
 
         var talkScreen = new StandardTalkScreen(shop);
         talkScreen.AddTalkFast("aboutyou", false, "unlocktest");
