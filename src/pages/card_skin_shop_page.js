@@ -24,7 +24,7 @@ if (us_loaded && card_skin_shop_setting.value() && underscript.onPage('CardSkins
         shop.SetupBackgroundAndMusic();
         shop.SetShopkeeperAnim(GersonAnimation);
         shop.AddMenuOption("buy");
-        shop.AddMenuOption("check");
+        shop.AddMenuOption("promo");
         shop.AddMenuOption("talk");
         shop.AddDefaultExitPage();
 

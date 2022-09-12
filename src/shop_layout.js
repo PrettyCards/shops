@@ -231,7 +231,7 @@ class Shop {
                     window.location.href = '/';
                 }
             }
-        });
+        }.bind(this));
     }
 
 }
