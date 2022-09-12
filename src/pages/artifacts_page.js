@@ -23,31 +23,48 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
         document.getElementsByClassName("mainContent")[0].appendChild(shop.container); // The order here is important, as the entire thing MUST be a part of the document before playing the song, as it may need the button, which needs tippy, and tippy doesn't like elements that are not part of the document.
         shop.SetupBackgroundAndMusic();
         shop.SetShopkeeperAnim(GersonAnimation);
-        shop.AddMenuOption("buy");
+        var buyBtn = shop.AddMenuOption("buy");
         shop.AddMenuOption("check");
         shop.AddMenuOption("talk");
         shop.AddDefaultExitPage();
 
-        var shopScreen = new ArtifactsScreen(window.prettycards.artifactDisplay.artifacts, shop.GetPageElement(0));
-        shopScreen.DisplayFewItemsInMiddle();
-        plugin.events.on("PrettyCards:artBuySuccess", function(data) {
-            shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-bought"));
-            // shopScreen.Render(); // I'm gonna show I'm better than Onu!
-            var artEle = shopScreen.container.querySelector(`.PrettyCards_ShopArtifactDisplay[artid="${data.idArtifact}"]`);
-            if (artEle) {
-                artEle.remove();
-            }
-        });
-        plugin.events.on("PrettyCards:artBuyError", function() {
-            shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-buyerror"));
-        })
-        shopScreen.Render();
+        var artifacts = window.prettycards.artifactDisplay.artifacts;
+        var shopScreen = new ArtifactsScreen(artifacts, shop.GetPageElement(0));
 
-        var checkScreen = new ArtifactsScreen(window.prettycards.artifactDisplay.artifacts, shop.GetPageElement(1), true);
+        var hasEveryArtifact = true;
+        for (var i=0; i < artifacts.length; i++) {
+            if (!shopScreen.IsHidden(artifacts[i])) {
+                hasEveryArtifact = false;
+            }
+        }
+
+        if (hasEveryArtifact) {
+            buyBtn.onclick = function() {
+                shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-buyhasall"));
+            }
+        } else {
+            shopScreen.DisplayFewItemsInMiddle();
+            plugin.events.on("PrettyCards:artBuySuccess", function(data) {
+                shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-bought"));
+                // shopScreen.Render(); // I'm gonna show I'm better than Onu!
+                var artEle = shopScreen.container.querySelector(`.PrettyCards_ShopArtifactDisplay[artid="${data.idArtifact}"]`);
+                if (artEle) {
+                    artEle.remove();
+                }
+            });
+            plugin.events.on("PrettyCards:artBuyError", function() {
+                shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-buyerror"));
+            })
+            shopScreen.Render();
+        }
+
+        
+
+        var checkScreen = new ArtifactsScreen(artifacts, shop.GetPageElement(1), true);
         checkScreen.DisplayFewItemsInMiddle();
         checkScreen.Render();
 
-        window.prettycards.artifactDisplay.artifacts.forEach((artifact) => {
+        artifacts.forEach((artifact) => {
             window.tippy(`[artid="${artifact.id}"]`, {
                 content: `<span class="${artifact.rarity}">${window.$.i18n("artifact-name-" + artifact.id)}</span>`,
                 allowHTML: true,
