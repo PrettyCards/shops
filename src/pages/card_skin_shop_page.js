@@ -5,20 +5,20 @@ import { us_loaded, addSetting, plugin } from "../underscript_checker";
 import { ArtifactsScreen } from "../screens/artifacts_screen";
 import { GersonAnimation } from "../shopkeeper_anims/gerson_anim";
 
-var art_setting = addSetting({
-    'key': 'artifacts_shop_toggle',
-    'name': 'Enable Artifacts Shop Override', // Name in settings page
+var card_skin_shop_setting = addSetting({
+    'key': 'card_skin_shop_toggle',
+    'name': 'Enable Card Skin Shop Override', // Name in settings page
     'type': 'boolean',
     'refresh': true, // true to add note "Will require you to refresh the page"
     'default': true, // default value
     'category': "Page Specific",
 });
 
-if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
+if (us_loaded && card_skin_shop_setting.value() && underscript.onPage('CardSkinsShop')) {
     underscript.utils.compoundEvent("PrettyCardsShops:CSSReady", "PrettyCards:TranslationExtReady", "PrettyCards:onArtifacts", function () {
     //plugin.events.on("PrettyCardsShops:CSSReady PrettyCards:TranslationExtReady", function() {
         //plugin.events.emit.singleton("PrettyCards:customCards");
-        var shop = new Shop("gerson");
+        var shop = new Shop("bunny");
         shop.RemoveEverythingElse();
         document.getElementsByClassName("mainContent")[0].appendChild(shop.container); // The order here is important, as the entire thing MUST be a part of the document before playing the song, as it may need the button, which needs tippy, and tippy doesn't like elements that are not part of the document.
         shop.SetupBackgroundAndMusic();

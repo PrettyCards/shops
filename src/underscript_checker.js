@@ -24,6 +24,19 @@ if (underscript) {
 
 if (us_loaded) {
 
+    /*
+    addSetting({
+        'key': 'artifact_style',
+        'name': 'Artifact Shop Style', // Name in settings page
+        'type': 'select',
+        'options': ["Boxes", "Shadow", "Onu", "None"],
+        'note': 'When on, shopkeepers will not talk unless you press a Talk option.',
+        'refresh': true, // true to add note "Will require you to refresh the page"
+        'default': "Boxes", // default value
+        'category' : "<span class='MYTHIC'>TEST PHASE</span>"
+    });
+    */
+
     addSetting({
         'key': 'animated_shopkeepers',
         'name': 'Animated Shopkeepers', // Name in settings page

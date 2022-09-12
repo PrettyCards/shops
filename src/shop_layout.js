@@ -220,6 +220,20 @@ class Shop {
         //console.log("NEW TEXT", this.lastDialogue, this);
     }
 
+    AddDefaultExitPage() {
+        this.AddMenuOption("exit", function() {
+            if (!this.lastDialogue || this.lastDialogue.removed) {
+                window.location.href = '/';
+                return;
+            }
+            this.lastDialogue.onremove = function(source) {
+                if (source == "END_OF_TEXT") {
+                    window.location.href = '/';
+                }
+            }
+        });
+    }
+
 }
 
 export {Shop};

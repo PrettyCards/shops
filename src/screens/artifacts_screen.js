@@ -1,3 +1,4 @@
+import { settings } from "../underscript_checker";
 import { FlexListScreen } from "./flex_list_screen";
 
 class ArtifactsScreen extends FlexListScreen {
@@ -24,6 +25,7 @@ class ArtifactsScreen extends FlexListScreen {
         var ele = document.createElement("DIV");
         ele.setAttribute("artid", entry.id);
         ele.className = "PrettyCards_ShopArtifactDisplay " + entry.rarity;
+        // ele.className = "PrettyCards_ShopArtifactDisplay PrettyCards_ShopArtifactStyle_" + settings.artifact_style.value() + " " + entry.rarity; // For testing phase poll only.
         ele.onclick = function() {
             // console.log(entry, this, this.viewFunc);
             this.viewFunc(entry.id);
