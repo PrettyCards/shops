@@ -37,6 +37,10 @@ class FlexListScreen {
         this.outerContainer.className += " PrettyCards_ShopFlexList_OuterTrue";
     }
 
+    NoScrollWheel() {
+        this.everythingContainer.style.overflowY = "hidden";
+    }
+
     // This is the only universal part.
     Render() {
         //console.log("RENDERING!", this.data);

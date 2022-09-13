@@ -33,9 +33,10 @@ if (us_loaded && card_skin_shop_setting.value() && underscript.onPage('CardSkins
 
         var shopScreen = new CardSkinsScreen(window.cardSkins, shop.GetPageElement(0));
         shopScreen.DisplayFewItemsInMiddle();
+        shopScreen.NoScrollWheel();
         shopScreen.ReorderData();
         shopScreen.data = shopScreen.orderedData; // Filters would not allow any of the new removed items to appear again, anyway.
-        shopScreen.Render();
+        shopScreen.GoToPage(0);
         /*
         plugin.events.on("PrettyCards:artBuySuccess", function(data) {
             shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-bought"));
@@ -53,8 +54,9 @@ if (us_loaded && card_skin_shop_setting.value() && underscript.onPage('CardSkins
 
         var checkScreen = new CardSkinsScreen(window.cardSkins, shop.GetPageElement(1), true);
         checkScreen.DisplayFewItemsInMiddle();
+        checkScreen.NoScrollWheel();
         checkScreen.ReorderData();
-        checkScreen.Render();
+        checkScreen.GoToPage(0);
 
         var talkScreen = new StandardTalkScreen(shop);
         talkScreen.AddTalkFast("aboutyou", false, "unlocktest");

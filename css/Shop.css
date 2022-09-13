@@ -188,6 +188,12 @@
     position: relative;
 }
 
+.PrettyCards_PagesFlexList_TopArrow[disabled],.PrettyCards_PagesFlexList_BottomArrow[disabled] {
+    background: black!important;
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
 .PrettyCards_PagesFlexList_TopArrow {
     top: 0;
 }

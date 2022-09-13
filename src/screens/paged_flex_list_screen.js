@@ -19,6 +19,29 @@ class PagedFlexListScreen extends FlexListScreen {
         this.orderedData = this.orderedData.sort(this.OrderLogic.bind(this));
     }
 
+    PageUp() {
+        this.GoToPage(this.page - 1);
+    }
+
+    PageDown() {
+        this.GoToPage(this.page + 1);
+    }
+
+    GoToPage(nr) {
+        var maxPage = Math.floor(this.orderedData.length/this.entriesPerPage);
+        this.page = nr;
+        if (this.page < 0) {
+            this.page = 0;
+        }
+        if (this.page > maxPage) {
+            this.page = maxPage;
+        }
+
+        this.topArrow.disabled = this.page <= 0;
+        this.bottomArrow.disabled = this.page >= maxPage;
+        this.Render();
+    }
+
     Render() {
         this.container.innerHTML = "";
         var start = this.page*this.entriesPerPage;
@@ -34,9 +57,19 @@ class PagedFlexListScreen extends FlexListScreen {
     RenderTop() {
         this.topArrow = document.createElement("BUTTON");
         this.topArrow.className = "PrettyCards_PagesFlexList_TopArrow glyphicon glyphicon-chevron-up";
+        this.topArrow.onclick = this.PageUp.bind(this);
         // Insert functionality here.
 
         this.topContainer.appendChild(this.topArrow);
+    }
+
+    RenderBottom() {
+        this.bottomArrow = document.createElement("BUTTON");
+        this.bottomArrow.className = "PrettyCards_PagesFlexList_BottomArrow glyphicon glyphicon-chevron-down";
+        this.bottomArrow.onclick = this.PageDown.bind(this);
+        // Insert functionality here.
+
+        this.bottomContainer.appendChild(this.bottomArrow);
     }
 
 }
