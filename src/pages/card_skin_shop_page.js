@@ -18,7 +18,7 @@ var card_skin_shop_setting = addSetting({
 // TODO: Check the events. Replace artifact one with a card skin one.
 
 if (us_loaded && card_skin_shop_setting.value() && underscript.onPage('CardSkinsShop')) {
-    underscript.utils.compoundEvent("PrettyCardsShops:CSSReady", "PrettyCards:TranslationExtReady", "PrettyCards:onArtifacts", function () {
+    underscript.utils.compoundEvent("PrettyCardsShops:CSSReady", "PrettyCards:TranslationExtReady", "PrettyCards:onArtifacts", "PrettyCardsShop:artistIconsFetched", function () {
     //plugin.events.on("PrettyCardsShops:CSSReady PrettyCards:TranslationExtReady", function() {
         //plugin.events.emit.singleton("PrettyCards:customCards");
         var shop = new Shop("bunny");

@@ -1,6 +1,6 @@
 
 import { ImagedSelect } from "../imaged_select_element";
-import { settings } from "../underscript_checker";
+import { plugin, settings } from "../underscript_checker";
 import { FlexListScreen } from "./flex_list_screen";
 import { PagedFlexListScreen } from "./paged_flex_list_screen";
 
@@ -104,9 +104,18 @@ class CardSkinsScreen extends PagedFlexListScreen {
         authorSelect.AddOption("", "https://raw.githubusercontent.com/PrettyCards/shops/main/img/artist_icons/all_artists.png", "All Artists");
         authorSelect.dropdown.classList.add("Artist");
 
-        authors.forEach((author) => {
-            authorSelect.AddOption(author, `this.is.an.author.url.for.${author}`, author);
+        plugin.events.on("PrettyCardsShop:artistIconsFetched", function(data) {
+            data = data[0];
+            console.log(data);
+            authors.forEach((author) => {
+                var image = "";
+                if (data[author]) {
+                    image = data[author];
+                }
+                authorSelect.AddOption(author, image, author);
+            })
         })
+        
 
         console.log(authorSelect);
         container.appendChild(authorSelect.button);
