@@ -317,6 +317,7 @@
     height: 100%;
     opacity: 0;
     transition: opacity 0.3s;
+    text-align: center;
 }
 
 .PrettyCards_ShopCardSkinDisplay:hover .PrettyCards_ShopCardSkinDisplayHover {

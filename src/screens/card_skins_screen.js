@@ -42,7 +42,7 @@ class CardSkinsScreen extends PagedFlexListScreen {
 
         var p = document.createElement("P");
         p.className = "ucp";
-        p.innerHTML = "Click to buy!";
+        p.innerHTML = window.$.i18n("pc-shops-clicktobuy");
         hover.appendChild(p);
 
         ele.appendChild(hover);
