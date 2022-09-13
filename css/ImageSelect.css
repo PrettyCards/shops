@@ -1,6 +1,7 @@
 
 .PrettyCards_ImagedSelectButton {
     width: 34px;
+    min-width: 34px; /* For flexboxes */
     height: 34px;
     border: 1px solid white;
     background-color: black;
