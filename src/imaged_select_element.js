@@ -19,7 +19,7 @@ class ImagedSelect {
         this.button.onfocusout = function() { // Need to delay it a little so the switching is registered.
             setTimeout(() => {
                 this.RemoveDropdown();
-            }, 10);
+            }, 100);
         }.bind(this);
 
         this.value = null;
@@ -67,6 +67,7 @@ class ImagedSelect {
         optionEle.innerHTML += displayText;
         optionEle.onclick = function() {
             this.SetValue(value);
+            this.RemoveDropdown();
         }.bind(this);
 
         this.dropdown.appendChild(optionEle);
