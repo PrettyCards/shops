@@ -101,7 +101,7 @@ class CardSkinsScreen extends PagedFlexListScreen {
         // Author
         var authorSelect = new ImagedSelect();
         authorSelect.button.classList.add("Artist");
-        authorSelect.AddOption("", "", "All Artists");
+        authorSelect.AddOption("", "https://raw.githubusercontent.com/PrettyCards/shops/main/img/artist_icons/all_artists.png", "All Artists");
         authorSelect.dropdown.classList.add("Artist");
 
         authors.forEach((author) => {
