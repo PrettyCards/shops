@@ -11,7 +11,7 @@ class FlexListScreen {
         this.topContainer = document.createElement("DIV");
         this.topContainer.className = "PrettyCards_ShopFlexList_Top";
         this.bottomContainer = document.createElement("DIV");
-        this.topContainer.className = "PrettyCards_ShopFlexList_Bottom";
+        this.bottomContainer.className = "PrettyCards_ShopFlexList_Bottom";
 
         this.outerContainer = document.createElement("DIV");
         this.outerContainer.className = "PrettyCards_ShopFlexList_Outer";
@@ -27,6 +27,9 @@ class FlexListScreen {
         if (parent) {
             parent.appendChild(this.everythingContainer);
         }
+
+        RenderTop();    // Welp, I'm doing the same mistake again . . .
+        RenderBottom(); // Whopde-doooooo!
     }
 
     // This is also a universal setting function. Once called, it's hard to revert it safely!
@@ -49,6 +52,14 @@ class FlexListScreen {
             this.container.appendChild(ele);
             this.PostRenderEntity(entry, ele);
         })
+    }
+
+    RenderTop() {
+
+    }
+
+    RenderBottom() {
+
     }
 
     OrderLogic(a, b) {

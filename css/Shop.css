@@ -176,6 +176,12 @@
     flex-wrap: wrap;
 }
 
+.PrettyCards_PagesFlexList_TopArrow,.PrettyCards_PagesFlexList_BottomArrow {
+    width: 100%;
+    border: 1px solid #888888;
+    height: 1.5em;
+}
+
 .PrettyCards_ShopArtifactDisplay {
     width: 20%;
     aspect-ratio: 1;

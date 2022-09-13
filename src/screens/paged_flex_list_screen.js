@@ -31,6 +31,14 @@ class PagedFlexListScreen extends FlexListScreen {
         }
     }
 
+    RenderTop() {
+        this.topArrow = document.createElement("BUTTON");
+        this.topArrow.className = "PrettyCards_PagesFlexList_TopArrow glyphicon glyphicon-chevron-up";
+        // Insert functionality here.
+
+        this.topContainer.appendChild(this.topArrow);
+    }
+
 }
 
 export {PagedFlexListScreen};
