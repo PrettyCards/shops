@@ -1,16 +1,10 @@
 
 .PrettyCards_ImagedSelectButton {
-    position: relative;
     width: 34px;
     height: 34px;
 }
 
 .PrettyCards_ImagedSelectDropdown {
     max-height: 200px;
-    display: none;
     position: absolute;
-}
-
-.PrettyCards_ImagedSelectButton:focus .PrettyCards_ImagedSelectDropdown {
-    display: block;
 }

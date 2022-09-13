@@ -7,16 +7,49 @@ plugin.events.on("PrettyCards:onPageLoad", function() {
 class ImagedSelect {
 
     constructor() {
-        this.button = document.createElement("DIV");
+        this.button = document.createElement("BUTTON");
         this.button.className = "PrettyCards_ImagedSelectButton";
 
         this.dropdown = document.createElement("DIV");
         this.dropdown.className = "PrettyCards_ImagedSelectDropdown";
 
-        this.button.appendChild(this.dropdown);
+        //this.button.appendChild(this.dropdown);
+
+        this.button.onclick = this.ToggleDropdown.bind(this);
+        this.button.onfocusout = this.RemoveDropdown.bind(this);
 
         this.value = null;
         this.onchange = function() {};
+    }
+
+    DisplayDropdown() {
+        if (this.IsDisplayed()) {
+            return;
+        }
+        var buttonBox = this.button.getBoundingClientRect();
+        document.body.appendChild(this.dropdown);
+        this.dropdown.style.top = (buttonBox.top + buttonBox.height) + "px";
+        this.dropdown.style.left = buttonBox.left + "px";
+
+    }
+
+    RemoveDropdown() {
+        if (!this.IsDisplayed()) {
+            return;
+        }
+        this.dropdown.remove();
+    }
+
+    ToggleDropdown() {
+        if (this.IsDisplayed()) {
+            this.RemoveDropdown();
+        } else {
+            this.DisplayDropdown();
+        }
+    }
+
+    IsDisplayed() {
+        return document.body.contains(this.dropdown);
     }
 
     AddOption(value, imageUrl, displayText = "") {
