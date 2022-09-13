@@ -5,11 +5,12 @@
 }
 
 .PrettyCards_ImagedSelectDropdown {
-    max-height: 200px;
+    max-height: 500px;
     position: absolute;
 
     background-color: black;
     border: 2px solid white;
+    overflow-y: auto;
 }
 
 .PrettyCards_ImagedSelectOption {
