@@ -11,6 +11,12 @@ class PagedFlexListScreen extends FlexListScreen {
     }
 
     ReorderData() {
+        this.orderedData = [];
+        this.data.forEach((entry) => {
+            if (!this.IsHidden(entry)) {
+                this.orderedData.push(entry);
+            }
+        })
         this.orderedData = this.orderedData.sort(this.OrderLogic.bind(this));
     }
 
@@ -20,9 +26,6 @@ class PagedFlexListScreen extends FlexListScreen {
         var end = Math.min((this.page + 1)*this.entriesPerPage, this.orderedData.length);
         for (var i=start; i < end; i++) {
             var entry = this.orderedData[i];
-            if (this.IsHidden(entry)) {
-                return;
-            }
             var ele = this.RenderEntry(entry);
             this.container.appendChild(ele);
             this.PostRenderEntity(entry, ele);
