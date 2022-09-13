@@ -16,7 +16,11 @@ class ImagedSelect {
         //this.button.appendChild(this.dropdown);
 
         this.button.onclick = this.ToggleDropdown.bind(this);
-        this.button.onfocusout = this.RemoveDropdown.bind(this);
+        this.button.onfocusout = function() { // Need to delay it a little so the switching is registered.
+            setTimeout(() => {
+                this.RemoveDropdown();
+            }, 10);
+        }.bind(this);
 
         this.value = null;
         this.onchange = function() {};
@@ -74,12 +78,18 @@ class ImagedSelect {
 
     SetValue(value, updateEvents = true) {
         var option = this.dropdown.querySelector(`.PrettyCards_ImagedSelectOption[value="${value}"]`);
+        console.log("Setting Value To", option);
         if (!option) {
             return;
         }
         var imageUrl = option.getAttribute("imageUrl");
         this.value = value;
         this.button.style.backgroundImage = `url("${imageUrl}")`;
+        if (!imageUrl || imageUrl.length < 0) {
+            this.button.innerHTML = option.innerText;
+        } else {
+            this.button.innerHTML = "";
+        }
         if (updateEvents) {
             this.onchange(value, imageUrl);
         }

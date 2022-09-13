@@ -2,6 +2,9 @@
 .PrettyCards_ImagedSelectButton {
     width: 34px;
     height: 34px;
+    border: 1px solid white;
+    background-color: black;
+    border-radius: 5px;
 }
 
 .PrettyCards_ImagedSelectDropdown {
@@ -11,6 +14,7 @@
     background-color: black;
     border: 2px solid white;
     overflow-y: auto;
+    border-radius: 8px;
 }
 
 .PrettyCards_ImagedSelectOption {

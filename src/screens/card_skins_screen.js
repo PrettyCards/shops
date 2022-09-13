@@ -102,6 +102,7 @@ class CardSkinsScreen extends PagedFlexListScreen {
         var authorSelect = new ImagedSelect();
         authorSelect.button.classList.add("Artist");
         authorSelect.AddOption("", "", "All Artists");
+        authorSelect.dropdown.classList.add("Artist");
 
         authors.forEach((author) => {
             authorSelect.AddOption(author, `this.is.an.author.url.for.${author}`, author);
