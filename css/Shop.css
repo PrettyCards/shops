@@ -383,3 +383,10 @@
 .PrettyCards_ShopCardSkinDisplay:hover .PrettyCards_ShopCardSkinDisplayHover {
     opacity: 1;
 }
+
+.PrettyCards_ShopFilterRow {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}

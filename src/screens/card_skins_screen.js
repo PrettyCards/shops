@@ -41,8 +41,12 @@ class CardSkinsScreen extends PagedFlexListScreen {
         hover.className = "PrettyCards_ShopCardSkinDisplayHover";
 
         var p = document.createElement("P");
-        p.className = "ucp";
-        p.innerHTML = window.$.i18n("pc-shops-clicktobuy");
+        if (entry.owned) {
+            p.innerHTML = window.$.i18n("cardskins-shop-owned");
+        } else {
+            p.className = "ucp";
+            p.innerHTML = window.$.i18n("pc-shops-clicktobuy");
+        }
         hover.appendChild(p);
 
         ele.appendChild(hover);
@@ -70,6 +74,30 @@ class CardSkinsScreen extends PagedFlexListScreen {
             boundary: 'window',
             getReferenceClientRect: window.document.body.getBoundingClientRect
         });
+    }
+
+    RenderTop() {
+        var container = document.createElement("DIV");
+        container.className = "PrettyCards_ShopFilterRow";
+
+        var searchBar = document.createElement("INPUT");
+        searchBar.setAttribute("type", "text");
+        searchBar.className = "form-control";
+        container.appendChild(searchBar);
+        // Card
+        var cardSelect = document.createElement("SELECT");
+        cardSelect.className = "form-control white";
+        container.appendChild(cardSelect);
+        var optionsTxt = `<option value=""></option>`;
+        window.cardIds.forEach((id) => {
+            optionsTxt += `<option value="${id}">${window.$.i18n("card-name-" + id, 1)}</option>`;
+        })
+        cardSelect.innerHTML = optionsTxt;
+
+        // Author
+
+        this.topContainer.appendChild(container);
+        super.RenderTop();
     }
 
 }
