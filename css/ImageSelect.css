@@ -1,0 +1,14 @@
+
+.PrettyCards_ImagedSelectButton {
+    position: relative;
+}
+
+.PrettyCards_ImagedSelectDropdown {
+    max-height: 200px;
+    display: none;
+    position: absolute;
+}
+
+.PrettyCards_ImagedSelectButton:focus .PrettyCards_ImagedSelectDropdown {
+    display: block;
+}

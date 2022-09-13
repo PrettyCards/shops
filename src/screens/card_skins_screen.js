@@ -20,7 +20,7 @@ class CardSkinsScreen extends PagedFlexListScreen {
     }
 
     IsHidden(entry) {
-        console.log("ISHIDDEN", this, this.isPromo);
+        //console.log("ISHIDDEN", this, this.isPromo);
         if (this.isPromo) {
             return entry.discount < 1;
         }
@@ -42,7 +42,10 @@ class CardSkinsScreen extends PagedFlexListScreen {
 
         var p = document.createElement("P");
         if (entry.owned) {
-            p.innerHTML = window.$.i18n("cardskins-shop-owned");
+            if (entry.unavailable) {
+                p.innerHTML = `<span class="glyphicon glyphicon-star yellow" title="Legacy"></span> `;
+            }
+            p.innerHTML += window.$.i18n("cardskins-shop-owned");
         } else {
             p.className = "ucp";
             p.innerHTML = window.$.i18n("pc-shops-clicktobuy");
@@ -54,7 +57,7 @@ class CardSkinsScreen extends PagedFlexListScreen {
     }
 
     PostRenderEntity(entry, ele) {
-        console.log(entry);
+        //console.log(entry);
         var tooltip = document.createElement("DIV");
         tooltip.className = "PrettyCards_CardSkinShopTooltip";
         
