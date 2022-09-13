@@ -33,6 +33,8 @@ if (us_loaded && card_skin_shop_setting.value() && underscript.onPage('CardSkins
 
         var shopScreen = new CardSkinsScreen(window.cardSkins, shop.GetPageElement(0));
         shopScreen.DisplayFewItemsInMiddle();
+        shopScreen.ReorderData();
+        shopScreen.data = shopScreen.orderedData; // Filters would not allow any of the new removed items to appear again, anyway.
         shopScreen.Render();
         /*
         plugin.events.on("PrettyCards:artBuySuccess", function(data) {
@@ -51,6 +53,7 @@ if (us_loaded && card_skin_shop_setting.value() && underscript.onPage('CardSkins
 
         var checkScreen = new CardSkinsScreen(window.cardSkins, shop.GetPageElement(1), true);
         checkScreen.DisplayFewItemsInMiddle();
+        checkScreen.ReorderData();
         checkScreen.Render();
 
         var talkScreen = new StandardTalkScreen(shop);

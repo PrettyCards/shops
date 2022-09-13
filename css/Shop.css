@@ -304,3 +304,21 @@
     pointer-events: none;
     display: flex;
 }
+
+.PrettyCards_ShopCardSkinDisplayHover {
+    background-color: rgba(50, 50, 50, 0.5);
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.PrettyCards_ShopCardSkinDisplay:hover .PrettyCards_ShopCardSkinDisplayHover {
+    opacity: 1;
+}

@@ -20,8 +20,9 @@ class CardSkinsScreen extends PagedFlexListScreen {
     }
 
     IsHidden(entry) {
+        console.log("ISHIDDEN", this, this.isPromo);
         if (this.isPromo) {
-            return entry.discount <= 0;
+            return entry.discount < 1;
         }
         return entry.unavailable && !entry.owned;
     }
@@ -35,6 +36,16 @@ class CardSkinsScreen extends PagedFlexListScreen {
             // console.log(entry, this, this.viewFunc);
             this.viewFunc(entry.id);
         }.bind(this);
+
+        var hover = document.createElement("DIV");
+        hover.className = "PrettyCards_ShopCardSkinDisplayHover";
+
+        var p = document.createElement("P");
+        p.className = "ucp";
+        p.innerHTML = "Click to buy!";
+        hover.appendChild(p);
+
+        ele.appendChild(hover);
         return ele;
     }
 
@@ -43,14 +54,11 @@ class CardSkinsScreen extends PagedFlexListScreen {
         var tooltip = document.createElement("DIV");
         tooltip.className = "PrettyCards_CardSkinShopTooltip";
         
-        var left = document.createElement("DIV");
+        //var left = document.createElement("DIV");
         var card = window.appendCardCardSkinShop(entry, window.frameName);
-        left.appendChild(card[0]);
-        tooltip.appendChild(left);
-        var p = document.createElement("P");
-        p.className = "ucp";
-        p.innerHTML = "Click to buy!";
-        left.appendChild(p);
+        tooltip.appendChild(card[0]);
+        //tooltip.appendChild(left);
+        
 
         window.tippy(ele, {
             content: tooltip,

@@ -7,7 +7,6 @@ class PagedFlexListScreen extends FlexListScreen {
         this.page = 0;
         this.entriesPerPage = 4;
         this.orderedData = [ ...this.data ];
-        this.ReorderData();
     }
 
     ReorderData() {
