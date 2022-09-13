@@ -5,13 +5,27 @@ class FlexListScreen {
     
     constructor(data, parent) {
         this.data = data;
+        this.everythingContainer = document.createElement("DIV");
+        this.everythingContainer.className = "PrettyCards_ShopFlexList_Every";
+
+        this.topContainer = document.createElement("DIV");
+        this.topContainer.className = "PrettyCards_ShopFlexList_Top";
+        this.bottomContainer = document.createElement("DIV");
+        this.topContainer.className = "PrettyCards_ShopFlexList_Bottom";
+
         this.outerContainer = document.createElement("DIV");
         this.outerContainer.className = "PrettyCards_ShopFlexList_Outer";
+
+        this.everythingContainer.appendChild(this.topContainer);
+        this.everythingContainer.appendChild(this.outerContainer);
+        this.everythingContainer.appendChild(this.bottomContainer);
+
         this.container = document.createElement("DIV");
         this.container.className = "PrettyCards_ShopFlexList";
-        this.outerContainer.appendChild(this.container)
+        this.outerContainer.appendChild(this.container);
+
         if (parent) {
-            parent.appendChild(this.outerContainer);
+            parent.appendChild(this.everythingContainer);
         }
     }
 

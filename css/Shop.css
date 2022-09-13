@@ -161,6 +161,21 @@
     height: 100%;
 }
 
+.PrettyCards_ShopFlexList_Every {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.PrettyCards_ShopFlexList_Bottom,.PrettyCards_ShopFlexList_Top {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .PrettyCards_ShopArtifactDisplay {
     width: 20%;
     aspect-ratio: 1;
