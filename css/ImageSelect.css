@@ -1,6 +1,8 @@
 
 .PrettyCards_ImagedSelectButton {
     position: relative;
+    width: 34px;
+    height: 34px;
 }
 
 .PrettyCards_ImagedSelectDropdown {

@@ -6,14 +6,14 @@ plugin.events.on("PrettyCards:onPageLoad", function() {
 
 class ImagedSelect {
 
-    construstor() {
+    constructor() {
         this.button = document.createElement("DIV");
         this.button.className = "PrettyCards_ImagedSelectButton";
 
         this.dropdown = document.createElement("DIV");
         this.dropdown.className = "PrettyCards_ImagedSelectDropdown";
 
-        this.button.appendChild(dropdown);
+        this.button.appendChild(this.dropdown);
 
         this.value = null;
         this.onchange = function() {};

@@ -1,4 +1,5 @@
 
+import { ImagedSelect } from "../imaged_select_element";
 import { settings } from "../underscript_checker";
 import { FlexListScreen } from "./flex_list_screen";
 import { PagedFlexListScreen } from "./paged_flex_list_screen";
@@ -98,6 +99,16 @@ class CardSkinsScreen extends PagedFlexListScreen {
         cardSelect.innerHTML = optionsTxt;
 
         // Author
+        var authorSelect = new ImagedSelect();
+        authorSelect.button.classList.add("Artist");
+        authorSelect.AddOption("", "", "All Artists");
+
+        authors.forEach((author) => {
+            authorSelect.AddOption(author, `this.is.an.author.url.for.${author}`, author);
+        })
+
+        console.log(authorSelect);
+        container.appendChild(authorSelect.button);
 
         this.topContainer.appendChild(container);
         super.RenderTop();
