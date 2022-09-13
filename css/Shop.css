@@ -183,6 +183,17 @@
     margin: 0;
     padding: 0;
     transition: 0.3s background-color;
+    display: block;
+    border: 0;
+    position: relative;
+}
+
+.PrettyCards_PagesFlexList_TopArrow {
+    top: 0;
+}
+
+.PrettyCards_PagesFlexList_TopArrow {
+    bottom: 0;
 }
 
 .PrettyCards_PagesFlexList_TopArrow:hover {
