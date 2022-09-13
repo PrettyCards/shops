@@ -28,8 +28,8 @@ class FlexListScreen {
             parent.appendChild(this.everythingContainer);
         }
 
-        RenderTop();    // Welp, I'm doing the same mistake again . . .
-        RenderBottom(); // Whopde-doooooo!
+        this.RenderTop();    // Welp, I'm doing the same mistake again . . .
+        this.RenderBottom(); // Whopde-doooooo!
     }
 
     // This is also a universal setting function. Once called, it's hard to revert it safely!

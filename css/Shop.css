@@ -178,8 +178,21 @@
 
 .PrettyCards_PagesFlexList_TopArrow,.PrettyCards_PagesFlexList_BottomArrow {
     width: 100%;
-    border: 1px solid #888888;
-    height: 1.5em;
+    height: 2em;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    transition: 0.3s background-color;
+}
+
+.PrettyCards_PagesFlexList_TopArrow:hover {
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(102,102,102,1) 100%);
+}
+
+.PrettyCards_PagesFlexList_BottomArrow:hover {
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(102,102,102,1) 100%);
 }
 
 .PrettyCards_ShopArtifactDisplay {
