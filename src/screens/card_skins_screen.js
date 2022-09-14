@@ -104,9 +104,6 @@ class CardSkinsScreen extends PagedFlexListScreen {
         authorSelect.AddOption("", "https://raw.githubusercontent.com/PrettyCards/shops/main/img/artist_icons/all_artists.png", "All Artists");
         authorSelect.dropdown.classList.add("Artist");
 
-        // "Show"
-        
-
         plugin.events.on("PrettyCardsShop:artistIconsFetched", function(data) {
             data = data[0];
             console.log(data);
@@ -118,10 +115,20 @@ class CardSkinsScreen extends PagedFlexListScreen {
                 authorSelect.AddOption(author, image, author);
             })
         })
-        
-
-        console.log(authorSelect);
         container.appendChild(authorSelect.button);
+
+        // "Show"
+        var showCheckbox = document.createElement("INPUT");
+        showCheckbox.setAttribute("type", "checkbox");
+        showCheckbox.className = "PrettyCards_Hidden";
+        showCheckbox.id = "PrettyCards_CardSkinShop_ShowCheckbox";
+        container.appendChild(showCheckbox);
+
+        var showCheckboxLabel = document.createElement("LABEL");
+        showCheckboxLabel.setAttribute("for", showCheckbox.id);
+        showCheckboxLabel.className = "PrettyCards_BigBlockCheckboxLabel";
+        showCheckboxLabel.innerHTML = `<span class="glyphicon glyphicon-user"></span>`;
+        container.appendChild(showCheckboxLabel);
 
         this.topContainer.appendChild(container);
 
@@ -129,6 +136,7 @@ class CardSkinsScreen extends PagedFlexListScreen {
         this.searchBar = searchBar;
         this.cardSelect = cardSelect;
         this.authorSelect = authorSelect;
+        this.showCheckbox = showCheckbox;
         super.RenderTop();
     }
 
