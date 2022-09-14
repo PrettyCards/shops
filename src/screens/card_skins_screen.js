@@ -104,6 +104,9 @@ class CardSkinsScreen extends PagedFlexListScreen {
         authorSelect.AddOption("", "https://raw.githubusercontent.com/PrettyCards/shops/main/img/artist_icons/all_artists.png", "All Artists");
         authorSelect.dropdown.classList.add("Artist");
 
+        // "Show"
+        
+
         plugin.events.on("PrettyCardsShop:artistIconsFetched", function(data) {
             data = data[0];
             console.log(data);
@@ -121,6 +124,11 @@ class CardSkinsScreen extends PagedFlexListScreen {
         container.appendChild(authorSelect.button);
 
         this.topContainer.appendChild(container);
+
+        this.filterContainer = container;
+        this.searchBar = searchBar;
+        this.cardSelect = cardSelect;
+        this.authorSelect = authorSelect;
         super.RenderTop();
     }
 

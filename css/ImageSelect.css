@@ -20,6 +20,10 @@
     border-radius: 8px;
 }
 
+.PrettyCards_ImagedSelectDropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
 .PrettyCards_ImagedSelectOption {
     padding: 0.2em;
     user-select: none;
