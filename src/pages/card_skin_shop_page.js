@@ -15,6 +15,22 @@ var card_skin_shop_setting = addSetting({
     'category': "Page Specific",
 });
 
+class CardSkinPromoScreen extends CardSkinsScreen {
+
+    RenderTop() {
+        var ele = document.getElementsByClassName("cosmetics-timer");
+        if (ele.length <= 0) {return;}
+        var parent = document.createElement("H4");
+        parent.className = "PrettyCards_ShopTimeTillNextOfferText";
+        parent.innerHTML = "New Offers In: ";
+        parent.appendChild(ele[0]);
+        this.topContainer.appendChild(parent);
+    }
+
+    RenderBottom() {}
+
+}
+
 // TODO: Check the events. Replace artifact one with a card skin one.
 
 if (us_loaded && card_skin_shop_setting.value() && underscript.onPage('CardSkinsShop')) {
@@ -52,7 +68,7 @@ if (us_loaded && card_skin_shop_setting.value() && underscript.onPage('CardSkins
         */
         
 
-        var checkScreen = new CardSkinsScreen(window.cardSkins, shop.GetPageElement(1), true);
+        var checkScreen = new CardSkinPromoScreen(window.cardSkins, shop.GetPageElement(1), true);
         checkScreen.DisplayFewItemsInMiddle();
         checkScreen.NoScrollWheel();
         checkScreen.ReorderData();

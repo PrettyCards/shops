@@ -96,6 +96,10 @@ class ImagedSelect {
         }
     }
 
+    GetValue() {
+        return this.value;
+    }
+
 }
 
 export {ImagedSelect}

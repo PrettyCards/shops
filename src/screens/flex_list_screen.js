@@ -66,6 +66,11 @@ class FlexListScreen {
 
     }
 
+    RenderTopAndBottom() {
+        this.RenderTop();
+        this.RenderBottom();
+    }
+
     OrderLogic(a, b) {
         return 0;
     }

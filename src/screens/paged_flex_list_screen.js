@@ -10,13 +10,18 @@ class PagedFlexListScreen extends FlexListScreen {
     }
 
     ReorderData() {
+        this.ApplyFilters();
+        this.orderedData = this.orderedData.sort(this.OrderLogic.bind(this));
+        this.data = this.orderedData;
+    }
+
+    ApplyFilters() {
         this.orderedData = [];
         this.data.forEach((entry) => {
             if (!this.IsHidden(entry)) {
                 this.orderedData.push(entry);
             }
         })
-        this.orderedData = this.orderedData.sort(this.OrderLogic.bind(this));
     }
 
     PageUp() {
@@ -37,8 +42,10 @@ class PagedFlexListScreen extends FlexListScreen {
             this.page = maxPage;
         }
 
-        this.topArrow.disabled = this.page <= 0;
-        this.bottomArrow.disabled = this.page >= maxPage;
+        if (this.topArrow && this.bottomArrow) {
+            this.topArrow.disabled = this.page <= 0;
+            this.bottomArrow.disabled = this.page >= maxPage;
+        }
         this.Render();
     }
 
