@@ -37,7 +37,7 @@ class CardSkinsScreen extends PagedFlexListScreen {
         }
         if (this.searchBar.value.length > 0) {
             var searchText = entry.name + entry.cardName + window.$.i18n("card-name-" + entry.cardId) + entry.authorName;
-            if (!searchText.includes(this.searchBar.value)) {
+            if (!searchText.toLowerCase().includes(this.searchBar.value.toLowerCase())) {
                 return true;
             }
         }
@@ -50,10 +50,12 @@ class CardSkinsScreen extends PagedFlexListScreen {
         ele.className = "PrettyCards_ShopCardSkinDisplay";
         ele.style.backgroundImage = `url("${window.prettycards.utility.getCardImageLink(entry.image)}")`;
         var hasEnoughToBuy = window.ucp >= (entry.ucpCost - entry.discount)
-        if (!entry.owned && hasEnoughToBuy) {
-            ele.onclick = function() {
-                window.confirmPurchase(entry.id);
-            }.bind(this);
+        if (!entry.owned) {
+            var func = function() {window.confirmPurchase(entry.id);};
+            if (!hasEnoughToBuy) {
+                func = function() {location.href = "Shop";}
+            }
+            ele.onclick = func;
         }
 
         var hover = document.createElement("DIV");
@@ -158,6 +160,46 @@ class CardSkinsScreen extends PagedFlexListScreen {
         container.appendChild(showCheckboxLabel);
 
         this.topContainer.appendChild(container);
+
+        window.tippy(searchBar, {
+            content: window.$.i18n("cardskins-shop-search"),
+            arrow: true,
+            inertia: true,
+            placement: "auto",
+            appendTo: window.document.body,
+            boundary: 'window',
+            getReferenceClientRect: window.document.body.getBoundingClientRect
+        });
+
+        window.tippy(cardSelect, {
+            content: window.$.i18n("cardskins-shop-card"),
+            arrow: true,
+            inertia: true,
+            placement: "auto",
+            appendTo: window.document.body,
+            boundary: 'window',
+            getReferenceClientRect: window.document.body.getBoundingClientRect
+        });
+
+        window.tippy(authorSelect.button, {
+            content: window.$.i18n("cardskins-shop-author"),
+            arrow: true,
+            inertia: true,
+            placement: "auto",
+            appendTo: window.document.body,
+            boundary: 'window',
+            getReferenceClientRect: window.document.body.getBoundingClientRect
+        });
+
+        window.tippy(showCheckboxLabel, {
+            content: window.$.i18n("pc-shops-showownedonly"),
+            arrow: true,
+            inertia: true,
+            placement: "auto",
+            appendTo: window.document.body,
+            boundary: 'window',
+            getReferenceClientRect: window.document.body.getBoundingClientRect
+        });
 
         this.filterContainer = container;
         this.searchBar = searchBar;

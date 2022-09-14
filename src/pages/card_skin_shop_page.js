@@ -34,7 +34,7 @@ class CardSkinPromoScreen extends CardSkinsScreen {
 // TODO: Check the events. Replace artifact one with a card skin one.
 
 if (us_loaded && card_skin_shop_setting.value() && underscript.onPage('CardSkinsShop')) {
-    underscript.utils.compoundEvent("PrettyCardsShops:CSSReady", "PrettyCards:TranslationExtReady", "PrettyCards:onArtifacts", "PrettyCardsShop:artistIconsFetched", function () {
+    underscript.utils.compoundEvent("PrettyCardsShops:CSSReady", "PrettyCards:TranslationExtReady", "PrettyCards:onCardSkinShopConfig", "PrettyCardsShop:artistIconsFetched", function () {
     //plugin.events.on("PrettyCardsShops:CSSReady PrettyCards:TranslationExtReady", function() {
         //plugin.events.emit.singleton("PrettyCards:customCards");
         var shop = new Shop("bunny");
@@ -66,13 +66,18 @@ if (us_loaded && card_skin_shop_setting.value() && underscript.onPage('CardSkins
             shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-buyerror"));
         })
         */
-        
 
         var checkScreen = new CardSkinPromoScreen(window.cardSkins, shop.GetPageElement(1), true);
         checkScreen.DisplayFewItemsInMiddle();
         checkScreen.NoScrollWheel();
         checkScreen.ReorderData();
         checkScreen.GoToPage(0);
+
+        plugin.events.on("PrettyCards:onCardSkinBought", function() {
+            shop.SetDialogue(window.$.i18n("pc-shops-bunny-dial-bought"));
+            shopScreen.Render();
+            checkScreen.Render();
+        })
 
         var talkScreen = new StandardTalkScreen(shop);
         talkScreen.AddTalkFast("aboutyou", false, "unlocktest");
