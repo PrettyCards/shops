@@ -22,7 +22,7 @@ class CardSkinPromoScreen extends CardSkinsScreen {
         if (ele.length <= 0) {return;}
         var parent = document.createElement("H4");
         parent.className = "PrettyCards_ShopTimeTillNextOfferText";
-        parent.innerHTML = "New Offers In: ";
+        parent.innerHTML = window.$.i18n("pc-shops-newoffersin") + " ";
         parent.appendChild(ele[0]);
         this.topContainer.appendChild(parent);
     }

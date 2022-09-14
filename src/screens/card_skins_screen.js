@@ -13,7 +13,6 @@ class CardSkinsScreen extends PagedFlexListScreen {
         if (this.isPromo) {
             this.entriesPerPage = data.length;
         }
-        this.viewFunc = window.prettycards.FancyDisplay.ViewArtifactInfo.bind(window.prettycards.FancyDisplay);
     }
 
     OrderLogic(a, b) {
@@ -30,6 +29,18 @@ class CardSkinsScreen extends PagedFlexListScreen {
         if (this.authorSelect.GetValue() != "" && entry.authorName != this.authorSelect.GetValue()) {
             return true;
         }
+        if (this.showCheckbox.checked && !entry.owned) {
+            return true;
+        }
+        if (this.cardSelect.value != "" && this.cardSelect.value != entry.cardId) {
+            return true;
+        }
+        if (this.searchBar.value.length > 0) {
+            var searchText = entry.name + entry.cardName + window.$.i18n("card-name-" + entry.cardId) + entry.authorName;
+            if (!searchText.includes(this.searchBar.value)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -37,11 +48,13 @@ class CardSkinsScreen extends PagedFlexListScreen {
         var ele = document.createElement("DIV");
         ele.setAttribute("skinid", entry.id);
         ele.className = "PrettyCards_ShopCardSkinDisplay";
-        ele.style.backgroundImage = `url("${window.prettycards.utility.getCardImageLink(entry.image)}")`
-        ele.onclick = function() {
-            // console.log(entry, this, this.viewFunc);
-            this.viewFunc(entry.id);
-        }.bind(this);
+        ele.style.backgroundImage = `url("${window.prettycards.utility.getCardImageLink(entry.image)}")`;
+        var hasEnoughToBuy = window.ucp >= (entry.ucpCost - entry.discount)
+        if (!entry.owned && hasEnoughToBuy) {
+            ele.onclick = function() {
+                window.confirmPurchase(entry.id);
+            }.bind(this);
+        }
 
         var hover = document.createElement("DIV");
         hover.className = "PrettyCards_ShopCardSkinDisplayHover";
@@ -53,8 +66,13 @@ class CardSkinsScreen extends PagedFlexListScreen {
             }
             p.innerHTML += window.$.i18n("cardskins-shop-owned");
         } else {
-            p.className = "ucp";
-            p.innerHTML = window.$.i18n("pc-shops-clicktobuy");
+            if (hasEnoughToBuy) {
+                p.className = "ucp";
+                p.innerHTML = window.$.i18n("pc-shops-clicktobuy");
+            } else {
+                p.className = "red";
+                p.innerHTML = window.$.i18n("pc-shops-notenough", window.$.i18n(`{{UCP:${window.$.i18n("item-ucp")}}}`));
+            }
         }
         hover.appendChild(p);
 

@@ -72,11 +72,22 @@ class Shop {
         
     }
 
+    StartPlayingMusic() {
+        if (!this.isPaused && this.didPlayBefore) {
+            this.bgm.play();
+        }
+    }
+
+    IsBGMPlaying() {
+        return this.bgm.duration > 0 && !this.bgm.paused;
+    }
+
     PlayMusicManual(fail) {
         var elem = document.createElement("DIV");
         elem.className = "glyphicon glyphicon-volume-up PrettyCards_ShopManualAudio";
         elem.onclick = function() {
-            this.bgm.play();
+            this.didPlayBefore = true;
+            this.StartPlayingMusic();
             elem.remove();
         }.bind(this);
         this.right.appendChild(elem);
@@ -111,12 +122,18 @@ class Shop {
                 this.PlayMusicManual(false);
             }
 
+            this.isPaused = false;
+            this.didPlayBefore = this.IsBGMPlaying();
             plugin.events.on("PrettyCards:pauseBGM", function() {
+                if (this.isPaused) {return;}
+                this.didPlayBefore = this.IsBGMPlaying();
+                this.isPaused = true;
                 this.bgm.pause();
             }.bind(this));
 
             plugin.events.on("PrettyCards:resumeBGM", function() {
-                this.bgm.play();
+                this.isPaused = false;
+                this.StartPlayingMusic();
             }.bind(this));
         }
     }
