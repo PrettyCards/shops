@@ -145,6 +145,19 @@ class CardSkinsScreen extends PagedFlexListScreen {
         authorSelect.onchange = this.FiltersAndGoto.bind(this);
         container.appendChild(authorSelect.button);
 
+        // Skin Type
+        var mystery = Math.random() <= 0.022;
+
+        var skinTypeSelect = new ImagedSelect();
+        skinTypeSelect.button.classList.add("cyan");
+        skinTypeSelect.dropdown.classList.add("cyan");
+        skinTypeSelect.AddOption("", "https://raw.githubusercontent.com/PrettyCards/shops/main/img/skin_type_icons/all.png", window.$.i18n("pc-skintype-any"));
+        skinTypeSelect.AddOption("0", "https://raw.githubusercontent.com/PrettyCards/shops/main/img/skin_type_icons/0.png", window.$.i18n("pc-skintype-normal"));
+        skinTypeSelect.AddOption("1", "https://raw.githubusercontent.com/PrettyCards/shops/main/img/skin_type_icons/1.png", window.$.i18n("pc-skintype-full"));
+        skinTypeSelect.AddOption("2", `https://raw.githubusercontent.com/PrettyCards/shops/main/img/skin_type_icons/2${mystery ? "_mystery" : ""}.png`, window.$.i18n("pc-skintype-breaking"));
+        skinTypeSelect.onchange = this.FiltersAndGoto.bind(this);
+        container.appendChild(skinTypeSelect.button);
+
         // "Show"
         var showCheckbox = document.createElement("INPUT");
         showCheckbox.setAttribute("type", "checkbox");
@@ -162,7 +175,7 @@ class CardSkinsScreen extends PagedFlexListScreen {
         this.topContainer.appendChild(container);
 
         window.tippy(searchBar, {
-            content: window.$.i18n("cardskins-shop-search"),
+            content: window.$.i18n("hub-search"),
             arrow: true,
             inertia: true,
             placement: "auto",
@@ -182,7 +195,7 @@ class CardSkinsScreen extends PagedFlexListScreen {
         });
 
         window.tippy(authorSelect.button, {
-            content: window.$.i18n("cardskins-shop-author"),
+            content: window.$.i18n("group-artist"),
             arrow: true,
             inertia: true,
             placement: "auto",
@@ -205,6 +218,7 @@ class CardSkinsScreen extends PagedFlexListScreen {
         this.searchBar = searchBar;
         this.cardSelect = cardSelect;
         this.authorSelect = authorSelect;
+        this.skinTypeSelect = skinTypeSelect;
         this.showCheckbox = showCheckbox;
         super.RenderTop();
     }

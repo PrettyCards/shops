@@ -31,8 +31,6 @@ class CardSkinPromoScreen extends CardSkinsScreen {
 
 }
 
-// TODO: Check the events. Replace artifact one with a card skin one.
-
 if (us_loaded && card_skin_shop_setting.value() && underscript.onPage('CardSkinsShop')) {
     underscript.utils.compoundEvent("PrettyCardsShops:CSSReady", "PrettyCards:TranslationExtReady", "PrettyCards:onCardSkinShopConfig", "PrettyCardsShop:artistIconsFetched", function () {
     //plugin.events.on("PrettyCardsShops:CSSReady PrettyCards:TranslationExtReady", function() {
