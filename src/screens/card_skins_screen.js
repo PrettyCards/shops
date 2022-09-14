@@ -35,6 +35,9 @@ class CardSkinsScreen extends PagedFlexListScreen {
         if (this.cardSelect.value != "" && this.cardSelect.value != entry.cardId) {
             return true;
         }
+        if (this.skinTypeSelect.GetValue() != "" && Number(this.skinTypeSelect.GetValue()) != entry.typeSkin) {
+            return true;
+        }
         if (this.searchBar.value.length > 0) {
             var searchText = entry.name + entry.cardName + window.$.i18n("card-name-" + entry.cardId) + entry.authorName;
             if (!searchText.toLowerCase().includes(this.searchBar.value.toLowerCase())) {
@@ -196,6 +199,16 @@ class CardSkinsScreen extends PagedFlexListScreen {
 
         window.tippy(authorSelect.button, {
             content: window.$.i18n("group-artist"),
+            arrow: true,
+            inertia: true,
+            placement: "auto",
+            appendTo: window.document.body,
+            boundary: 'window',
+            getReferenceClientRect: window.document.body.getBoundingClientRect
+        });
+
+        window.tippy(skinTypeSelect.button, {
+            content: window.$.i18n("pc-shops-skintype"),
             arrow: true,
             inertia: true,
             placement: "auto",
