@@ -402,6 +402,12 @@
     min-width: 34px;
     height: 34px;
     border: 1px solid white;
+    color: #BBBBBB;
     border-radius: 5px;
     background-color: black;
+}
+
+input:checked + .PrettyCards_BigBlockCheckboxLabel {
+    background-color: white;
+    border-color: black;
 }
