@@ -79,7 +79,7 @@ class ImagedSelect {
 
     SetValue(value, updateEvents = true) {
         var option = this.dropdown.querySelector(`.PrettyCards_ImagedSelectOption[value="${value}"]`);
-        console.log("Setting Value To", option);
+        //console.log("Setting Value To", option);
         if (!option) {
             return;
         }

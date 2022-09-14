@@ -21,11 +21,16 @@ class CardSkinsScreen extends PagedFlexListScreen {
     }
 
     IsHidden(entry) {
-        //console.log("ISHIDDEN", this, this.isPromo);
         if (this.isPromo) {
             return entry.discount < 1;
         }
-        return entry.unavailable && !entry.owned;
+        if (entry.unavailable && !entry.owned) {
+            return true;
+        }
+        if (this.authorSelect.GetValue() != "" && entry.authorName != this.authorSelect.GetValue()) {
+            return true;
+        }
+        return false;
     }
 
     RenderEntry(entry) {
@@ -87,9 +92,11 @@ class CardSkinsScreen extends PagedFlexListScreen {
         var searchBar = document.createElement("INPUT");
         searchBar.setAttribute("type", "text");
         searchBar.className = "form-control";
+        searchBar.onkeyup = this.FiltersAndGoto.bind(this);
         container.appendChild(searchBar);
         // Card
         var cardSelect = document.createElement("SELECT");
+        cardSelect.onchange = this.FiltersAndGoto.bind(this);
         cardSelect.className = "form-control white";
         container.appendChild(cardSelect);
         var optionsTxt = `<option value=""></option>`;
@@ -114,12 +121,14 @@ class CardSkinsScreen extends PagedFlexListScreen {
                 }
                 authorSelect.AddOption(author, image, author);
             })
-        })
+        });
+        authorSelect.onchange = this.FiltersAndGoto.bind(this);
         container.appendChild(authorSelect.button);
 
         // "Show"
         var showCheckbox = document.createElement("INPUT");
         showCheckbox.setAttribute("type", "checkbox");
+        showCheckbox.onchange = this.FiltersAndGoto.bind(this);
         showCheckbox.className = "PrettyCards_Hidden";
         showCheckbox.id = "PrettyCards_CardSkinShop_ShowCheckbox";
         container.appendChild(showCheckbox);

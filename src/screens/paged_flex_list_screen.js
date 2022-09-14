@@ -79,6 +79,12 @@ class PagedFlexListScreen extends FlexListScreen {
         this.bottomContainer.appendChild(this.bottomArrow);
     }
 
+    // This is to shorten filter button code.
+    FiltersAndGoto() {
+        this.ApplyFilters();
+        this.GoToPage(0);
+    }
+
 }
 
 export {PagedFlexListScreen};
