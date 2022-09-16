@@ -30,11 +30,10 @@ class ImagedSelect {
         if (this.IsDisplayed()) {
             return;
         }
-        var buttonBox = this.button.getBoundingClientRect();
+        var buttonPos = window.prettycards.utility.getCoordsRelativeToDocument(this.button);
         document.body.appendChild(this.dropdown);
-        this.dropdown.style.top = (buttonBox.top + buttonBox.height) + "px";
-        this.dropdown.style.left = buttonBox.left + "px";
-
+        this.dropdown.style.top = (buttonPos.top + buttonPos.height) + "px";
+        this.dropdown.style.left = buttonPos.left + "px";
     }
 
     RemoveDropdown() {
