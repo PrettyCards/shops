@@ -1,0 +1,36 @@
+{
+    "pc-shops-playbtn-tip": "Premi per avviare musica!",
+    "pc-shops-playbtn-tip-fail": "La musica ha fallito di avviarsi automaticamente.",
+    "pc-shops-option-buy": "Compra",
+    "pc-shops-option-check": "Controlla",
+    "pc-shops-option-talk": "Conversa",
+    "pc-shops-option-exit": "Esci",
+    "pc-shops-gerson-dial-intro-test-dont-translate": "",
+    "pc-shops-gerson-dial-intro": "Ah ma salve![w:300] Possiedo della bella spazzatura in saldo.",
+    "pc-shops-gerson-dial-buy": "Cosa stai cercando?",
+    "pc-shops-gerson-dial-check": "Cosa c'è di cosi interessante in questa spazzatura?",
+    "pc-shops-gerson-dial-talk": "Qualcosa che vuoi sapere?",
+    "pc-shops-gerson-dial-exit": "Fai attenzione la fuori, ragazzo!",
+    "pc-shops-gerson-dial-bought": "Grazie! Wa ha ha.",
+    "pc-shops-gerson-dial-buyerror": "Sei un pò a secco di denaro.",
+    "pc-shops-gerson-talk-title-aboutyou": "Chiedi di te",
+    "pc-shops-gerson-talk-aboutyou": {
+        "values": [
+            "Sono stato in giro per molto tempo. [face:sus]Forse per troppo.",
+            "[face:happy]Studiare la storia è facile facile quando la hai vissuta per cosi a lungo![face:default] Wa ha ha! "
+        ]
+    },
+    "pc-shops-gerson-talk-title-emblem": "Quell'emblema",
+    "pc-shops-gerson-talk-emblem": {
+        "values": [
+            "Eh?[w:200] Non sai che cos'è?",
+            "Cosa insegnano ai marmocchi a scuola questi giorni...?[w:200] Wa ha ha!",
+            "Quello è [style:yellow]Delta Rune[style:], l'emblema del nostro regno. Il Regno...",
+            "... dei Mostri.",
+            "Wa ha ha![w:150] Bel nome, huh?[w:150] Come dico sempre io... ",
+            "Il vecchio Re Fluffolone non sà nominare nà mazza!"
+        ]
+    },
+    "pc-shops-gerson-talk-title-unlocktest": "Sbloccato!",
+    "pc-shops-gerson-talk-unlocktest": "[face:sus]Come te la senti, Mr. Crabs?"
+}

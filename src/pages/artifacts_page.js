@@ -55,7 +55,7 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
 
         var oldOnClick = buyBtn.onclick;
         buyBtn.onclick = function(e) {
-            console.log(notOwnedArtifactCount, oldOnClick);
+            //console.log(notOwnedArtifactCount, oldOnClick);
             if (notOwnedArtifactCount <= 0) {
                 shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-buyhasall"));
             } else {
