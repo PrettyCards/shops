@@ -7,6 +7,25 @@ class PagedFlexListScreen extends FlexListScreen {
         this.page = 0;
         this.entriesPerPage = 4;
         this.orderedData = [ ...this.data ];
+
+        // To anyone reading: DON'T get used to me copying Onu's code!
+        window.$(this.everythingContainer).on('mousewheel DOMMouseScroll', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (typeof e.originalEvent.detail === 'number' && e.originalEvent.detail !== 0) {
+                if (e.originalEvent.detail > 0) {
+                    this.PageDown();
+                } else if (e.originalEvent.detail < 0) {
+                    this.PageUp();
+                }
+            } else if (typeof e.originalEvent.wheelDelta === 'number') {
+                if (e.originalEvent.wheelDelta < 0) {
+                    this.PageDown();
+                } else if (e.originalEvent.wheelDelta > 0) {
+                    this.PageUp();
+                }
+            }
+        }.bind(this));
     }
 
     ReorderData() {

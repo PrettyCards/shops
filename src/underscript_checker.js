@@ -111,6 +111,10 @@ if (us_loaded) {
 		})
     })
 
+    plugin.events.on("PrettyCards:registerTranslationSources", function() {
+        window.prettycards.translationManager.addLanguageSource("PrettyCards:Shops", (lan) => {});
+    })
+
 } else {
     
 }
