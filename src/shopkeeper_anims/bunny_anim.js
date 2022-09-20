@@ -23,6 +23,10 @@ class BunnyAnimation extends ShopkeeperAnimBase {
         this.face = this.GetImageFromCanvas(304, -1, 125, 125);
         this.face.position({x: this.torso.getPosition().x + 90, y: this.torso.getPosition().y + 115});
         this.mainLayer.add(this.face);
+
+        this.mouth = this.GetImageFromCanvas(131, 556, 45, 34);
+        this.mouth.position({x: this.torso.getPosition().x + 132, y: this.torso.getPosition().y + 208});
+        this.mainLayer.add(this.mouth);
     }
 
     OnChangeExpression(name) {
