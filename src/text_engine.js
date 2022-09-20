@@ -60,7 +60,9 @@ class TypedText {
     }
 
     NextPage() {
-        this.animDispatcher.ChangeExpression("default");
+        if (this.animDispatcher) {
+            this.animDispatcher.ChangeExpression("default");
+        }
         this.instant = false;
         this.userInstant = false;
         this.ResetTextArea();
@@ -126,7 +128,9 @@ class TypedText {
                 return true;
             },
             face: (arg) => {
-                this.animDispatcher.ChangeExpression(arg);
+                if (this.animDispatcher) {
+                    this.animDispatcher.ChangeExpression(arg);
+                }
                 return true;
             }
         }

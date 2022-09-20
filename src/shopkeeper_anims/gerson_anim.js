@@ -1,8 +1,6 @@
 import Konva from "konva";
 import { ShopkeeperAnimBase } from "./shopkeep_anim_base";
 
-const ADDRESS_PREFIX = "https://raw.githubusercontent.com/PrettyCards/shops/main/img/shop_sprites/gerson/";
-
 class GersonAnimation extends ShopkeeperAnimBase {
 
     constructor(shop) {
@@ -16,9 +14,6 @@ class GersonAnimation extends ShopkeeperAnimBase {
     }
 
     InitAnimations() {
-        console.log("INIT ANIM!");
-        //this.torsoImgBig = window.prettycards.utility.resizePixelArt(this.torsoImg, 5);
-        //console.log(this.torsoImgBig);
         var stage_size = this.stage.getSize();
 
         this.torso = this.GetImageFromCanvas(0, 0, 280, 170);
