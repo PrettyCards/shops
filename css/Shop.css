@@ -415,3 +415,12 @@ input:checked + .PrettyCards_BigBlockCheckboxLabel {
     background-color: white;
     border-color: black;
 }
+
+.PrettyCards_CategorizedFlexScreenSection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+}
