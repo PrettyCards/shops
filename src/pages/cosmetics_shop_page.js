@@ -15,8 +15,8 @@ var cosm_setting = addSetting({
 });
 
 if (us_loaded && cosm_setting.value() && underscript.onPage('CosmeticsShop')) {
-    window.prettycards.cosmeticShop.GetData().then((cosmeticsData) => {
-        underscript.utils.compoundEvent("PrettyCardsShops:CSSReady", "PrettyCards:TranslationExtReady", function () {
+    underscript.utils.compoundEvent("PrettyCardsShops:CSSReady", "PrettyCards:TranslationExtReady", function () {
+        window.prettycards.cosmeticShop.GetData().then((cosmeticsData) => {
             var shop = new Shop("swatch");
             shop.RemoveEverythingElse();
             document.getElementsByClassName("mainContent")[0].appendChild(shop.container); // The order here is important, as the entire thing MUST be a part of the document before playing the song, as it may need the button, which needs tippy, and tippy doesn't like elements that are not part of the document.
@@ -26,17 +26,17 @@ if (us_loaded && cosm_setting.value() && underscript.onPage('CosmeticsShop')) {
             shop.AddMenuOption("check");
             shop.AddMenuOption("talk");
             shop.AddDefaultExitPage();
-    
+
             var artifacts = window.prettycards.artifactDisplay.artifacts;
             var shopScreen = new ArtifactsScreen(artifacts, shop.GetPageElement(0));
-    
+
             var notOwnedArtifactCount = 0;
             for (var i=0; i < artifacts.length; i++) {
                 if (!shopScreen.IsHidden(artifacts[i])) {
                     notOwnedArtifactCount++;
                 }
             }
-    
+
             shopScreen.DisplayFewItemsInMiddle();
             plugin.events.on("PrettyCards:artBuySuccess", function(data) {
                 notOwnedArtifactCount--;
@@ -51,7 +51,7 @@ if (us_loaded && cosm_setting.value() && underscript.onPage('CosmeticsShop')) {
                 shop.SetDialogue(window.$.i18n("pc-shops-gerson-dial-buyerror"));
             })
             shopScreen.Render();
-    
+
             var oldOnClick = buyBtn.onclick;
             buyBtn.onclick = function(e) {
                 //console.log(notOwnedArtifactCount, oldOnClick);
@@ -61,11 +61,11 @@ if (us_loaded && cosm_setting.value() && underscript.onPage('CosmeticsShop')) {
                     oldOnClick(e);
                 }
             }
-    
+
             var checkScreen = new ArtifactsScreen(artifacts, shop.GetPageElement(1), true);
             checkScreen.DisplayFewItemsInMiddle();
             checkScreen.Render();
-    
+
             artifacts.forEach((artifact) => {
                 window.tippy(`[artid="${artifact.id}"]`, {
                     content: `<span class="${artifact.rarity}">${window.$.i18n("artifact-name-" + artifact.id)}</span>`,
@@ -79,12 +79,12 @@ if (us_loaded && cosm_setting.value() && underscript.onPage('CosmeticsShop')) {
                 });
             })
             
-    
+
             var talkScreen = new StandardTalkScreen(shop);
             talkScreen.AddTalkFast("aboutyou", false, "unlocktest");
             talkScreen.AddTalkFast("emblem");
             talkScreen.AddTalkFast("unlocktest", true);
-    
+
             var talkBase = shop.GetPageElement(2);
             talkBase.appendChild(talkScreen.container);
             talkScreen.Render();
@@ -93,7 +93,8 @@ if (us_loaded && cosm_setting.value() && underscript.onPage('CosmeticsShop')) {
                 shop.SetDialogue("[instant]Hi![w:500] I'm [style:red]Gerson[style:]![speed:500] [instant:off][style:cyan]\rNice to meet you![speed:33] \nNow I will have an insanely long monologue for testing purposes!");
             }, 500);
             */
-            
-        })
-    });
+
+        });
+        
+    })
 }
