@@ -31,7 +31,7 @@ class CategorizedFlexListScreen extends FlexListScreen {
         var header = this.RenderCategoryHeader(category);
         this.container.appendChild(header);
         var section = document.createElement("DIV");
-        this.section.className = "PrettyCards_CategorizedFlexScreenSection";
+        section.className = "PrettyCards_CategorizedFlexScreenSection";
         this.container.appendChild(section);
         this.category_objects[category] = section;
     }

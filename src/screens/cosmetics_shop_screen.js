@@ -11,6 +11,30 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
     }
 
     RenderEntry(entry) {
+        var COSMETIC_TYPES = window.prettycards.cosmeticShop.COSMETIC_TYPES;
+        if (entry.type === COSMETIC_TYPES.AVATAR) {
+            var img = document.createElement("IMG");
+            img.src = entry.imageSrc;
+            img.className = "avatar " + entry.rarity;
+            img.style = "margin: 5px;";
+            return img;
+        }
+        if (entry.type === COSMETIC_TYPES.EMOTE) {
+            var img = document.createElement("IMG");
+            img.src = entry.imageSrc;
+            img.className = "emote-bordered";
+            img.style = "margin: 5px;";
+            return img;
+        }
+        if (entry.type === COSMETIC_TYPES.PROFILE_SKIN) {
+            var img = document.createElement("IMG");
+            img.src = entry.imageSrc;
+            img.className = "profileSkin";
+            img.style = "margin: 5px; height: 18px;";
+            return img;
+        }
+
+        // Fallback, IG.
         var testP = document.createElement("P");
         testP.innerHTML = entry.name;
         return testP;

@@ -34,20 +34,6 @@ if (us_loaded && cosm_setting.value() && underscript.onPage('CosmeticsShop')) {
             var checkScreen = new CosmeticsShopScreen(cosmeticsData, shop.GetPageElement(1), true);
             checkScreen.Render();
 
-            artifacts.forEach((artifact) => {
-                window.tippy(`[artid="${artifact.id}"]`, {
-                    content: `<span class="${artifact.rarity}">${window.$.i18n("artifact-name-" + artifact.id)}</span>`,
-                    allowHTML: true,
-                    arrow: true,
-                    inertia: true,
-                    placement: "top",
-                    appendTo: window.document.body,
-                    boundary: 'window',
-                    getReferenceClientRect: window.document.body.getBoundingClientRect
-                });
-            })
-            
-
             var talkScreen = new StandardTalkScreen(shop);
             talkScreen.AddTalkFast("aboutyou", false, "unlocktest");
             talkScreen.AddTalkFast("emblem");
