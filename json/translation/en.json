@@ -8,6 +8,7 @@
     "pc-shops-skintype": "Skin Type",
 
     "pc-shops-cosmetic-price": "Price: {{UCP:$1}} $2",
+    "pc-shops-cosmetic-price-discount": "Price: <s>$3</s> {{UCP:$1}} $2",
     "pc-shops-avatar-rarity": "$1 Avatar",
 
     "pc-shops-option-buy": "Buy",

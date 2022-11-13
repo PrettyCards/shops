@@ -42,14 +42,30 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
 
     
     PostRenderEntity(entry, ele) {
+        console.log(entry);
         var COSMETIC_TYPES = window.prettycards.cosmeticShop.COSMETIC_TYPES;
         var content = document.createElement("DIV");
-        content.style = "text-align: left; ";
+        content.style = "text-align: left;";
+
+        var discountedPrice = entry.cost;
+        var originalPrice = entry.cost;
+        if (entry.discountPercent) {
+            originalPrice = entry.cost / (entry.discountPercent/100);
+        }
+
+        var priceString = window.$.i18n("pc-shops-cosmetic-price", originalPrice, window.$.i18n("item-ucp"));
+        if (entry.discountPercent) {
+            priceString = window.$.i18n("pc-shops-cosmetic-price-discount", discountedPrice, window.$.i18n("item-ucp"), originalPrice);
+        }
+        
         if (entry.type === COSMETIC_TYPES.AVATAR) {
             content.innerHTML = `
                 <div class="PrettyCards_ShopCosmeticsHover_Title ${entry.rarity}">${entry.name}</div>
-                <div class="PrettyCards_ShopCosmeticsHover_Subtitle ${entry.rarity}">${window.$.i18n("pc-shops-avatar-rarity", window.$.i18n(`rarity-${entry.rarity}`))}</div>
-                <div class="PrettyCards_ShopCosmeticsHover_Price">${window.$.i18n("pc-shops-cosmetic-price", entry.cost, window.$.i18n("item-ucp"))}</div>
+                <div class="PrettyCards_ShopCosmeticsHover_Subtitle ${entry.rarity}">${window.$.i18n("pc-shops-avatar-rarity", window.$.i18n(`rarity-${entry.rarity.toLowerCase()}`))}</div>
+                <div class="PrettyCards_ShopCosmeticsHover_Price">${priceString}</div>
+                <div class="PrettyCards_ShopCosmeticsHover_Buttons">
+                    <button></button>
+                </div>
             `;
         }
         if (entry.type === COSMETIC_TYPES.EMOTE) {
