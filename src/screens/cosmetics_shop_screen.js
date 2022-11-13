@@ -64,8 +64,8 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
                 <div class="PrettyCards_ShopCosmeticsHover_Subtitle ${entry.rarity}">${window.$.i18n("pc-shops-avatar-rarity", window.$.i18n(`rarity-${entry.rarity.toLowerCase()}`))}</div>
                 <div class="PrettyCards_ShopCosmeticsHover_Price">${priceString}</div>
                 <div class="PrettyCards_ShopCosmeticsHover_Buttons">
-                    <button class="btn btn-success"></button>
-                    <button class="btn btn-primary">Favorite</button>
+                    <button class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</button>
+                    <button class="btn btn-primary"><span class="glyphicon glyphicon-star"></span> Favorite</button>
                 </div>
             `;
         }
