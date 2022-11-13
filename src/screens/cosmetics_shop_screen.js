@@ -47,28 +47,32 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
         var content = document.createElement("DIV");
         content.style = "text-align: left;";
 
-        var discountedPrice = entry.cost;
-        var originalPrice = entry.cost;
+        var priceString = window.$.i18n("pc-shops-cosmetic-price", entry.cost, window.$.i18n("item-ucp"));
         if (entry.discountPercent) {
-            originalPrice = entry.cost / (entry.discountPercent/100);
-        }
-
-        //var priceString = window.$.i18n("pc-shops-cosmetic-price", originalPrice, window.$.i18n("item-ucp"));
-        var priceString = window.$.i18n("pc-shops-cosmetic-price", discountedPrice, window.$.i18n("item-ucp"));
-        if (entry.discountPercent) {
-            // priceString = window.$.i18n("pc-shops-cosmetic-price-discount", discountedPrice, window.$.i18n("item-ucp"), originalPrice);
             priceString += ` <span class="ucp">(-${entry.discountPercent}%)</span>`;
         }
+
+        var hasEnoughUcp = entry.cost <= prettycards.pagegetters.ucp;
+
+        var getUcpLine = "";
+        if (!hasEnoughUcp) {
+            getUcpLine = `<div style="margin-top: 3px;"><a href="/Shop" class="ucp">Want to buy ${window.$.i18n("item-ucp")}? Click here!</a></div>`;
+        }
+
+        var buttonsPart = `
+            <div class="PrettyCards_ShopCosmeticsHover_Buttons">
+                <button class="btn btn-success" ${hasEnoughUcp ? "" : "disabled"}><span class="glyphicon glyphicon-shopping-cart"></span> Buy</button>
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-star"></span> Favorite</button>
+            </div>
+            ${getUcpLine}
+        `;
 
         if (entry.type === COSMETIC_TYPES.AVATAR) {
             content.innerHTML = `
                 <div class="PrettyCards_ShopCosmeticsHover_Title ${entry.rarity}">${entry.name}</div>
                 <div class="PrettyCards_ShopCosmeticsHover_Subtitle ${entry.rarity}">${window.$.i18n("pc-shops-avatar-rarity", window.$.i18n(`rarity-${entry.rarity.toLowerCase()}`))}</div>
                 <div class="PrettyCards_ShopCosmeticsHover_Price">${priceString}</div>
-                <div class="PrettyCards_ShopCosmeticsHover_Buttons">
-                    <button class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</button>
-                    <button class="btn btn-primary"><span class="glyphicon glyphicon-star"></span> Favorite</button>
-                </div>
+                ${buttonsPart}
             `;
         }
         if (entry.type === COSMETIC_TYPES.EMOTE) {
@@ -76,10 +80,7 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
                 <div class="PrettyCards_ShopCosmeticsHover_Title">${entry.name}</div>
                 <div class="PrettyCards_ShopCosmeticsHover_Subtitle">${window.$.i18n("pc-shops-emote-rarity", "")}</div>
                 <div class="PrettyCards_ShopCosmeticsHover_Price">${priceString}</div>
-                <div class="PrettyCards_ShopCosmeticsHover_Buttons">
-                    <button class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</button>
-                    <button class="btn btn-primary"><span class="glyphicon glyphicon-star"></span> Favorite</button>
-                </div>
+                ${buttonsPart}
             `;
         }
         if (entry.type === COSMETIC_TYPES.PROFILE_SKIN) {
@@ -87,10 +88,7 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
                 <div class="PrettyCards_ShopCosmeticsHover_Title">${entry.name}</div>
                 <div class="PrettyCards_ShopCosmeticsHover_Subtitle">${window.$.i18n("pc-shops-profile-skin-rarity", "")}</div>
                 <div class="PrettyCards_ShopCosmeticsHover_Price">${priceString}</div>
-                <div class="PrettyCards_ShopCosmeticsHover_Buttons">
-                    <button class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</button>
-                    <button class="btn btn-primary"><span class="glyphicon glyphicon-star"></span> Favorite</button>
-                </div>
+                ${buttonsPart}
             `;
         }
 
@@ -99,7 +97,7 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
             allowHTML: true,
             arrow: true,
             inertia: true,
-            placement: "right",
+            placement: "right-start",
             interactive: true,
             appendTo: window.document.body,
             boundary: 'window',
