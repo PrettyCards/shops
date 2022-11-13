@@ -57,14 +57,15 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
         if (entry.discountPercent) {
             priceString = window.$.i18n("pc-shops-cosmetic-price-discount", discountedPrice, window.$.i18n("item-ucp"), originalPrice);
         }
-        
+
         if (entry.type === COSMETIC_TYPES.AVATAR) {
             content.innerHTML = `
                 <div class="PrettyCards_ShopCosmeticsHover_Title ${entry.rarity}">${entry.name}</div>
                 <div class="PrettyCards_ShopCosmeticsHover_Subtitle ${entry.rarity}">${window.$.i18n("pc-shops-avatar-rarity", window.$.i18n(`rarity-${entry.rarity.toLowerCase()}`))}</div>
                 <div class="PrettyCards_ShopCosmeticsHover_Price">${priceString}</div>
                 <div class="PrettyCards_ShopCosmeticsHover_Buttons">
-                    <button></button>
+                    <button class="btn btn-success"></button>
+                    <button class="btn btn-primary">Favorite</button>
                 </div>
             `;
         }
