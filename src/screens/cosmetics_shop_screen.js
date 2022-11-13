@@ -40,6 +40,38 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
         return testP;
     }
 
+    
+    PostRenderEntity(entry, ele) {
+        var COSMETIC_TYPES = window.prettycards.cosmeticShop.COSMETIC_TYPES;
+        var content = document.createElement("DIV");
+        content.style = "text-align: left; ";
+        if (entry.type === COSMETIC_TYPES.AVATAR) {
+            content.innerHTML = `
+                <div class="PrettyCards_ShopCosmeticsHover_Title ${entry.rarity}">${entry.name}</div>
+                <div class="PrettyCards_ShopCosmeticsHover_Subtitle ${entry.rarity}">${window.$.i18n("pc-shops-avatar-rarity", window.$.i18n(`rarity-${entry.rarity}`))}</div>
+                <div class="PrettyCards_ShopCosmeticsHover_Price">${window.$.i18n("pc-shops-cosmetic-price", entry.cost, window.$.i18n("item-ucp"))}</div>
+            `;
+        }
+        if (entry.type === COSMETIC_TYPES.EMOTE) {
+            content.innerHTML = "EMOTE";
+        }
+        if (entry.type === COSMETIC_TYPES.PROFILE_SKIN) {
+            content.innerHTML = "PROFILE_SKIN";
+        }
+
+        window.tippy(ele, {
+            content: content,
+            allowHTML: true,
+            arrow: true,
+            inertia: true,
+            placement: "right",
+            interactive: true,
+            appendTo: window.document.body,
+            boundary: 'window',
+            getReferenceClientRect: window.document.body.getBoundingClientRect
+        });
+    }
+
 }
 
 export {CosmeticsShopScreen}
