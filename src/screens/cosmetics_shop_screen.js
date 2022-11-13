@@ -53,9 +53,11 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
             originalPrice = entry.cost / (entry.discountPercent/100);
         }
 
-        var priceString = window.$.i18n("pc-shops-cosmetic-price", originalPrice, window.$.i18n("item-ucp"));
+        //var priceString = window.$.i18n("pc-shops-cosmetic-price", originalPrice, window.$.i18n("item-ucp"));
+        var priceString = window.$.i18n("pc-shops-cosmetic-price", discountedPrice, window.$.i18n("item-ucp"));
         if (entry.discountPercent) {
-            priceString = window.$.i18n("pc-shops-cosmetic-price-discount", discountedPrice, window.$.i18n("item-ucp"), originalPrice);
+            // priceString = window.$.i18n("pc-shops-cosmetic-price-discount", discountedPrice, window.$.i18n("item-ucp"), originalPrice);
+            priceString += ` <span class="ucp">(-${entry.discountPercent}%)</span>`;
         }
 
         if (entry.type === COSMETIC_TYPES.AVATAR) {

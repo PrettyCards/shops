@@ -11,7 +11,7 @@
     "pc-shops-cosmetic-price-discount": "Price: <s class=\"PrettyCards_FadeUCP\">$3</s> {{UCP:$1}} $2",
     "pc-shops-avatar-rarity": "$1 Avatar",
     "pc-shops-emote-rarity": "$1 Emote",
-    "pc-shops-profile-skin-rarity": "$1 Emote",
+    "pc-shops-profile-skin-rarity": "$1 Profile Skin",
 
     "pc-shops-option-buy": "Buy",
     "pc-shops-option-check": "Check",
