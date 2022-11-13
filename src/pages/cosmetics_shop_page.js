@@ -15,6 +15,10 @@ var cosm_setting = addSetting({
     'category': "Page Specific",
 });
 
+plugin.events.on("PrettyCards:onPageLoad", function() {
+    window.prettycards.utility.loadCSSFromGH("Cosmetics", "shops");
+});
+
 if (us_loaded && cosm_setting.value() && underscript.onPage('CosmeticsShop')) {
     underscript.utils.compoundEvent("PrettyCardsShops:CSSReady", "PrettyCards:TranslationExtReady", function () {
         window.prettycards.cosmeticShop.GetData().then((cosmeticsData) => {
