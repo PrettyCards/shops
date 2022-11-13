@@ -70,10 +70,26 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
             `;
         }
         if (entry.type === COSMETIC_TYPES.EMOTE) {
-            content.innerHTML = "EMOTE";
+            content.innerHTML = `
+                <div class="PrettyCards_ShopCosmeticsHover_Title">${entry.name}</div>
+                <div class="PrettyCards_ShopCosmeticsHover_Subtitle">${window.$.i18n("pc-shops-emote-rarity", "")}</div>
+                <div class="PrettyCards_ShopCosmeticsHover_Price">${priceString}</div>
+                <div class="PrettyCards_ShopCosmeticsHover_Buttons">
+                    <button class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</button>
+                    <button class="btn btn-primary"><span class="glyphicon glyphicon-star"></span> Favorite</button>
+                </div>
+            `;
         }
         if (entry.type === COSMETIC_TYPES.PROFILE_SKIN) {
-            content.innerHTML = "PROFILE_SKIN";
+            content.innerHTML = `
+                <div class="PrettyCards_ShopCosmeticsHover_Title">${entry.name}</div>
+                <div class="PrettyCards_ShopCosmeticsHover_Subtitle">${window.$.i18n("pc-shops-profile-skin-rarity", "")}</div>
+                <div class="PrettyCards_ShopCosmeticsHover_Price">${priceString}</div>
+                <div class="PrettyCards_ShopCosmeticsHover_Buttons">
+                    <button class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> Buy</button>
+                    <button class="btn btn-primary"><span class="glyphicon glyphicon-star"></span> Favorite</button>
+                </div>
+            `;
         }
 
         window.tippy(ele, {
