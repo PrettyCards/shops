@@ -138,8 +138,6 @@ class CardSkinsScreen extends PagedFlexListScreen {
         authorSelect.dropdown.classList.add("Artist");
 
         plugin.events.on("PrettyCardsShop:artistIconsFetched", function(data) {
-            data = data[0];
-            console.log(data);
             authors.forEach((author) => {
                 var image = "";
                 if (data[author]) {
