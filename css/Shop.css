@@ -291,6 +291,46 @@
     }
 }
 
+.PrettyCards_ShopSoulArtifactDisplay.DETERMINATION {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/SOUL_DETERMINATION.png");
+    border-color: rgb(149, 0, 0);
+}
+
+.PrettyCards_ShopSoulArtifactDisplay.BRAVERY {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/SOUL_BRAVERY.png");
+    border-color: rgb(212, 99, 0);
+}
+
+.PrettyCards_ShopSoulArtifactDisplay.JUSTICE {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/SOUL_JUSTICE.png");
+    border-color: rgb(200, 200, 0);
+}
+
+.PrettyCards_ShopSoulArtifactDisplay.KINDNESS {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/SOUL_KINDNESS.png");
+    border-color: #008100;
+}
+
+.PrettyCards_ShopSoulArtifactDisplay.PATIENCE {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/SOUL_PATIENCE.png");
+    border-color: rgb(28, 163, 165);
+}
+
+.PrettyCards_ShopSoulArtifactDisplay.INTEGRITY {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/SOUL_INTEGRITY.png");
+    border-color: #0043a7;
+}
+
+.PrettyCards_ShopSoulArtifactDisplay.PERSEVERANCE {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/SOUL_PERSEVERANCE.png");
+    border-color: #902592;
+}
+
+.PrettyCards_ShopSoulArtifactDisplay.MONSTER {
+    background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/SOUL_MONSTER.png");
+    border-color: #d1d1d1;
+}
+
 .PrettyCards_ShopArtifactDisplay.MYTHIC {
     background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/MYTHIC.png");
     animation-name: mythicArtifact;
