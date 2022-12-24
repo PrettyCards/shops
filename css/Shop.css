@@ -212,7 +212,7 @@
     background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(102,102,102,1) 100%);
 }
 
-.PrettyCards_ShopArtifactDisplay,.PrettyCards_ShopSoulArtifactDisplay {
+.PrettyCards_ShopArtifactDisplay {
     width: 20%;
     aspect-ratio: 1;
     /* height: 90px; */
@@ -291,42 +291,42 @@
     }
 }
 
-.PrettyCards_ShopSoulArtifactDisplay.DETERMINATION {
+.PrettyCards_ShopArtifactDisplay.PrettyCards_ShopSoulArtifact.DETERMINATION {
     background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/SOUL_DETERMINATION.png");
     border-color: rgb(149, 0, 0);
 }
 
-.PrettyCards_ShopSoulArtifactDisplay.BRAVERY {
+.PrettyCards_ShopArtifactDisplay.PrettyCards_ShopSoulArtifact.BRAVERY {
     background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/SOUL_BRAVERY.png");
     border-color: rgb(212, 99, 0);
 }
 
-.PrettyCards_ShopSoulArtifactDisplay.JUSTICE {
+.PrettyCards_ShopArtifactDisplay.PrettyCards_ShopSoulArtifact.JUSTICE {
     background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/SOUL_JUSTICE.png");
     border-color: rgb(200, 200, 0);
 }
 
-.PrettyCards_ShopSoulArtifactDisplay.KINDNESS {
+.PrettyCards_ShopArtifactDisplay.PrettyCards_ShopSoulArtifact.KINDNESS {
     background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/SOUL_KINDNESS.png");
     border-color: #008100;
 }
 
-.PrettyCards_ShopSoulArtifactDisplay.PATIENCE {
+.PrettyCards_ShopArtifactDisplay.PrettyCards_ShopSoulArtifact.PATIENCE {
     background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/SOUL_PATIENCE.png");
     border-color: rgb(28, 163, 165);
 }
 
-.PrettyCards_ShopSoulArtifactDisplay.INTEGRITY {
+.PrettyCards_ShopArtifactDisplay.PrettyCards_ShopSoulArtifact.INTEGRITY {
     background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/SOUL_INTEGRITY.png");
     border-color: #0043a7;
 }
 
-.PrettyCards_ShopSoulArtifactDisplay.PERSEVERANCE {
+.PrettyCards_ShopArtifactDisplay.PrettyCards_ShopSoulArtifact.PERSEVERANCE {
     background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/SOUL_PERSEVERANCE.png");
     border-color: #902592;
 }
 
-.PrettyCards_ShopSoulArtifactDisplay.MONSTER {
+.PrettyCards_ShopArtifactDisplay.PrettyCards_ShopSoulArtifact.MONSTER {
     background-image: url("https://raw.githubusercontent.com/PrettyCards/shops/main/img/artifact_boxes/SOUL_MONSTER.png");
     border-color: #d1d1d1;
 }
