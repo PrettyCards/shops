@@ -348,6 +348,11 @@
     height: 64px;
 }
 
+.PrettyCards_ShopArtifactDisplay.PrettyCards_ShopArtifactDisplay_Big img {
+    width: 100%;
+    height: 100%;
+}
+
 .PrettyCards_ShopManualAudio {
     position: absolute;
     top: 0px;

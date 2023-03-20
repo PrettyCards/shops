@@ -25,6 +25,9 @@ class ArtifactsScreen extends FlexListScreen {
         var ele = document.createElement("DIV");
         ele.setAttribute("artid", entry.id);
         ele.className = (entry.soul ? `PrettyCards_ShopArtifactDisplay PrettyCards_ShopSoulArtifact ${entry.soul}` : `PrettyCards_ShopArtifactDisplay ${entry.rarity}`);
+        if (entry.isImageBig) {
+            ele.className += " PrettyCards_ShopArtifactDisplay_Big";
+        }
         // ele.className = "PrettyCards_ShopArtifactDisplay PrettyCards_ShopArtifactStyle_" + settings.artifact_style.value() + " " + entry.rarity; // For testing phase poll only.
         ele.onclick = function() {
             // console.log(entry, this, this.viewFunc);
