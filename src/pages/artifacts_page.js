@@ -68,8 +68,9 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
         checkScreen.Render();
 
         artifacts.forEach((artifact) => {
+            var rarityData = window.prettycards.artifactDisplay.GetRarityDataFor(artifact);
             window.tippy(`[artid="${artifact.id}"]`, {
-                content: `<span class="${artifact.rarity}">${window.$.i18n("artifact-name-" + artifact.id)}</span>`,
+                content: `<span class="${rarityData.txtClass}">${window.$.i18n("artifact-name-" + artifact.id)}</span>`,
                 allowHTML: true,
                 arrow: true,
                 inertia: true,

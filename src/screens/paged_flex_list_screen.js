@@ -7,6 +7,7 @@ class PagedFlexListScreen extends FlexListScreen {
         this.page = 0;
         this.entriesPerPage = 4;
         this.orderedData = [ ...this.data ];
+        this.tippys = []; // An array of tippy popups that should be hidden then the page changes. Has to be populated manually :(
 
         // To anyone reading: DON'T get used to me copying Onu's code!
         window.$(this.everythingContainer).on('mousewheel DOMMouseScroll', function(e) {
@@ -52,6 +53,7 @@ class PagedFlexListScreen extends FlexListScreen {
     }
 
     GoToPage(nr) {
+        this.RemoveAllTippys();
         var maxPage = Math.floor(this.orderedData.length/this.entriesPerPage);
         this.page = nr;
         if (this.page < 0) {
@@ -102,6 +104,16 @@ class PagedFlexListScreen extends FlexListScreen {
     FiltersAndGoto() {
         this.ApplyFilters();
         this.GoToPage(0);
+    }
+
+    RemoveAllTippys() {
+        this.tippys.forEach((tippy) => {
+            tippy.hide();
+        })
+    }
+
+    AddTippy(tippy) {
+        this.tippys.push(tippy);
     }
 
 }

@@ -99,7 +99,7 @@ class CardSkinsScreen extends PagedFlexListScreen {
         //tooltip.appendChild(left);
         
 
-        window.tippy(ele, {
+        var t = window.tippy(ele, {
             content: tooltip,
             allowHTML: true,
             arrow: true,
@@ -109,6 +109,7 @@ class CardSkinsScreen extends PagedFlexListScreen {
             boundary: 'window',
             getReferenceClientRect: window.document.body.getBoundingClientRect
         });
+        this.AddTippy(t);
     }
 
     RenderTop() {
