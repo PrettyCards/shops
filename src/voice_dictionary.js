@@ -20,7 +20,8 @@ class Voice {
 
     Preload() {
         this.sources.forEach((src) => {
-            window.prettycards.utility.preloadAudio(src);
+            // The error is usually just "yOu ShOuLd NoT pLaY aUdIo BeFoRe InTeRaCtInG wItH tHe PaGe"
+            window.prettycards.utility.preloadAudio(src).catch(()=>{});
         })
     }
 
