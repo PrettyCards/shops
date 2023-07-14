@@ -15,8 +15,7 @@ var art_setting = addSetting({
 });
 
 if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
-    underscript.utils.compoundEvent("PrettyCardsShops:CSSReady", "PrettyCards:TranslationExtReady", "PrettyCards:onArtifacts", function () {
-    //plugin.events.on("PrettyCardsShops:CSSReady PrettyCards:TranslationExtReady", function() {
+    underscript.utils.compoundEvent("PrettyCards:TranslationExtReady", "PrettyCards:onArtifacts", function () {
         //plugin.events.emit.singleton("PrettyCards:customCards");
         var shop = new Shop("gerson");
         shop.RemoveEverythingElse();

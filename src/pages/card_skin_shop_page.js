@@ -33,8 +33,7 @@ class CardSkinPromoScreen extends CardSkinsScreen {
 }
 
 if (us_loaded && card_skin_shop_setting.value() && underscript.onPage('CardSkinsShop')) {
-    underscript.utils.compoundEvent("PrettyCardsShops:CSSReady", "PrettyCards:TranslationExtReady", "PrettyCards:onCardSkinShopConfig", "PrettyCardsShop:artistIconsFetched", function () {
-    //plugin.events.on("PrettyCardsShops:CSSReady PrettyCards:TranslationExtReady", function() {
+    underscript.utils.compoundEvent("PrettyCards:TranslationExtReady", "PrettyCards:onCardSkinShopConfig", "PrettyCardsShop:artistIconsFetched", function () {
         //plugin.events.emit.singleton("PrettyCards:customCards");
         var shop = new Shop("bunny");
         shop.RemoveEverythingElse();

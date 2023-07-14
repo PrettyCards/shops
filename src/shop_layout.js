@@ -2,11 +2,14 @@
 import { TypedText } from "./text_engine";
 import { plugin, settings } from "./underscript_checker";
 
+import css from "./css/Shop.css";
+plugin.events.on("PrettyCards:cssLoaderReady", () => {
+    window.prettycards.loadCSS(css);
+})
 
 var translate;
 
 plugin.events.on("PrettyCards:onPageLoad", function() {
-    window.prettycards.utility.loadCSSFromGH("Shop", "shops").then(plugin.events.emit("PrettyCardsShops:CSSReady"));
     translate = window.prettycards.translationManager.getStringOrList.bind(window.prettycards.translationManager);
 })
 

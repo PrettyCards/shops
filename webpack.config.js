@@ -28,4 +28,16 @@ module.exports = {
       pretty: true,
     }),
   ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        loader: "css-loader",
+        options: {
+          modules: false,
+          url: false
+        }
+      },
+    ],
+  },
 };

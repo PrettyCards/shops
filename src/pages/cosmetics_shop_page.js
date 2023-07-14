@@ -6,6 +6,12 @@ import { ArtifactsScreen } from "../screens/artifacts_screen";
 import { GersonAnimation } from "../shopkeeper_anims/gerson_anim";
 import { CosmeticsShopScreen } from "../screens/cosmetics_shop_screen";
 
+import css from "../css/Cosmetics.css";
+plugin.events.on("PrettyCards:cssLoaderReady", () => {
+    console.log(window.prettycards);
+    window.prettycards.loadCSS(css);
+})
+
 var cosm_setting = addSetting({
     'key': 'cosmetics_shop_toggle',
     'name': 'Enable Cosmetics Shop Override', // Name in settings page
@@ -15,12 +21,8 @@ var cosm_setting = addSetting({
     'category': "Page Specific",
 });
 
-plugin.events.on("PrettyCards:onPageLoad", function() {
-    window.prettycards.utility.loadCSSFromGH("Cosmetics", "shops");
-});
-
 if (us_loaded && cosm_setting.value() && underscript.onPage('CosmeticsShop')) {
-    underscript.utils.compoundEvent("PrettyCardsShops:CSSReady", "PrettyCards:TranslationExtReady", function () {
+    underscript.utils.compoundEvent("PrettyCards:TranslationExtReady", function () {
         window.prettycards.cosmeticShop.GetData().then((cosmeticsData) => {
             var shop = new Shop("swatch");
             shop.RemoveEverythingElse();

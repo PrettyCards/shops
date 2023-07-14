@@ -1,7 +1,8 @@
 import { plugin } from "./underscript_checker";
 
-plugin.events.on("PrettyCards:onPageLoad", function() {
-    window.prettycards.utility.loadCSSFromGH("ImageSelect", "shops")//.then(plugin.events.emit("PrettyCardsShops:CSSReady"));
+import css from "./css/ImageSelect.css";
+plugin.events.on("PrettyCards:cssLoaderReady", () => {
+    window.prettycards.loadCSS(css);
 })
 
 class ImagedSelect {
