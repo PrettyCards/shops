@@ -102,6 +102,7 @@ if (us_loaded) {
         }
     });
 
+    /*
     plugin.events.on("PrettyCards:onPageLoad", function() {
         window.prettycards.utility.addCSSSourceData("shops", {
             version: GM_info.script.version,
@@ -110,6 +111,7 @@ if (us_loaded) {
 			urlLinkFunc: (data, name) => `https://cdn.jsdelivr.net/gh/PrettyCards/shops@${data}/css/${name}.css`
 		})
     })
+    */
 
 } else {
     
