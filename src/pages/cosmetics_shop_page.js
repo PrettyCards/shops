@@ -8,7 +8,6 @@ import { CosmeticsShopScreen } from "../screens/cosmetics_shop_screen";
 
 import css from "../css/Cosmetics.css";
 plugin.events.on("PrettyCards:cssLoaderReady", () => {
-    console.log(window.prettycards);
     window.prettycards.loadCSS(css);
 })
 

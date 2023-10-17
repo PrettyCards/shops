@@ -32,7 +32,7 @@ if (us_loaded && art_setting.value() && underscript.onPage('Artifacts')) {
 
         var notOwnedArtifactCount = 0;
         for (var i=0; i < artifacts.length; i++) {
-            if (!shopScreen.IsHidden(artifacts[i])) {
+            if (artifacts[i] && !shopScreen.IsHidden(artifacts[i])) {
                 notOwnedArtifactCount++;
             }
         }

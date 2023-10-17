@@ -15,10 +15,13 @@ class ArtifactsScreen extends FlexListScreen {
     }
 
     IsHidden(entry) {
+        if (!entry) {
+            return true;
+        }
         if (this.displayBought) {
             return false;
         }
-        return entry.collection || entry.owned || entry.unavailable;
+        return !window.prettycards.artifactDisplay.IsArtifactPurchasable(entry.id);
     }
 
     RenderEntry(entry) {

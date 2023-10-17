@@ -48,13 +48,11 @@ class FlexListScreen {
         var orderedData = [ ...this.data ];
         orderedData = orderedData.sort(this.OrderLogic.bind(this));
         orderedData.forEach((entry) => {
-            if (this.IsHidden(entry)) {
-                return;
+            if (!this.IsHidden(entry)) {
+                var ele = this.RenderEntry(entry);
+                this.container.appendChild(ele);
+                this.PostRenderEntity(entry, ele);
             }
-            //console.log("RENDERING ENTRY!", entry);
-            var ele = this.RenderEntry(entry);
-            this.container.appendChild(ele);
-            this.PostRenderEntity(entry, ele);
         })
     }
 
