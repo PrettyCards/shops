@@ -5,6 +5,7 @@ import { Shop } from "./shop_layout";
 import {} from "./pages/artifacts_page";
 import {} from "./pages/card_skin_shop_page";
 import {} from "./pages/cosmetics_shop_page";
+import {} from "./pages/packs_page";
 
 import { TypedText } from "./text_engine";
 
