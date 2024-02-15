@@ -72,7 +72,7 @@ class CardSkinsScreen extends PagedFlexListScreen {
             p.innerHTML += window.$.i18n("cardskins-shop-owned");
         } else {
             if (window.prettycards.ids_with_owned_card_skins.includes(entry.cardId)) {
-                p.innerHTML = `<img style="height:16px;" src="https://raw.githubusercontent.com/CMD-God/prettycards/master/img/CardPowers/already_have.png" title="Already own a skin for this card"> `;
+                p.innerHTML = `<img style="height:16px;" src="https://raw.githubusercontent.com/elytrafae/prettycards/master/img/CardPowers/already_have.png" title="Already own a skin for this card"> `;
             }
             if (hasEnoughToBuy) {
                 p.className = "ucp";

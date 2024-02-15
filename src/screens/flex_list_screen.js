@@ -87,6 +87,15 @@ class FlexListScreen {
 
     }
 
+    RemoveScreen() {
+        this.everythingContainer.remove();
+    }
+
+    ReplaceDataAndRerender(newData) {
+        this.data = newData;
+        this.Render();
+    }
+
 }
 
 export {FlexListScreen}

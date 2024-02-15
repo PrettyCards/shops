@@ -9,6 +9,7 @@ class CategorizedFlexListScreen extends FlexListScreen {
     }
 
     Render() {
+        this.category_objects = {};
         this.container.innerHTML = "";
         var orderedData = [ ...this.data ];
         orderedData = orderedData.sort(this.OrderLogic.bind(this));

@@ -36,8 +36,7 @@ class ArtifactsScreen extends FlexListScreen {
             // console.log(entry, this, this.viewFunc);
             this.viewFunc(entry.id);
         }.bind(this);
-        var img = document.createElement("IMG");
-        img.src = window.prettycards.utility.getArtifactImageLink(entry.image);
+        var img = window.prettycards.utility.getArtifactImage(entry.image);
         ele.appendChild(img);
         return ele;
     }

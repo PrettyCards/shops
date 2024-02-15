@@ -47,9 +47,12 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
         var content = document.createElement("DIV");
         content.style = "text-align: left;";
 
-        var priceString = window.$.i18n("pc-shops-cosmetic-price", entry.cost, window.$.i18n("item-ucp"));
-        if (entry.discountPercent) {
-            priceString += ` <span class="ucp">(-${entry.discountPercent}%)</span>`;
+        var priceString = "";
+        if (!entry.owned) {
+            priceString = window.$.i18n("pc-shops-cosmetic-price", entry.cost, window.$.i18n("item-ucp"));
+            if (entry.discountPercent) {
+                priceString += ` <span class="ucp">(-${entry.discountPercent}%)</span>`;
+            }
         }
 
         var hasEnoughUcp = entry.cost <= prettycards.pagegetters.ucp;
@@ -61,12 +64,16 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
 
         var buttonsPart = `
             <div class="PrettyCards_ShopCosmeticsHover_Buttons">
-                <button class="btn btn-success" ${hasEnoughUcp ? "" : "disabled"}><span class="glyphicon glyphicon-shopping-cart"></span> Buy</button>
+                <button class="btn btn-success PrettyCards_ShopCosmeticsHover_BuyButton" ${hasEnoughUcp ? "" : "disabled"}><span class="glyphicon glyphicon-shopping-cart"></span> Buy</button>
                 <button class="btn btn-primary"><span class="glyphicon glyphicon-star"></span> Favorite</button>
             </div>
             ${getUcpLine}
         `;
+        if (entry.owned) {
+            buttonsPart = `<p>You already own this!</p>`
+        }
 
+        // TODO: Add emoute sound button
         if (entry.type === COSMETIC_TYPES.AVATAR) {
             content.innerHTML = `
                 <div class="PrettyCards_ShopCosmeticsHover_Title ${entry.rarity}">${entry.name}</div>
@@ -90,6 +97,16 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
                 <div class="PrettyCards_ShopCosmeticsHover_Price">${priceString}</div>
                 ${buttonsPart}
             `;
+        }
+
+        var buyButton = content.querySelector(".PrettyCards_ShopCosmeticsHover_BuyButton");
+        if (buyButton && !buyButton.hasAttribute("disabled")) {
+            buyButton.onclick = () => {
+                window.prettycards.cosmeticShop.GetData(entry.type, entry.id).then((cosmeticsData) => {
+                    console.log(cosmeticsData);
+                    this.ReplaceDataAndRerender(cosmeticsData);
+                });
+            }
         }
 
         window.tippy(ele, {

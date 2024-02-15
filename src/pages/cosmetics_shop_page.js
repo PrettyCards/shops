@@ -29,15 +29,17 @@ if (us_loaded && cosm_setting.value() && underscript.onPage('CosmeticsShop')) {
             shop.SetupBackgroundAndMusic();
             shop.SetShopkeeperAnim(GersonAnimation);
             shop.AddMenuOption("buy");
-            shop.AddMenuOption("check");
+            shop.AddMenuOption("wish");
             shop.AddMenuOption("talk");
             shop.AddDefaultExitPage();
 
             var shopScreen = new CosmeticsShopScreen(cosmeticsData, shop.GetPageElement(0));
             shopScreen.Render();
 
+            /*
             var checkScreen = new CosmeticsShopScreen(cosmeticsData, shop.GetPageElement(1), true);
             checkScreen.Render();
+            */
 
             var talkScreen = new StandardTalkScreen(shop);
             talkScreen.AddTalkFast("aboutyou", false, "unlocktest");

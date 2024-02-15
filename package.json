@@ -20,7 +20,7 @@
         "underscript",
         "plugin"
     ],
-    "author": "CMD_God",
+    "author": "elytrafae",
     "license": "",
     "devDependencies": {
         "webpack": "^5.88.1",

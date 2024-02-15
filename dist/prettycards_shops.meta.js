@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        PrettyCards Shops
 // @version     1.0.0b3
-// @author      CMD_God
+// @author      elytrafae
 // @description A small userscript to change how the shops in the game look, adding NPCs and menus to them.
 // @homepage    https://github.com/PrettyCardsProjects/shops
 // @supportURL  https://github.com/PrettyCardsProjects/shops
