@@ -48,7 +48,7 @@
     },
     "pc-shops-gerson-talk-title-unlocktest": "Unlocked!",
     "pc-shops-gerson-talk-unlocktest": "[face:sus]Can you feel it, Mr. Crabs?",
-    
+
     "pc-shops-bunny-dial-intro": "Hello, traveller.[w:300]\nHow can I help you?",
     "pc-shops-bunny-dial-buy": "What would you like to buy?",
     "pc-shops-bunny-dial-promo": "These ones are on a discount!",
@@ -61,7 +61,7 @@
     "pc-shops-swatch-dial-buy": "Our menu is specially prepared.",
     "pc-shops-swatch-dial-wish": "Unfortunately, the wishlist feature was just a wish.[w:300] But rest assured, will be added if possible in the future.",
     "pc-shops-swatch-dial-talk": "Chatting would be our pleasure.",
-    "pc-shops-swatch-dial-exit": "Bye now![w:200]\nCome again sometime!",
+    "pc-shops-swatch-dial-exit": "Please come again.[w:300]\nWe'll be waiting for you with rose-tinted glasses...",
     "pc-shops-swatch-dial-bought": "Queen thanks you for your patronage.",
     "pc-shops-swatch-dial-buyerror": "You can't afford it.[w:200] .[w:80].[w:80].[w:80] maybe next time?"
 }
