@@ -21,6 +21,7 @@ class Shop {
         this.InitShopBase();
         this.bgm = new Audio();
         this.bgm.loop = true;
+        this.dialoguePrefix = "";
 
         this.SetUpEvents();
         setTimeout(function() {
@@ -235,6 +236,12 @@ class Shop {
         }
         if (this.lastDialogue) {
             this.lastDialogue.Remove("SWITCH_MENU");
+        }
+        if (typeof(text) === "string") {
+            text = [text];
+        }
+        for (var i=0; i < text.length; i++) {
+            text[i] = dialoguePrefix + text[i];
         }
         this.lastDialogue = new TypedText(text, this.dialogueContainer, this.shopkeeperAnim);
         //console.log("NEW TEXT", this.lastDialogue, this);

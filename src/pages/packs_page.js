@@ -7,6 +7,7 @@ import { GersonAnimation } from "../shopkeeper_anims/gerson_anim";
 import { CosmeticsShopScreen } from "../screens/cosmetics_shop_screen";
 
 import css from "../css/Cosmetics.css";
+import { voiceDictionary } from "../voice_dictionary";
 plugin.events.on("PrettyCards:cssLoaderReady", () => {
     window.prettycards.loadCSS(css);
 })
@@ -21,9 +22,11 @@ var packs_setting = addSetting({
 });
 
 if (us_loaded && packs_setting.value() && underscript.onPage('Packs')) {
+    voiceDictionary.AddVoice("tem", [1, 2, 3, 4, 5, 6].map((n) => "tem"+n));
     underscript.utils.compoundEvent("PrettyCards:TranslationExtReady", function () {
         window.prettycards.cosmeticShop.GetData().then((cosmeticsData) => {
             var shop = new Shop("temmie");
+            shop.dialoguePrefix = "[voice:tem]";
             shop.RemoveEverythingElse();
             document.getElementsByClassName("mainContent")[0].appendChild(shop.container); // The order here is important, as the entire thing MUST be a part of the document before playing the song, as it may need the button, which needs tippy, and tippy doesn't like elements that are not part of the document.
             shop.SetupBackgroundAndMusic();
