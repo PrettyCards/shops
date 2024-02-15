@@ -36,6 +36,14 @@ if (us_loaded && cosm_setting.value() && underscript.onPage('CosmeticsShop')) {
             var shopScreen = new CosmeticsShopScreen(cosmeticsData, shop.GetPageElement(0));
             shopScreen.Render();
 
+            plugin.events.on("PrettyCardsShops:CosmeticBuySuccess", function() {
+                shop.SetDialogue(window.$.i18n("pc-shops-swatch-dial-bought"));
+            })
+
+            plugin.events.on("PrettyCardsShops:CosmeticBuyError", function() {
+                shop.SetDialogue(window.$.i18n("pc-shops-swatch-dial-buyerror"));
+            })
+
             /*
             var checkScreen = new CosmeticsShopScreen(cosmeticsData, shop.GetPageElement(1), true);
             checkScreen.Render();
@@ -56,6 +64,14 @@ if (us_loaded && cosm_setting.value() && underscript.onPage('CosmeticsShop')) {
             */
 
         });
+
+        window.prettycards.cosmeticShop.shopPlaySoundEvent = function(/**@type {HTMLButtonElement}*/ button, emoteName) {
+            window.prettycards.playEmoteSound(emoteName, () => {
+                button.setAttribute("disabled", true);
+                button.classList.remove("btn-primary");
+                button.classList.add("btn-danger");
+            }, true);
+        }
         
     })
 }

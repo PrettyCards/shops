@@ -1,7 +1,13 @@
 
 import { CategorizedFlexListScreen } from "./categorized_flex_list_screen";
+import { plugin } from "../underscript_checker";
 
 class CosmeticsShopScreen extends CategorizedFlexListScreen {
+
+    constructor(data, parent) {
+        super(data, parent)
+        this.tippys = [];
+    }
 
     RenderCategoryHeader(category_id) {
         var div = document.createElement("DIV");
@@ -42,7 +48,7 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
 
     
     PostRenderEntity(entry, ele) {
-        console.log(entry);
+        //console.log(entry);
         var COSMETIC_TYPES = window.prettycards.cosmeticShop.COSMETIC_TYPES;
         var content = document.createElement("DIV");
         content.style = "text-align: left;";
@@ -62,18 +68,23 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
             getUcpLine = `<div style="margin-top: 3px;"><a href="/Shop" class="ucp">Want to buy ${window.$.i18n("item-ucp")}? Click here!</a></div>`;
         }
 
+        var emoteSound = "";
+        if (entry.type === COSMETIC_TYPES.EMOTE) {
+            emoteSound = `<button class="btn btn-primary" onclick="prettycards.cosmeticShop.shopPlaySoundEvent(this, '${entry.name.replaceAll(" ", "_")}');"><span class="glyphicon glyphicon-volume-up"></span> Sound</button>`
+        }
+
         var buttonsPart = `
             <div class="PrettyCards_ShopCosmeticsHover_Buttons">
                 <button class="btn btn-success PrettyCards_ShopCosmeticsHover_BuyButton" ${hasEnoughUcp ? "" : "disabled"}><span class="glyphicon glyphicon-shopping-cart"></span> Buy</button>
-                <button class="btn btn-primary"><span class="glyphicon glyphicon-star"></span> Favorite</button>
+                ${emoteSound}
+                <button class="btn btn-primary" disabled><span class="glyphicon glyphicon-star"></span> Wishlist</button>
             </div>
             ${getUcpLine}
         `;
         if (entry.owned) {
-            buttonsPart = `<p>You already own this!</p>`
+            buttonsPart = `<p>You already own this!</p>${emoteSound}`
         }
 
-        // TODO: Add emoute sound button
         if (entry.type === COSMETIC_TYPES.AVATAR) {
             content.innerHTML = `
                 <div class="PrettyCards_ShopCosmeticsHover_Title ${entry.rarity}">${entry.name}</div>
@@ -102,14 +113,18 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
         var buyButton = content.querySelector(".PrettyCards_ShopCosmeticsHover_BuyButton");
         if (buyButton && !buyButton.hasAttribute("disabled")) {
             buyButton.onclick = () => {
+                buyButton.setAttribute("disabled", true);
                 window.prettycards.cosmeticShop.GetData(entry.type, entry.id).then((cosmeticsData) => {
-                    console.log(cosmeticsData);
+                    buyButton.removeAttribute("disabled");
+                    //console.log(cosmeticsData);
+                    this.RemoveAllTippys()
                     this.ReplaceDataAndRerender(cosmeticsData);
+                    plugin.events.emit("PrettyCardsShops:CosmeticBuy" + (prettycards.cosmeticShop.isLastReadASuccessfulBuy ? "Success" : "Error"));
                 });
             }
         }
 
-        window.tippy(ele, {
+        var t = window.tippy(ele, {
             content: content,
             allowHTML: true,
             arrow: true,
@@ -120,6 +135,17 @@ class CosmeticsShopScreen extends CategorizedFlexListScreen {
             boundary: 'window',
             getReferenceClientRect: window.document.body.getBoundingClientRect
         });
+        this.AddTippy(t);
+    }
+
+    RemoveAllTippys() {
+        this.tippys.forEach((tippy) => {
+            tippy.hide();
+        })
+    }
+
+    AddTippy(tippy) {
+        this.tippys.push(tippy);
     }
 
 }
