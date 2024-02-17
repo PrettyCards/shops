@@ -124,7 +124,12 @@ class TypedText {
                 if (arg == "") {
                     return true;
                 }
-                // Insert Voice changing part here
+                var voice = voiceDictionary.GetVoice(arg);
+                if (!voice) {
+                    this.voice = this.defaultVoice;
+                    return true;
+                }
+                this.voice = voice;
                 return true;
             },
             face: (arg) => {

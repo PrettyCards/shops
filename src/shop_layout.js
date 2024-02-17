@@ -241,7 +241,7 @@ class Shop {
             text = [text];
         }
         for (var i=0; i < text.length; i++) {
-            text[i] = dialoguePrefix + text[i];
+            text[i] = this.dialoguePrefix + text[i];
         }
         this.lastDialogue = new TypedText(text, this.dialogueContainer, this.shopkeeperAnim);
         //console.log("NEW TEXT", this.lastDialogue, this);

@@ -22,8 +22,7 @@ var packs_setting = addSetting({
 });
 
 if (us_loaded && packs_setting.value() && underscript.onPage('Packs')) {
-    voiceDictionary.AddVoice("tem", [1, 2, 3, 4, 5, 6].map((n) => "tem"+n));
-    underscript.utils.compoundEvent("PrettyCards:TranslationExtReady", function () {
+    underscript.utils.compoundEvent("PrettyCards:TranslationExtReady PrettyCardsShop:TemVoiceLoaded", function () {
         window.prettycards.cosmeticShop.GetData().then((cosmeticsData) => {
             var shop = new Shop("temmie");
             shop.dialoguePrefix = "[voice:tem]";
@@ -76,5 +75,11 @@ if (us_loaded && packs_setting.value() && underscript.onPage('Packs')) {
             }, true);
         }
         
+    })
+
+    plugin.events.on("PrettyCards:onPageLoad", () => {
+        // TODO: Wrong event name
+        voiceDictionary.AddVoice("tem", [1, 2, 3, 4, 5, 6].map((n) => "tem"+n));
+        plugin.events.emit.singleton("PrettyCardsShop:TemVoiceLoaded");
     })
 }
