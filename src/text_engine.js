@@ -24,7 +24,9 @@ class TypedText {
         this.noskip = false;
         this.defaultVoice = defaultVoice;
         this.voice = this.defaultVoice;
-        this.audio = new Audio();
+        //this.audio = new Audio();
+        this.audioObjects = [new Audio(), new Audio(), new Audio(), new Audio()];
+        this.audioObjectNr = 0;
         this.novoice = false;
         this.alwaysMute = settings.silent_dialogue.value();
         this.animDispatcher = animDispatcher;
@@ -209,8 +211,13 @@ class TypedText {
                     this.currentSpan.innerHTML += nextChar;
                     if ((!this.instant) && (!this.userInstant) && (!this.novoice) && (!(nextChar === " "))) {
                         if (!this.alwaysMute) {
-                            this.audio = new Audio(this.voice.GetRandomSource());
-                            this.audio.play();
+                            var currentAudio = this.audioObjects[this.audioObjectNr % this.audioObjects.length];
+                            currentAudio.pause();
+                            currentAudio.src = this.voice.GetRandomSource();
+                            currentAudio.play();
+                            this.audioObjectNr++;
+                            //this.audio = new Audio(this.voice.GetRandomSource();
+                            //this.audio.play();
                         }
                         if (this.animDispatcher) {
                             this.animDispatcher.OnMouthOpenLetter();
